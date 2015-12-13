@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=harbour-9store
+Exec=harbour-9store
+Name=9Store
+# translation example:
+# your app name in German locale (de)
+Name[de]=9Store
+Name[zh_CN]=久店
+
