@@ -59,6 +59,21 @@
     </message>
 </context>
 <context>
+    <name>AppList</name>
+    <message>
+        <source>NewList</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HotList</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AppListComponent</name>
     <message>
         <source> append to download list</source>
@@ -73,6 +88,10 @@
     </message>
     <message>
         <source>Load More...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No more apps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -126,21 +145,6 @@
     </message>
     <message>
         <source>Removing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>HotList</name>
-    <message>
-        <source>HotList</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>NewList</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -310,10 +314,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HotApps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>NewApps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,10 +335,6 @@
     </message>
     <message>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Welcome Guest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -384,7 +380,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>������������,������:</source>
+        <source>Task added!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>error connection:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

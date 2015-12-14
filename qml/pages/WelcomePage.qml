@@ -5,28 +5,26 @@ import "../js/main.js" as Script
 
 Page{
     id:welcome
-    property int pagenum:1
-    property int listsum: 0
-    property string photoUrl: ""
-    Component.onCompleted: {
-        //pagenum,os,order,model,type,category,pagesize
-        JS.loadAppList(pagenum,window.os_type,"scores",hotappModel,"","","6")
-        JS.loadAppList(pagenum,window.os_type,"views",newappModel,"","","6")
+    property alias coverModel: covermodel;
+    property alias featuredModel: featuredmodel;
+    property alias listmodel: listmodel;
 
-    }
 
-    ListModel{id:listmodel}
-    ListModel{id:hotappModel}
-    ListModel{id:newappModel}
-    Progress{
-        id:progress
-        anchors.centerIn: parent
-    }
+   ListModel{
+       id:covermodel;
+   }
+   ListModel{
+       id:featuredmodel;
+   }
+   ListModel{
+       id:listmodel;
+   }
+
 
     SilicaFlickable{
         id:flick
-        visible: !busyIndicator.running
-        opacity:(progress.visible?0:1)
+        enabled: PageStatus.Active
+        opacity:PageStatus.Active?1:0
         PullDownMenu {
             id:pulldownid
             MenuItem {
@@ -45,21 +43,14 @@ Page{
 
         PageHeader{
             id:header
-            title: {
-                if(nickname){
-                    return qsTr("Welcome,")+user.nickName
-                }else{
-                    return qsTr("Welcome Guest")
-                }
-            }
-
+            title:qsTr("Welcome,")+user.nickName
         }
         anchors.fill: parent
         contentHeight: content.height + header.height+ category.height + Theme.paddingLarge
         Item{
             id: content
             width: parent.width
-            height: hotappBak.height+newappItem.height
+            height: newappItem.height
             Component.onCompleted: {
                 conBusy.running=false
                 content.visible = true;
@@ -72,58 +63,58 @@ Page{
             }
             visible: false
             anchors.top: header.bottom
-            Item{
-                id:hotappBak
-                Component.onCompleted: {
-                    habusy.running = false
-                }
-                BusyIndicator {
-                    id: habusy
-                    anchors.centerIn: parent
-                    running: true
-                    size: BusyIndicatorSize.Small
-                }
-                visible: !habusy.running
-                anchors.top:parent.top
-                height: hotgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
-                width: parent.width
-                MoreButton{
-                    id:feedButton
-                    width:parent.width
-                    visible: !habusy.running
-                    anchors.top: parent.top
-                    height: Theme.itemSizeMedium
-                    text: qsTr("HotApps")
-                    onClicked: {
-                        pageStack.push(Qt.resolvedUrl("HotList.qml"),
-                                       {"query_type":"views"
-                                       });
-                    }
-                    WelcomeBoxBackground {
-                        anchors.fill: parent
-                        z: -1
-                    }
-                }
+//            Item{
+//                id:hotappBak
+//                Component.onCompleted: {
+//                    habusy.running = false
+//                }
+//                BusyIndicator {
+//                    id: habusy
+//                    anchors.centerIn: parent
+//                    running:true
+//                    size: BusyIndicatorSize.Small
+//                }
+//                visible: !habusy.running
+//                anchors.top:parent.top
+//                height: hotgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
+//                width: parent.width
+//                MoreButton{
+//                    id:feedButton
+//                    width:parent.width
+//                    visible: !habusy.running
+//                    anchors.top: parent.top
+//                    height: Theme.itemSizeMedium
+//                    text: qsTr("Recommendation")
+//                    onClicked: {
+//                        pageStack.push(Qt.resolvedUrl("HotList.qml"),
+//                                       {"query_type":"views"
+//                                       });
+//                    }
+//                    WelcomeBoxBackground {
+//                        anchors.fill: parent
+//                        z: -1
+//                    }
+//                }
 
-                Grid{
-                    id:hotgrid
-                    width:parent.width
-                    anchors{
-                        top:feedButton.bottom
-                        left:parent.left
-                        right:parent.right
-                    }
+//                Grid{
+//                    id:hotgrid
+//                    width:parent.width
+//                    anchors{
+//                        top:feedButton.bottom
+//                        left:parent.left
+//                        right:parent.right
+//                    }
 
-                    columns: 3
-                    Repeater {
-                        model: hotappModel
-                        AppBackgroundItem {
-                        }
-                    }
-                }
+//                    columns: 3
+//                    Repeater {
+//                        model:
+//                        AppBackgroundItem {
+//                        }
+//                    }
+//                }
 
 
-            }
+//            }
 
             Item{
                 Component.onCompleted: {
@@ -137,7 +128,7 @@ Page{
                 }
                 id:newappItem
                 visible: !nibusy.running
-                anchors.top:hotappBak.bottom
+                anchors.top:parent.top
                 //height: childrenRect.height
                 //contentHeight:childrenRect.height
                 height: newgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
@@ -150,7 +141,7 @@ Page{
                     height: Theme.itemSizeMedium
                     text: qsTr("NewApps")
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("HotList.qml"),
+                        pageStack.push(Qt.resolvedUrl("AppList.qml"),
                                        {"query_type":""
                                        });
                     }
@@ -170,7 +161,7 @@ Page{
 
                     columns: 3
                     Repeater {
-                        model: newappModel
+                        model: featuredmodel
                         AppBackgroundItem {
                         }
                     }
@@ -241,21 +232,16 @@ Page{
 
     }
 
-    BusyIndicator {
-        id: busyIndicator
-        anchors.centerIn: parent
-        running: !PageStatus.Active
-        size: BusyIndicatorSize.Large
-    }
+//    BusyIndicator {
+//        id: busyIndicator
+//        anchors.centerIn: parent
+//        running: !PageStatus.Active
+//        size: BusyIndicatorSize.Large
+//    }
     Label {
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: busyIndicator.top
-            margins: Theme.paddingLarge
-        }
+        anchors.centerIn: parent
         width: parent.width
-        visible:  !PageStatus.Active
+        visible:!PageStatus.Active
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.Wrap
         font.pixelSize: Theme.fontSizeExtraLarge
@@ -263,4 +249,8 @@ Page{
         text: qsTr("Loading...")
     }
 
+    Component.onCompleted: {
+        Script.mainPage = welcome;
+        Script.getfeatured(sysinfo.osType);
+    }
 }

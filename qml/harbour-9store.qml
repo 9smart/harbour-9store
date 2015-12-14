@@ -34,6 +34,7 @@ import io.thp.pyotherside 1.3
 
 import "pages"
 import "pages/components"
+import "pages/model"
 import "js/login.js" as UserData
 import "js/main.js" as Script
 import org.nemomobile.notifications 1.0
@@ -43,14 +44,9 @@ ApplicationWindow
 {
     id:window
     property string version:"0.5.1";
-    property bool loading;
-
-    property string downloadpath:"" //settings.getDownloadPath();
-    property string installdriver:"" //settings.getInstallDriver();
-    property bool autoInstall:false//settings.autoInstall;
-
+    property bool loading:false;
     property alias user: user;
-    property string os_type:"Sailfish+OS"
+    property alias sysinfo:sysinfo;
     property var downList: [];
     property real currper: 0.0
     property bool opencache: true
@@ -85,6 +81,13 @@ ApplicationWindow
         }
     }
 
+
+    BusyIndicator {
+        id: busyIndicator
+        anchors.centerIn: parent
+        running: loading
+        size: BusyIndicatorSize.Large
+    }
 
     initialPage: Component {
         Page{
@@ -143,10 +146,11 @@ ApplicationWindow
                return;
             }
             var obj=JSON.parse(oritxt);
-            user.nickName = obj.nickname;
-            user.avatar = obj.avatar;
-            user.avatar_hd = obj.avatar_hd;
-            user.noticeNumber = obj.notice_num;
+            user.username = obj.user.username;
+            user.nickName = obj.user.nickname;
+            user.avatar = obj.user.avatar;
+            user.avatar_hd = obj.user.avatar_hd;
+            user.noticeNumber = obj.user.notice_num;
             user.userState = true;
             pageStack.replace(Qt.resolvedUrl("pages/WelcomePage.qml"));
         }
@@ -160,17 +164,14 @@ ApplicationWindow
             target: signalCenter;
             onLoadStarted:{
                 window.loading=true;
-                //loadingind.open();
                 processingtimer.restart();
             }
             onLoadFinished:{
                 window.loading=false;
-                //loadingind.close();
                 processingtimer.stop();
             }
             onLoadFailed:{
                 window.loading=false;
-                //loadingind.close();
                 processingtimer.stop();
                 signalCenter.showMessage(errorstring);
             }
@@ -206,6 +207,10 @@ ApplicationWindow
 
     User{
         id:user;
+    }
+
+    SysInfo{
+        id:sysinfo;
     }
 
     Python {

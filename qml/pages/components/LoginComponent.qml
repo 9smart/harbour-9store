@@ -71,6 +71,7 @@ Item {
                 onClicked: {
                     errorLabel.visible = false;
                     busyIndicator.running = true;
+                    Script.app = window
                     Script.logIn(userName.text,password.text)
 
                 }

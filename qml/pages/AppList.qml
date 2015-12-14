@@ -29,9 +29,9 @@
 */
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../js/applist.js" as JS
 import "../js/login.js" as UserData
 import "components"
+import "model"
 Page{
     id:showlist
     property int operationType: PageStackAction.Animated
@@ -59,17 +59,11 @@ Page{
             }
 
         }
-
-
-        Progress{
-            id:progress
-            anchors.centerIn: parent
-        }
         ListModel {
             id:appListModel
         }
 
-        AppListViewComponet{
+        AppListViewComponent{
             anchors{
                 top:header.bottom
                 left:parent.left
@@ -78,14 +72,7 @@ Page{
                 //bottomMargin: Theme.paddingMedium
             }
         }
-        Label{
-            id:nohistory
-            visible: !progress.visible && PageStatus.Active && appListModel.count === 0
-            text:"暂无记录"
-            color: Theme.highlightColor
-            anchors.centerIn: parent
-            font.pixelSize: Theme.fontSizeExtraLarge
-        }
+
 
     }
 

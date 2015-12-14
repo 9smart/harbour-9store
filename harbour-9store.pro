@@ -78,7 +78,9 @@ OTHER_FILES += \
     qml/py/__init__.py \
     qml/py/basedir.py \
     qml/pages/components/LabelText.qml \
-    qml/pages/components/CurrentOpeartion.qml
+    qml/pages/components/CurrentOpeartion.qml \
+    qml/pages/model/SysInfo.qml \
+    qml/pages/model/User.qml
 
 
 # to disable building translations every time, comment out the
@@ -109,4 +111,5 @@ DISTFILES += \
     qml/pages/components/CommentsComponent.qml \
     qml/pages/components/DetailComponent.qml \
     qml/pages/components/RealtedComponent.qml \
-    qml/pages/components/SubmitCommentComponent.qml
+    qml/pages/components/SubmitCommentComponent.qml \
+    qml/pages/model/SysInfo.qml

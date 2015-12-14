@@ -46,7 +46,7 @@ function sendWebRequest(url, callback, method, postdata) {
     xmlhttp.onreadystatechange = function() {
                 switch(xmlhttp.readyState) {
                 case xmlhttp.OPENED:signalcenter.loadStarted();break;
-                case xmlhttp.HEADERS_RECEIVED:if (xmlhttp.status != 200)signalcenter.loadFailed(qsTr("连接错误,代码:")+xmlhttp.status+"  "+xmlhttp.statusText);break;
+                case xmlhttp.HEADERS_RECEIVED:if (xmlhttp.status != 200)signalcenter.loadFailed(qsTr("error connection:")+xmlhttp.status+"  "+xmlhttp.statusText);break;
                 case xmlhttp.DONE:if (xmlhttp.status == 200) {
                         try {
                             callback(xmlhttp.responseText);
@@ -87,7 +87,6 @@ function loadLogInResult(oritxt){
         sendWebRequest(url, loadUserInfo, "GET", "")
     }
     else{
-        //signalcenter.showMessage(obj.error);
         signalcenter.loginFailed(obj.error)
     }
 }
@@ -95,19 +94,18 @@ function loadUserInfo(oritxt){
     if(!oritxt) {
         return;
     }
-    console.log(oritxt);
-
     var obj = JSON.parse(oritxt);
-
-    if(obj._id != ""){
-        //app.user._id = obj._id;
-        //app.user.auth = obj.auth;
-        app.user.username = obj.username;
-        app.user.nickName = obj.nickname;
-        app.user.avatar = obj.avatar;
-        app.user.avatar_hd = obj.avatar_hd;
-        app.user.noticeNumber = obj.notice_num;
+    console.log(oritxt)
+    if(obj.error === 0){
+        app.user.username = obj.user.username;
+        app.user.nickName = obj.user.nickname;
+        app.user.avatar = obj.user.avatar;
+        app.user.avatar_hd = obj.user.avatar_hd;
+        app.user.noticeNumber = obj.user.notice_num;
         app.user.userState = true;
+        if(obj.user.auth){
+            app.user.auth = obj.user.auth;
+        }
         signalcenter.loginSucceed();
         savaUserData(obj);
 
@@ -123,28 +121,35 @@ function savaUserData(obj){
 
 var mainPage;
 var page;
-function getfeatured(os){
-    var url="http://api.9smart.cn/apps?system="+os+"&recommended=1";
+
+function getfeatured(system){
+    var url = getRecommendation(system);
     sendWebRequest(url,loadfeatured,"GET","");
 }
 function loadfeatured(oritxt){
-    var obj=JSON.parse(oritxt);
-    featuredmodel.clear();
-    for(var i in obj.apps){
-        featuredmodel.append(obj.apps[i]);
+    var obj = JSON.parse(oritxt);
+    if(obj.error === 0){
+        mainPage.featuredModel.clear();
+        for(var i in obj.apps){
+            mainPage.featuredModel.append(obj.apps[i]);
+        }
     }
+    else signalcenter.showMessage(obj.error);
 }
 
-function getcover(){
-    var url="http://api.9smart.cn/covers?type=app";
+function getcover(system){
+    var url = getPoster(system);
     sendWebRequest(url,loadcover,"GET","");
 }
 function loadcover(oritxt){
-    var obj=JSON.parse(oritxt);
-    covermodel.clear();
-    for(var i in obj.covers){
-        covermodel.append(obj.covers[i]);
+    var obj = JSON.parse(oritxt);
+    if(obj.error === 0){
+        mainPage.coverModel.clear();
+        for(var i in obj.apps){
+            mainPage.coverModel.append(obj.apps[i]);
+        }
     }
+    else signalcenter.showMessage(obj.error);
 }
 
 function getcategory(type){
@@ -153,7 +158,7 @@ function getcategory(type){
 }
 function loadcategory(oritxt){
     var obj=JSON.parse(oritxt);
-    if(obj.error=== 0){
+    if(obj.error === 0){
         mainPage.categorymodel.clear();
         for(var i in obj.categorys){
             mainPage.categorymodel.append({"category":obj.categorys[i]});
@@ -168,7 +173,7 @@ function getlist(system, category, developer, page, pagesize, sort){
 }
 function loadlist(oritxt){
     var obj=JSON.parse(oritxt);
-    if(obj.error=== 0){
+    if(obj.error === 0){
         if(obj.pager.page === 1){
             mainPage.listmodel.clear();
         }
@@ -185,28 +190,37 @@ function loadlist(oritxt){
     else signalcenter.showMessage(obj.error);
 }
 
-function getapplication(os,appname,fields){
-    var url="http://api.9smart.cn/apps?type=app&system="+os+"&appname="+appname+"&fields="+fields;
+function getapplication(system, keyWord){
+    var url= search(system, keyWord, "", "", "app");
     sendWebRequest(url,loadapplication,"GET","");
 }
 function loadapplication(oritxt){
     var obj=JSON.parse(oritxt);
-    applicationmodel.clear();
-    for(var i in obj.apps){
-        applicationmodel.append(obj.apps[i]);
+    if(obj.error === 0){
+        mainPage.applicationModel.clear();
+        for(var i in obj.apps){
+            mainPage.applicationModel.append(obj.apps[i]);
+        }
     }
 }
 
-function getgame(os,appname,fields){
-    var url="http://api.9smart.cn/apps?type=game&system="+os+"&appname="+appname+"&fields="+fields;
+function getgame(system, keyWord){
+    var url= search(system, keyWord, "", "", "game");
     sendWebRequest(url,loadgame,"GET","");
 }
 function loadgame(oritxt){
     var obj=JSON.parse(oritxt);
-    gamemodel.clear();
-    for(var i in obj.apps){
-        gamemodel.append(obj.apps[i]);
+    if(obj.error === 0){
+        mainPage.gameModel.clear();
+        for(var i in obj.apps){
+            mainPage.gameModel.append(obj.apps[i]);
+        }
     }
+}
+
+function getSearch(system, keyWord, category, page){
+    var url = search(system, keyWord, "", page, "", category);
+    sendWebRequest(url, loadlist, "GET", "");
 }
 
 var infoPage;
@@ -216,8 +230,8 @@ function getinfo(id){
 }
 function loadinfo(oritxt){
     var obj=JSON.parse(oritxt);
-    if(obj.error=== 0){
-        //type=obj.type;
+    if(obj.error === 0){
+        infoPage.type=obj.app.type;
         infoPage.category = obj.app.category;
         infoPage.version = obj.app.version;
         infoPage.size = obj.app.size;
@@ -229,9 +243,32 @@ function loadinfo(oritxt){
         else size=((size/1048576).toFixed(2)).toString()+"MB";
         infoPage.size = size;
         for(var i=1;i<=5;i++){
-            infoPage.screenShotsModel.append({"thumburl":"http://apps-images.9smart.cn/" + obj.app.uploader.uid + "/" + obj.app._id + "/s/" + i.toString() + "_thumb"
-                                                 ,"url":"http://apps-images.9smart.cn/" + obj.app.uploader.uid + "/" + obj.app._id + "/s/" + i.toString()})
+            infoPage.screenShotsModel.append({
+                                                 "thumburl":getAppShots(obj.app.uploader.uid,obj.app._id,i.toString()) + "_thumb"
+                                                 ,"url":getAppShots(obj.app.uploader.uid,obj.app._id,i.toString())
+                                             })
         }
+    }
+    else signalcenter.showMessage(obj.error);
+}
+
+var downloadName;
+var downloadIcon;
+function getDownloadUrl(id, auth, name, icon){
+    var url = download(id, auth, "");
+    downloadName = name;
+    downloadIcon = icon;
+    sendWebRequest(url, loadDownloadUrl, "GET", "");
+}
+function loadDownloadUrl(oritxt){
+    var obj = JSON.parse(oritxt);
+    if(obj.error === 0){
+        application.downloadModel.append({"name": downloadName, "url": obj.down_url,
+                                          "filename": settings.downloadPath + "/" +downloadName + ".sis", "icon": downloadIcon});
+        console.log(downloadName);
+        console.log(settings.downloadPath)
+        qCurl.appenddl(obj.down_url, settings.downloadPath + "/" + downloadName + ".sis");
+        signalCenter.showMessage(qsTr("Task added!"));
     }
     else signalcenter.showMessage(obj.error);
 }
@@ -242,7 +279,7 @@ function getrelatedlist(system, category, page, pagesize){
 }
 function loadrelatedlist(oritxt){
     var obj=JSON.parse(oritxt);
-    if(obj.error=== 0){
+    if(obj.error === 0){
         if(obj.pager.page=== 1){
             infoPage.relatedAppsModel.clear();
         }
@@ -264,7 +301,7 @@ function getSpecifiedAuthorList(system, developer, page, pageSize){
 }
 function loadSpecifiedAuthorList(oritxt){
     var obj = JSON.parse(oritxt);
-    if(obj.error=== 0){
+    if(obj.error === 0){
         if(obj.pager.page === 1){
             infoPage.specifiedAuthorModel.clear();
         }
@@ -361,12 +398,13 @@ function isnew(currentver,lastver){
     else return false;
 }
 
+
 function registeR(userName,nickName,passWord,repassWord,eMail){
     var url = register();
     var postData = registerData(userName,nickName, passWord,repassWord,eMail);
-    console.log(url+postData);
     sendWebRequest(url, registerResult, "POST", postData);
 }
+
 function registerResult(oritxt){
     var obj = JSON.parse(oritxt);
     if(obj.error=== 0){
@@ -377,9 +415,9 @@ function registerResult(oritxt){
         sendWebRequest(url, loadUserInfo, "GET", "")
     }
     else{
-        //signalcenter.showMessage(obj.error);
         signalcenter.registerFailed(obj.error)
     }
 }
+
 
 

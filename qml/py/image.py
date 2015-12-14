@@ -6,6 +6,7 @@ from basedir import *
 import imghdr
 import hashlib
 import logging
+import urllib
 
 __appname__ = "harbour-9store"
 cachePath=os.path.join(XDG_CACHE_HOME, __appname__, __appname__,"9store","")
@@ -13,11 +14,15 @@ dbPath=os.path.join(XDG_DATA_HOME, __appname__,__appname__, "QML","OfflineStorag
 savePath=os.path.join(HOME, "Pictures", "save","9store","")
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
+if not os.path.exists(savePath):
+    os.makedirs(savePath)
+if not os.path.exists(cachePath):
+    os.makedirs(cachePath)
+
 def saveImg(md5name,savename):
     try:
         realpath=cachePath+md5name
         tmppath = savePath+savename+"."+findImgType(realpath)
-        isExis(savePath)
         #logging.debug(tmppath)
         shutil.copy(realpath,tmppath.encode("utf-8"))
         logging.debug(tmppath)
@@ -26,24 +31,18 @@ def saveImg(md5name,savename):
         logging.debug(e)
         pyotherside.send("-1")
 
-def isExis(path):
-    if os.path.exists(path):
-        pass
-    else:
-        os.makedirs(path)
-
 """
     缓存图片
 """
 def cacheImg(url):
-    cachedFile = cachePath+sumMd5(md5name)
+    cachedFile = cachePath+sumMd5(url)
     if os.path.exists(cachedFile):
         pass
     else:
-        isExis(cachePath)
         downloadImg(cachedFile,url)
     #判断图片格式
     return cachedFile
+
 
 """
     下载文件

@@ -10,9 +10,9 @@ Image{
     Python{
         id:imgpy
          Component.onCompleted: {
-         addImportPath(Qt.resolvedUrl('./py')); // adds import path to the directory of the Python script
+         addImportPath(Qt.resolvedUrl('.././py')); // adds import path to the directory of the Python script
          imgpy.importModule('image', function () {
-                call('image.cacheImg',[objects.imagen],function(result){
+                call('image.cacheImg',[cacheurl],function(result){
                      thumbnail.source = result;
                      waitingIcon.visible = false;
                 });
