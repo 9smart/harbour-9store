@@ -169,23 +169,23 @@ function loadcategory(oritxt){
 
 function getlist(system, category, developer, page, pagesize, sort){
     var url = apps(system, category, developer, page, pagesize, sort);
+    console.log("url:"+url)
     sendWebRequest(url,loadlist,"GET","");
 }
 function loadlist(oritxt){
     var obj=JSON.parse(oritxt);
     if(obj.error === 0){
-        if(obj.pager.page === 1){
-            mainPage.listmodel.clear();
-        }
+//        if(obj.pager.page === 1){
+
+//        }
+        mainPage.listmodel.clear();
         for(var i in obj.apps){
             mainPage.listmodel.append(obj.apps[i]);
         }
-        if(obj.pager.next_page !== 0){
-            page = obj.pager.next_url;
-        }
-        else{
-            page = "NULL";
-        }
+        console.log("next_url:"+ obj.pager.next_url)
+        mainPage.nextpage = obj.pager.next_url;
+        mainPage.prepage = obj.pager.pre_url;
+
     }
     else signalcenter.showMessage(obj.error);
 }

@@ -36,22 +36,24 @@ import "model"
 Page{
     id:showlist
     property int operationType: PageStackAction.Animated
-    property int pagenum:1
+    property string prepage
+    property string nextpage
     property bool display:false
     property int listsum:0
+    property int pagesize:12
     property string query_type:""
     property string type:""
     property string category:""
     property string photoUrl: ""
-
+    property string developer:""
+    property string sort
+    property alias listmodel:listModel
     ListModel {
-        id:appListModel
+        id:listModel
     }
+
     SilicaFlickable{
-        PageHeader {
-            id:header
-            title: query_type === ""?qsTr("NewList"):qsTr("HotList")
-        }
+        enabled: PageStatus.Active
         anchors.fill: parent
         PullDownMenu {
             id:pulldownid
@@ -61,15 +63,57 @@ Page{
             }
 
         }
+        SilicaListView {
+            id:view
+            anchors.fill: parent
+            header: PageHeader {
+                id:header
+                title: query_type === ""?qsTr("NewList"):qsTr("HotList")
+            }
+            model: listModel
+            visible: view.count>0
+            clip: true
+            delegate:AppListComponent{}
+            VerticalScrollDecorator {}
+            footer:Component{
 
+                Item {
+                    id: loadMoreID
+                    anchors {
+                        left: parent.left;
+                        right: parent.right;
+                    }
+                    height: Theme.itemSizeMedium
+                    Row {
+                        id:footItem
+                        spacing: Theme.paddingLarge
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        Button {
+                            text: qsTr("Prev Page")
+                            visible: prepage?true:false
+                            onClicked: {
+                                Script.getlist(sysinfo.osType, category, developer, prepage, pagesize, sort);
+                                view.scrollToTop()
+                            }
+                        }
+                        Button{
+                            text:qsTr("Next Page")
+                            visible:nextpage != "null"
+                            onClicked: {
+                                console.log("nextpage:"+nextpage)
+                                Script.getlist(sysinfo.osType, category, developer, nextpage, pagesize, sort);
+                                view.scrollToTop()
+                            }
+                        }
+                    }
+                }
 
-        AppListViewComponent{
-            anchors{
-                top:header.bottom
-                left:parent.left
-                right: parent.right
-                bottom:parent.bottom
-                //bottomMargin: Theme.paddingMedium
+            }
+
+            ViewPlaceholder{
+                enabled: view.count == 0
+                text: qsTr("No more apps")
+
             }
         }
 
@@ -77,7 +121,8 @@ Page{
     }
 
     Component.onCompleted: {
-          Script.getlist(sysinfo.osType, category, developer, page, pagesize, sort)
+        Script.mainPage = showlist;
+        Script.getlist(sysinfo.osType, category, developer, nextpage, pagesize, sort)
     }
 
 }

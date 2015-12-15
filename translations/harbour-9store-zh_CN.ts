@@ -5,293 +5,377 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation type="vanished">关于</translation>
+        <translation>关于</translation>
     </message>
 </context>
 <context>
     <name>AppClass</name>
     <message>
         <source>Category</source>
-        <translation type="vanished">分类</translation>
+        <translation>分类</translation>
     </message>
 </context>
 <context>
     <name>AppDetail</name>
     <message>
         <source>Install</source>
-        <translation type="vanished">安装</translation>
+        <translation>安装</translation>
     </message>
     <message>
         <source>AppDetail</source>
-        <translation type="vanished">应用详情</translation>
-    </message>
-    <message>
-        <source>Related</source>
-        <translation type="vanished">相关应用</translation>
-    </message>
-    <message>
-        <source>related</source>
-        <translation type="vanished">相关应用</translation>
+        <translation>应用详情</translation>
     </message>
     <message>
         <source>otherApps</source>
-        <translation type="vanished">作者其他应用</translation>
+        <translation>作者其他应用</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="vanished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
         <source>Load More...</source>
-        <translation type="vanished">加载更多...</translation>
+        <translation>加载更多...</translation>
     </message>
     <message>
         <source>Start downloading %1</source>
-        <translation type="vanished">开始下载 %1</translation>
+        <translation>开始下载 %1</translation>
     </message>
     <message>
         <source>scrollToTop</source>
-        <translation type="vanished">返回顶部</translation>
+        <translation>返回顶部</translation>
     </message>
     <message>
         <source>Related Apps</source>
-        <translation type="vanished">相关应用</translation>
+        <translation>相关应用</translation>
+    </message>
+    <message>
+        <source>Unistall</source>
+        <translation>卸载</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation>升级</translation>
     </message>
 </context>
 <context>
-    <name>AppListViewComponet</name>
+    <name>AppList</name>
     <message>
-        <source>scrollToTop</source>
-        <translation type="vanished">返回顶部</translation>
+        <source>NewList</source>
+        <translation>新应用</translation>
     </message>
     <message>
-        <source>Load More...</source>
-        <translation type="vanished">加载更多...</translation>
+        <source>HotList</source>
+        <translation>热门列表</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation type="vanished">关于</translation>
-    </message>
-</context>
-<context>
-    <name>AppsList</name>
-    <message>
-        <source>AppList</source>
-        <translation type="obsolete">应用列表</translation>
+        <source>Search</source>
+        <translation>搜索</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation type="vanished">关于</translation>
+        <source>Prev Page</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>AppsList</source>
-        <translation type="vanished">应用列表</translation>
+        <source>Next Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No more apps</source>
+        <translation type="unfinished">没有更多应用了</translation>
     </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>9Store</source>
-        <translation type="vanished">久店</translation>
+        <translation>久店</translation>
     </message>
 </context>
 <context>
-    <name>DetailComponet</name>
+    <name>DetailComponent</name>
     <message>
-        <source>related</source>
-        <translation type="vanished">相关应用</translation>
+        <source>downloads</source>
+        <translation>下载量</translation>
     </message>
     <message>
-        <source>otherApps</source>
-        <translation type="vanished">作者其他应用</translation>
+        <source>views</source>
+        <translation>查看量</translation>
+    </message>
+    <message>
+        <source>author</source>
+        <translation>作者</translation>
+    </message>
+    <message>
+        <source>version</source>
+        <translation>版本</translation>
+    </message>
+    <message>
+        <source>filesize</source>
+        <translation>文件大小</translation>
+    </message>
+    <message>
+        <source>dateline</source>
+        <translation>日期</translation>
     </message>
     <message>
         <source>Comments (</source>
-        <translation type="vanished">评论 (</translation>
+        <translation>评论 (</translation>
     </message>
     <message>
         <source>Related Apps (</source>
-        <translation type="vanished">相关应用 (</translation>
+        <translation>相关应用 (</translation>
     </message>
 </context>
 <context>
     <name>DownloadPage</name>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">已下载应用</translation>
+        <translation>已下载应用</translation>
+    </message>
+    <message>
+        <source>Removing...</source>
+        <translation>删除中</translation>
     </message>
 </context>
 <context>
-    <name>HotList</name>
+    <name>LoginComponent</name>
     <message>
-        <source>AppList</source>
-        <translation type="obsolete">应用列表</translation>
+        <source>Login</source>
+        <translation>登录</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation type="vanished">关于</translation>
+        <source>UserName</source>
+        <translation>用户名</translation>
     </message>
     <message>
-        <source>HotList</source>
-        <translation type="vanished">热门列表</translation>
+        <source>Password</source>
+        <translation>密码</translation>
     </message>
     <message>
-        <source>Search</source>
-        <translation type="vanished">搜索</translation>
-    </message>
-</context>
-<context>
-    <name>LoginPage</name>
-    <message>
-        <source>log in</source>
-        <translation type="vanished">登录</translation>
+        <source>Login fail</source>
+        <translation>登录失败</translation>
     </message>
     <message>
-        <source>Login success!</source>
-        <translation type="vanished">登录成功!</translation>
+        <source>Please try again.</source>
+        <translation>请重试.</translation>
     </message>
 </context>
 <context>
-    <name>RatingBox</name>
-    <message>
-        <source>not rated yet</source>
-        <translation type="vanished">暂无评分</translation>
-    </message>
-</context>
-<context>
-    <name>RealtedComponet</name>
+    <name>RealtedComponent</name>
     <message>
         <source>Related</source>
-        <translation type="vanished">相关应用</translation>
+        <translation>相关应用</translation>
+    </message>
+    <message>
+        <source>views</source>
+        <translation>查看量</translation>
+    </message>
+</context>
+<context>
+    <name>RegisterComponent</name>
+    <message>
+        <source>Create Account</source>
+        <translation>创建账号</translation>
+    </message>
+    <message>
+        <source>User Name</source>
+        <translation>用户名</translation>
+    </message>
+    <message>
+        <source>Nick Name</source>
+        <translation>昵称</translation>
+    </message>
+    <message>
+        <source>Email address</source>
+        <translation>邮箱</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
+    <message>
+        <source>Confirm Password</source>
+        <translation>确认密码</translation>
+    </message>
+    <message>
+        <source>Register reason</source>
+        <translation>注册原因</translation>
+    </message>
+    <message>
+        <source>Register</source>
+        <translation>注册</translation>
+    </message>
+    <message>
+        <source>Register fail</source>
+        <translation>注册失败</translation>
+    </message>
+    <message>
+        <source>Please try again.</source>
+        <translation>请重试.</translation>
     </message>
 </context>
 <context>
     <name>RpmInstall</name>
     <message>
         <source>The file does not exist</source>
-        <translation type="vanished">文件不存在</translation>
+        <translation>文件不存在</translation>
     </message>
 </context>
 <context>
     <name>SearchApp</name>
     <message>
         <source>Search</source>
-        <translation type="vanished">搜索</translation>
+        <translation>搜索</translation>
+    </message>
+    <message>
+        <source>Load More...</source>
+        <translation>加载更多...</translation>
     </message>
 </context>
 <context>
-    <name>SubmitCommentComponet</name>
+    <name>SettingPage</name>
     <message>
-        <source>input your comments</source>
-        <translation type="vanished">输入你的评论</translation>
+        <source>Settings</source>
+        <translation>设置</translation>
     </message>
     <message>
-        <source>Comments</source>
-        <translation type="vanished">评论</translation>
+        <source>username</source>
+        <translation>用户名</translation>
+    </message>
+    <message>
+        <source>Cache Img</source>
+        <translation>缓存图片</translation>
+    </message>
+</context>
+<context>
+    <name>ShortcutsPage</name>
+    <message>
+        <source>Hide search field</source>
+        <translation>隐藏搜索框</translation>
+    </message>
+    <message>
+        <source>Show search field</source>
+        <translation>显示搜索框</translation>
+    </message>
+    <message>
+        <source>Select shortcuts</source>
+        <translation>选择图标</translation>
+    </message>
+</context>
+<context>
+    <name>SubmitCommentComponent</name>
+    <message>
+        <source>Add comment&amp;Rate</source>
+        <translation>添加评论&amp;评分</translation>
     </message>
     <message>
         <source>Comments&amp;Rate</source>
-        <translation type="vanished">评论&amp;评分</translation>
+        <translation>评论&amp;评分</translation>
+    </message>
+    <message>
+        <source>input your comments</source>
+        <translation>输入你的评论</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>评论</translation>
     </message>
 </context>
 <context>
     <name>UserCenter</name>
     <message>
         <source>Logined Success</source>
-        <translation type="vanished">登录成功</translation>
+        <translation>登录成功</translation>
     </message>
 </context>
 <context>
     <name>WelcomePage</name>
     <message>
         <source>About</source>
-        <translation type="vanished">关于</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <source>My Apps</source>
-        <translation type="vanished">我的应用程序</translation>
+        <translation>我的应用程序</translation>
     </message>
     <message>
         <source>Welcome,</source>
-        <translation type="vanished">欢迎您,</translation>
-    </message>
-    <message>
-        <source>HotApps</source>
-        <translation type="vanished">热门应用</translation>
+        <translation>欢迎您,</translation>
     </message>
     <message>
         <source>NewApps</source>
-        <translation type="vanished">最新应用</translation>
+        <translation>最新应用</translation>
     </message>
     <message>
         <source>All Class</source>
-        <translation type="vanished">所有分类</translation>
+        <translation>所有分类</translation>
     </message>
     <message>
         <source>Game Class</source>
-        <translation type="vanished">游戏</translation>
+        <translation>游戏</translation>
     </message>
     <message>
         <source>Apps Class</source>
-        <translation type="vanished">应用</translation>
+        <translation>应用</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="vanished">加载中...</translation>
+        <translation>加载中...</translation>
     </message>
     <message>
         <source>Setting</source>
-        <translation type="vanished">设置</translation>
-    </message>
-    <message>
-        <source>Welcome Guest</source>
-        <translation type="vanished">欢迎您,访客</translation>
+        <translation>设置</translation>
     </message>
 </context>
 <context>
     <name>harbour-9store</name>
     <message>
         <source>Begin download</source>
-        <translation type="vanished">开始下载</translation>
+        <translation>开始下载</translation>
     </message>
     <message>
         <source>Downloaded,Installing</source>
-        <translation type="vanished">安装中</translation>
+        <translation>安装中</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation type="vanished">已安装</translation>
+        <translation>已安装</translation>
     </message>
     <message>
         <source>Updated</source>
-        <translation type="vanished">升级成功</translation>
+        <translation>升级成功</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="vanished">未知操作</translation>
+        <translation>未知操作</translation>
     </message>
     <message>
         <source>Removed</source>
-        <translation type="vanished">删除成功</translation>
+        <translation>删除成功</translation>
     </message>
     <message>
         <source>error</source>
-        <translation type="vanished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="vanished">安装出错</translation>
+        <translation>安装出错</translation>
     </message>
 </context>
 <context>
     <name>main</name>
     <message>
-        <source>Connect failed:</source>
-        <translation type="vanished">连接失败，错误代码:</translation>
+        <source>loading erro...</source>
+        <translation>加载失败...</translation>
     </message>
     <message>
-        <source>loading erro...</source>
-        <translation type="vanished">加载失败...</translation>
+        <source>error connection:</source>
+        <translation>连接失败：</translation>
+    </message>
+    <message>
+        <source>Task added!</source>
+        <translation>任务已添加！</translation>
     </message>
 </context>
 </TS>

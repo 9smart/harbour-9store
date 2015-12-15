@@ -95,7 +95,7 @@ ApplicationWindow
             Image {
                 id: splash
                 anchors.fill: parent;
-                source: "./pic/splash.png"
+                source: "./img/splash.png"
                 fillMode: Image.PreserveAspectCrop
                 clip: true
                 NumberAnimation on opacity {duration: 500}

@@ -7,19 +7,17 @@ BackgroundItem {
         width: (parent.width - Theme.paddingMedium ) / 3
         Label{
             id: moreAppname
-            x: morepic.width/2
             text:appname
-            width:rectangle.width-Theme.paddingMedium
+            //width:rectangle.width-Theme.paddingMedium
             truncationMode: TruncationMode.Elide
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.paddingMedium
+            anchors.horizontalCenter: parent.horizontalCenter
+            maximumLineCount: 1
+            wrapMode: Text.WordWrap
             font {
                 pixelSize: Theme.fontSizeSmall
                 family: Theme.fontFamilyHeading
             }
         }
-
-
 
         CacheImage{
             id:morepic
@@ -55,19 +53,17 @@ BackgroundItem {
             width:rectangle.width/2
             height: ratingbox.width/5
             optional:false
-            opacity: 0.7
+            opacity: 0.9
             anchors{
-                left:parent.left
                 top:morepic.bottom
-                leftMargin: Theme.paddingMedium
-                rightMargin:  Theme.paddingMedium
+                horizontalCenter: parent.horizontalCenter
                 bottomMargin: Theme.paddingMedium
             }
         }
         onClicked :{
             pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{
                                   "appid":_id,
-                                  "author":author,
+                                  "author":developer,
                                   "icon":morepic.source,
                                   "appname":appname
                               })

@@ -72,22 +72,12 @@
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>AppListComponent</name>
     <message>
-        <source> append to download list</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AppListViewComponent</name>
-    <message>
-        <source>scrollToTop</source>
+        <source>Prev Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Load More...</source>
+        <source>Next Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
