@@ -1,0 +1,10 @@
+[Unit]
+Description=Receive Notifications.
+
+[Timer]
+OnBootSec=0
+OnUnitInactiveSec=60
+OnCalendar=*-*-* *:0/1:00
+
+[Install]
+WantedBy=timers.target

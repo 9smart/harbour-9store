@@ -70,3 +70,31 @@ desktop-file-install --delete-original       \
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
 # >> files
 # << files
+
+%post
+mv /usr/share/harbour-9store/harbour-9store.service /etc/systemd/system/
+mv /usr/share/harbour-9store/harbour-9store.timer /etc/systemd/system/
+systemctl start harbour-9store.timer
+systemctl enable harbour-9store.timer
+systemctl start harbour-9store.service
+systemctl enable harbour-9store.service
+
+%preun
+
+%postun
+if [ $1 = 0 ]; then
+    // Do stuff specific to uninstalls
+systemctl stop harbour-9store.timer
+systemctl disable harbour-9store.timer
+systemctl stop harbour-9store.service
+systemctl disable harbour-9store.service
+rm /etc/systemd/system/harbour-9store.timer
+rm /etc/systemd/system/harbour-9store.service
+rm -rf /usr/share/harbour-9store
+else
+if [ $1 = 1 ]; then
+    // Do stuff specific to upgrades
+echo "Upgrading"
+fi
+fi
+

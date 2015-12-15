@@ -1,0 +1,10 @@
+[Unit]
+Description=Recevice Notifications
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=python3 /usr/share/harbour-9store/qml/py/jobs.py
+
+[Install]
+WantedBy=multi-user.target

@@ -30,6 +30,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../js/login.js" as UserData
+import "../js/main.js" as Script
 import "components"
 import "model"
 Page{
@@ -42,8 +43,9 @@ Page{
     property string type:""
     property string category:""
     property string photoUrl: ""
-    Component.onCompleted: {
-          JS.loadAppList(pagenum,window.os_type,query_type,appListModel,type,category);
+
+    ListModel {
+        id:appListModel
     }
     SilicaFlickable{
         PageHeader {
@@ -59,9 +61,7 @@ Page{
             }
 
         }
-        ListModel {
-            id:appListModel
-        }
+
 
         AppListViewComponent{
             anchors{
@@ -76,7 +76,8 @@ Page{
 
     }
 
-
+    Component.onCompleted: {
+          Script.getlist(sysinfo.osType, category, developer, page, pagesize, sort)
+    }
 
 }
-

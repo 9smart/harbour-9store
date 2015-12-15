@@ -90,10 +90,6 @@ Page{
     width: parent.width
     height: parent.height
 
-    Progress{
-        id:progress
-        anchors.centerIn: parent
-    }
     RemorsePopup {
         id: remorse
     }

@@ -14,8 +14,6 @@ TARGET = harbour-9store
 
 CONFIG += sailfishapp
 
-DEFINES += Q_OS_SAILFISH
-
 PKGCONFIG += mlite5
 
 SOURCES += src/harbour-9store.cpp \
@@ -25,6 +23,8 @@ SOURCES += src/harbour-9store.cpp \
     src/shortcutshelper.cpp
 
 QT += network quick qml dbus
+
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -81,13 +81,14 @@ OTHER_FILES += \
     qml/pages/components/CurrentOpeartion.qml \
     qml/pages/model/SysInfo.qml \
     qml/pages/model/User.qml
-
+    qml/pages/components/LoginComponent.qml \
+    qml/pages/components/RegisterComponent.qml \
 
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
-TRANSLATIONS += translations/harbour-9store-de.ts\
-        translations/harbour-9store-zh_CN.ts
+TRANSLATIONS += translations/harbour-9store-de.ts \
+                translations/harbour-9store-zh_CN.ts
 
 HEADERS += \
     src/desktopfilemodel.h \
@@ -95,21 +96,3 @@ HEADERS += \
     src/desktopfilesortmodel.h \
     src/qmlthreadworker.h \
     src/shortcutshelper.h
-
-DISTFILES += \
-    qml/pages/components/LoginComponent.qml \
-    qml/pages/LoginDialog.qml \
-    qml/pages/components/User.qml \
-    qml/py/rpms.py \
-    qml/pages/components/RegisterComponent.qml \
-    qml/pages/RegisterPage.qml \
-    qml/pages/components/ActivitiesComponent.qml \
-    qml/pages/components/AppGridComponent.qml \
-    qml/pages/components/AppListComponent.qml \
-    qml/pages/components/AppListViewComponent.qml \
-    qml/pages/components/CanvasComponent.qml \
-    qml/pages/components/CommentsComponent.qml \
-    qml/pages/components/DetailComponent.qml \
-    qml/pages/components/RealtedComponent.qml \
-    qml/pages/components/SubmitCommentComponent.qml \
-    qml/pages/model/SysInfo.qml
