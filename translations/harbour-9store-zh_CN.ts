@@ -160,6 +160,10 @@
         <source>Please try again.</source>
         <translation>请重试.</translation>
     </message>
+    <message>
+        <source>Don&apos;t have accounts?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RealtedComponent</name>

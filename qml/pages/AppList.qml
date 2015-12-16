@@ -90,7 +90,7 @@ Page{
                         anchors.horizontalCenter: parent.horizontalCenter
                         Button {
                             text: qsTr("Prev Page")
-                            visible: prepage?true:false
+                            visible: prepage != ""
                             onClicked: {
                                 Script.getlist(sysinfo.osType, category, developer, prepage, pagesize, sort);
                                 view.scrollToTop()
@@ -98,7 +98,7 @@ Page{
                         }
                         Button{
                             text:qsTr("Next Page")
-                            visible:nextpage != "null"
+                            visible:nextpage != ""
                             onClicked: {
                                 console.log("nextpage:"+nextpage)
                                 Script.getlist(sysinfo.osType, category, developer, nextpage, pagesize, sort);

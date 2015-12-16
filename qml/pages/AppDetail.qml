@@ -37,48 +37,27 @@ import "../js/main.js" as Main
 Page{
     id:showappdetail
     //allowedOrientations: Orientation.Landscape | Orientation.Portrait | Orientation.LandscapeInverted
-    property int operationType: PageStackAction.Animated
     property var appid
-    property string author
-    property string downurl
+    property string developer
     property string appname
     property string system
     property string type
     property string category
     property string views
     property string downloads
-    property string icon:""
     property string dateline
     property string version
     property int scores
-    property int ratingnum
+    property int score_num
     property string size
+    property string x86size
     property string summary
     property string url
     property string compatible
-    property string downloadname
-    property int comments_pagenum: 1
-    property int related_pagenum: 1
-    property bool display: false
-    property int related_sum: 0
-    property int comments_sum: 0
-    property int listsum: 0
-    property string downloadstat:"0"
-    property bool isinstalled
-    property bool isnew: false
+    property int comment_num: 0
 
     Component.onCompleted: {
-        JS.loadappdetail(appid);
-        JS.searchbyauthor(window.os_type,author,appid);
-        JS.loadComments(appid,comments_pagenum);
-        JS.searchRelated(window.os_type,appid,category,related_pagenum);
-        isinstalled = Down.getStatus(appid);
-        console.log("isinstalled:"+isinstalled);
-    }
 
-
-    function reloadComments(){
-        JS.loadComments(appid,comments_pagenum);
     }
 
 

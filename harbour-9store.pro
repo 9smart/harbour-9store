@@ -16,6 +16,12 @@ CONFIG += sailfishapp
 
 PKGCONFIG += mlite5
 
+service.path = /etc/systemd/system/
+service.files += harbour-9store.service \
+                harbour-9store.timer
+
+INSTALLS += service
+
 SOURCES += src/harbour-9store.cpp \
     src/desktopfilemodel.cpp \
     src/desktopfilemodelplugin.cpp \
@@ -55,6 +61,7 @@ OTHER_FILES += \
     qml/pages/Signalcenter.qml \
     qml/pages/UserCenter.qml \
     qml/pages/WelcomePage.qml \
+    qml/harbour-9store.qml \
     harbour-9store.desktop \
     rpm/harbour-9store.yaml \
     rpm/harbour-9store.changes \
@@ -99,4 +106,6 @@ OTHER_FILES += \
     qml/py/image.py \
     qml/py/jobs.py \
     qml/py/mypy.py \
-    qml/py/rpms.py
+    qml/py/rpms.py \
+    harbour-9store.service \
+    harbour-9store.timer

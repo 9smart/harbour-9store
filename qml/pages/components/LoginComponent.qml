@@ -51,21 +51,29 @@ Item {
                         id:userName
                         width:loginComponent.width - Theme.paddingLarge*4
                         height:implicitHeight
+                        inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
                         font.pixelSize: Theme.fontSizeMedium
                         placeholderText: "Enter Username"
                         label: qsTr("UserName")
+                        EnterKey.enabled: text || inputMethodComposing
+                        EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                        EnterKey.onClicked: password.focus = true
                     }
                     TextField {
                         id:password
                         width:loginComponent.width - Theme.paddingLarge*4
                         height:implicitHeight
+                        echoMode: TextInput.Password
                         font.pixelSize: Theme.fontSizeMedium
                         placeholderText: "Enter Password"
                         label: qsTr("Password")
+                        EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                        EnterKey.onClicked: submitButton.focus = true
                     }
                 }
             }
             Button {
+                id:submitButton
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Login")
                 onClicked: {
@@ -78,7 +86,7 @@ Item {
             }
             Label{
                 id:regester
-                text:"donot have accounts?"
+                text:qsTr("Don't have accounts?")
                 anchors{
                     right: parent.right
                     rightMargin: Theme.paddingMedium

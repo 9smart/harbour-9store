@@ -51,9 +51,6 @@ Short description of my SailfishOS Application
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/etc/systemd/system/
-cp harbour-9store.service %{buildroot}/etc/systemd/system/
-cp harbour-9store.timer %{buildroot}/etc/systemd/system/
 # >> install pre
 # << install pre
 %qmake5_install

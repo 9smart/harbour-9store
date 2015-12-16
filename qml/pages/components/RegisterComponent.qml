@@ -120,12 +120,14 @@ Item {
                 EnterKey.enabled: text || inputMethodComposing
                 EnterKey.highlighted: !errorHighlight
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: reason.focus = true
+                //EnterKey.onClicked: reason.focus = true
+                EnterKey.onClicked: registerButton.focus = true
 
             }
             TextField {
                 id: reason
                 anchors { left: parent.left; right: parent.right }
+                opacity: 0
                 focus: true;
                 label: qsTr("Register reason");
                 placeholderText: label

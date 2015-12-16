@@ -37,6 +37,7 @@ import "pages/components"
 import "pages/model"
 import "js/login.js" as UserData
 import "js/main.js" as Script
+import "js/api.js" as Api
 import org.nemomobile.notifications 1.0
 //import org.coderus.powermenu.desktopfilemodel 1.0
 import org.nemomobile.configuration 1.0

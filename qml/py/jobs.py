@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 '''
 Created on 2015年12月15日
@@ -12,7 +12,7 @@ from basedir import *
 import datetime
 import dbus
 import json
-import urllib
+import urllib.request,urllib.error,urllib.parse
 from basedir import XDG_DATA_HOME
 
 #/usr/share/lipstick/notificationcategories
@@ -53,26 +53,32 @@ def notify(title):
                                                  signature='sv'),
                                             0)
 
-    
+
 def getAuth():
+    print("dbname:",getDbname())
     try:
         conn = sqlite3.connect(getDbname())
         cur = conn.cursor()
         cur.execute('SELECT * FROM LoginData')
-        for i in cur.fetchall():
-            res = json.load(i)
-            return res.user.auth
+        datas= cur.fetchone()[0]
+        if not datas:
+            return ""
+        res = json.loads(datas)
+        print("datas:",type(datas))
+        print(res.get("user").get("auth"))
+        return res.get("user").get("auth")
     except Exception as e:
+        print(e)
         return ""
-    conn.close()    
+    conn.close()
 
 def query(url):
     headers = ("Referer","http://www.9smart.cn/")
     data = ""
     try:
-        opener=urllib.request.build_opener()
-        opener.addheaders=[headers]
-        data = opener.open(url).read()
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        return response.read()
     except urllib.error.HTTPError as e:
         print("error:",e)
         pass
@@ -88,7 +94,10 @@ def query(url):
 """
 def loadNotification(auth):
     url = api(auth)
+    print("url:",url)
     data = query(url)
+    if not data:
+        return
     jsondata = json.load(data)
     if jsondata.error == 0:
         notice_num = len(jsondata.notices)
@@ -97,13 +106,15 @@ def loadNotification(auth):
         pass
 
 
-    
+
 def  api(auth):
     return "http://api.9smart.cn/notices?auth={0} ".format(auth)
 
 
 def mymain():
     auth = getAuth()
+    if len(auth) < 2:
+        return
     loadNotification(auth)
 
 #测试代码

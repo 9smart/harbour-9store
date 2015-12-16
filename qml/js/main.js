@@ -52,6 +52,7 @@ function sendWebRequest(url, callback, method, postdata) {
                             callback(xmlhttp.responseText);
                             signalcenter.loadFinished();
                         } catch(e) {
+                            console.log(e)
                             signalcenter.loadFailed(qsTr("loading erro..."));
                         }
                     } else {
@@ -113,10 +114,19 @@ function loadUserInfo(oritxt){
         signalcenter.loginFailed(obj.error);
     }
 }
-function savaUserData(obj){
-    //var obj = {"_id": app.user._id, "auth": app.user.auth, "nickname": app.user.nickName, "avatar": app.user.avatar, "avatar_hd": app.user.avatar_hd, "notice_num": app.user.noticeNumber};
+function savaUserData(){
+
+    var obj = {"error":0, "user":{
+                        "_id": app.user._id,
+                        "auth": app.user.auth,
+                        "nickname": app.user.nickName,
+                        "avatar": app.user.avatar,
+                        "avatar_hd": app.user.avatar_hd,
+                        "username":app.user.username,
+                        "notice_num":app.user.noticeNumber
+                }
+            };
     userData.setUserData(JSON.stringify(obj));
-    console.log("here" + JSON.stringify(obj))
 }
 
 var mainPage;
@@ -183,8 +193,8 @@ function loadlist(oritxt){
             mainPage.listmodel.append(obj.apps[i]);
         }
         console.log("next_url:"+ obj.pager.next_url)
-        mainPage.nextpage = obj.pager.next_url;
-        mainPage.prepage = obj.pager.pre_url;
+        mainPage.nextpage = obj.pager.next_url?obj.pager.next_url:"";
+        mainPage.prepage = obj.pager.pre_url?obj.pager.pre_url:"";
 
     }
     else signalcenter.showMessage(obj.error);
