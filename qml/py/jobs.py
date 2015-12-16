@@ -13,23 +13,23 @@ import datetime
 import dbus
 import json
 import urllib
+from basedir import XDG_DATA_HOME
 
 #/usr/share/lipstick/notificationcategories
 bus = dbus.SessionBus()
 noobject = bus.get_object('org.freedesktop.Notifications','/org/freedesktop/Notifications')
 interface = dbus.Interface(noobject,'org.freedesktop.Notifications')
 #print(interface.GetCapabilities())
-XDG_DATA_HOME=""
 
 __appName="harbour-9store"
 
-DbPath=os.path.join(XDG_DATA_HOME, __appName,__appName, "QML","OfflineStorage","Databases")
+DbPath=os.path.join(XDG_DATA_HOME, __appName,__appName, "QML","OfflineStorage","Databases","")
 
 def getDbname():
     h = hashlib.md5()
-    h.update("9store".encode(encoding='utf_8', errors='strict'))
+    h.update("9store".encode(encoding='utf-8', errors='strict'))
     dbname=h.hexdigest()
-    return DbPath+"/"+dbname+".sqlite"
+    return DbPath+dbname+".sqlite"
 
 
 def parseTime(year,month,day):

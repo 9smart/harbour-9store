@@ -223,6 +223,8 @@ ApplicationWindow
             });
             py.importModule('rpms', function () {
             });
+            py.importModule('sysinfo',function(){
+	    });
 
             setHandler('progress',progress);
 
