@@ -2,9 +2,8 @@
 Description=Receive Notifications.
 
 [Timer]
-OnBootSec=0
-OnUnitInactiveSec=60
-OnCalendar=*-*-* *:0/1:00
+OnBootSec=60
+OnUnitInactiveSec=120
 
 [Install]
 WantedBy=timers.target
