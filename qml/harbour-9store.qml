@@ -56,14 +56,6 @@ ApplicationWindow
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
 
-
-
-    onUserChanged: {
-        if(user.userState){
-
-        }
-    }
-
     ListModel{
         id:versionModel
     }
@@ -150,6 +142,8 @@ ApplicationWindow
             user.username = obj.user.username;
             user.nickName = obj.user.nickname;
             user.avatar = obj.user.avatar;
+            user.auth = obj.user.auth;
+            user._id = obj.user._id;
             user.avatar_hd = obj.user.avatar_hd;
             user.noticeNumber = obj.user.notice_num;
             user.userState = true;
@@ -191,6 +185,10 @@ ApplicationWindow
         notification.previewSummary = message;
         notification.close();
         notification.publish();
+    }
+
+    function getLocalTime(nS) {
+       return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
     }
 
     Timer{

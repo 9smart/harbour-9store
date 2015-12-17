@@ -1,10 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../../js/main.js" as Main
-import "../../js/des.js" as DES
+import "../../js/main.js" as Script
 Column {
     width: parent.width
-    spacing: -Theme.paddingSmall
+    spacing: Theme.paddingSmall
     Button {
         id: wizard
 
@@ -31,9 +30,8 @@ Column {
             allowedOrientations: Orientation.Landscape | Orientation.Portrait | Orientation.LandscapeInverted
 
             onAccepted: {
-                var auth = window.uid+","+window.accesstoken+","+window.logintype;
-                Main.sendComment(showappdetail.appid,utility.base64(DES.des(auth)),subcomments.text,ratingbox.score);
-                reloadComments();
+                var auth = user.auth;
+                Script.sendComment(showappdetail.appid,auth,subcomments.text,ratingbox.score,sysinfo.phoneName);
             }
 
             Flickable {

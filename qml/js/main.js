@@ -179,7 +179,7 @@ function loadcategory(oritxt){
 
 function getlist(system, category, developer, page, pagesize, sort){
     var url = apps(system, category, developer, page, pagesize, sort);
-    console.log("url:"+url)
+    //console.log("url:"+url)
     sendWebRequest(url,loadlist,"GET","");
 }
 function loadlist(oritxt){
@@ -235,9 +235,19 @@ function getSearch(system, keyWord, category, page){
 
 var infoPage;
 function getinfo(id){
-    var url = app(id);
+    var url = info(id);
     sendWebRequest(url,loadinfo,"GET","");
 }
+
+function getSize(size){
+    if(size < 1048576){
+       return size=((size/1024).toFixed(2)).toString()+"KB";
+    }
+    else{
+       return size=((size/1048576).toFixed(2)).toString()+"MB";
+    }
+}
+
 function loadinfo(oritxt){
     var obj=JSON.parse(oritxt);
     if(obj.error === 0){
@@ -246,12 +256,15 @@ function loadinfo(oritxt){
         infoPage.version = obj.app.version;
         infoPage.size = obj.app.size;
         infoPage.summary = obj.app.summary;
+        infoPage.downloads = obj.app.download_num;
+        infoPage.developer = obj.app.developer;
         infoPage.comment_num = obj.app.comment_num;
-        var size = parseInt(obj.app.size);
-        if(size < 1048576)
-            size=((size/1024).toFixed(2)).toString()+"KB";
-        else size=((size/1048576).toFixed(2)).toString()+"MB";
-        infoPage.size = size;
+        infoPage.uploaderuid = obj.app.uploader.uid;
+        var size = obj.app.size?parseInt(obj.app.size):0;
+        var x86size = obj.app.x86size?parseInt(obj.app.x86size):0;
+
+        infoPage.size = getSize(size);
+        infoPage.x86size = getSize(x86size);
         for(var i=1;i<=5;i++){
             infoPage.screenShotsModel.append({
                                                  "thumburl":getAppShots(obj.app.uploader.uid,obj.app._id,i.toString()) + "_thumb"
@@ -296,12 +309,8 @@ function loadrelatedlist(oritxt){
         for(var i in obj.apps){
             infoPage.relatedAppsModel.append(obj.apps[i]);
         }
-        if(obj.pager.next_page !== 0){
-            page = obj.pager.next_url;
-        }
-        else{
-            page = "NULL";
-        }
+        infoPage.nextpage = obj.pager.next_url?obj.pager.next_url:"";
+        infoPage.prevpage = obj.pager.pre_url?obj.pager.pre_url:"";
     }
 }
 
@@ -318,12 +327,8 @@ function loadSpecifiedAuthorList(oritxt){
         for(var i in obj.apps){
             infoPage.specifiedAuthorModel.append(obj.apps[i]);
         }
-        if(obj.pager.next_page !== 0){
-            page = obj.pager.next_url;
-        }
-        else{
-            page = "NULL";
-        }
+        infoPage.author_nextpage = obj.pager.next_url?obj.pager.next_url:"";
+        infoPage.author_prevpage = obj.pager.pre_url?obj.pager.pre_url:"";
     }
     else signalcenter.showMessage(obj.error);
 }
@@ -332,7 +337,7 @@ function loadSpecifiedAuthorList(oritxt){
 
 var commentmodel;
 function getComment(appid,page){
-    var url="http://api.9smart.cn/comments/"+appid+"?page="+page;
+    var url = comments(appid, page);
     sendWebRequest(url,loadComment,"GET","");
 }
 function loadComment(oritxt){
@@ -344,11 +349,12 @@ function loadComment(oritxt){
         commentmodel.append(obj.comments[i]);
     }
 }
-function sendComment(appid,auth,message,score) {
+
+function sendComment(appid,auth,message,score,model) {
     var url="http://api.9smart.cn/comments/"+appid;
     console.log(auth);
     console.log(encodeURIComponent(auth));
-    sendWebRequest(url,sendCommentState,"POST","auth="+encodeURIComponent(auth)+"&message="+message+"&score="+score+"&clientid=1");
+    sendWebRequest(url,sendCommentState,"POST","auth="+encodeURIComponent(auth)+"&message="+message+"&score="+score+"&model="+model);
 }
 function sendCommentState(oritxt){
     var obj=JSON.parse(oritxt);
@@ -357,6 +363,7 @@ function sendCommentState(oritxt){
     }
     else signalcenter.commentSendFailed(obj.error);
 }
+
 var version;
 function getversion() {
     var url = "http://api.9smart.cn/app/";

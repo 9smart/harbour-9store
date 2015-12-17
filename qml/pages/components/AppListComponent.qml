@@ -82,7 +82,7 @@ BackgroundItem{
 
 
     RatingBox {
-        score:score_num?(score_num == 0?0:(scores/ratingnum)):0
+        score:score_num?(score_num == 0?0:(scores/score_num)):0
         width:apppic.width
         height: apppic.width/5
         optional:false
@@ -103,9 +103,13 @@ BackgroundItem{
     onClicked: {
         pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{
                            "appid":_id,
+                           "appname":appname,
                            "author":developer,
                            "icon":apppic.source,
-                           "category":category
+                           "category":category,
+                           "scores":scores,
+                           "score_num":score_num,
+                           "dateline":dateline
                        })
     }
 

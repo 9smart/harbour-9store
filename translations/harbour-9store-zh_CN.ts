@@ -22,24 +22,12 @@
         <translation>安装</translation>
     </message>
     <message>
-        <source>AppDetail</source>
-        <translation>应用详情</translation>
-    </message>
-    <message>
         <source>otherApps</source>
         <translation>作者其他应用</translation>
     </message>
     <message>
         <source>Comments</source>
         <translation>评论</translation>
-    </message>
-    <message>
-        <source>Load More...</source>
-        <translation>加载更多...</translation>
-    </message>
-    <message>
-        <source>Start downloading %1</source>
-        <translation>开始下载 %1</translation>
     </message>
     <message>
         <source>scrollToTop</source>
@@ -56,6 +44,14 @@
     <message>
         <source>Upgrade</source>
         <translation>升级</translation>
+    </message>
+    <message>
+        <source>Prev Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -99,10 +95,6 @@
         <translation>下载量</translation>
     </message>
     <message>
-        <source>views</source>
-        <translation>查看量</translation>
-    </message>
-    <message>
         <source>author</source>
         <translation>作者</translation>
     </message>
@@ -119,12 +111,12 @@
         <translation>日期</translation>
     </message>
     <message>
-        <source>Comments (</source>
-        <translation>评论 (</translation>
-    </message>
-    <message>
         <source>Related Apps (</source>
         <translation>相关应用 (</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
     </message>
 </context>
 <context>

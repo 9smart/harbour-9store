@@ -20,7 +20,7 @@ BackgroundItem {
         }
 
         CacheImage{
-            id:morepic
+            id:apppic
             height: parent.width/2
             width:height
             anchors{
@@ -55,18 +55,22 @@ BackgroundItem {
             optional:false
             opacity: 0.9
             anchors{
-                top:morepic.bottom
+                top:apppic.bottom
                 horizontalCenter: parent.horizontalCenter
                 bottomMargin: Theme.paddingMedium
             }
         }
         onClicked :{
             pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{
-                                  "appid":_id,
-                                  "author":developer,
-                                  "icon":morepic.source,
-                                  "appname":appname
-                              })
+                               "appid":_id,
+                               "author":developer,
+                               "appname":appname,
+                               "icon":apppic.source,
+                               "category":category,
+                               "scores":scores,
+                               "score_num":score_num,
+                               "dateline":dateline
+                           })
         }
 
     }

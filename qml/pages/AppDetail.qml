@@ -32,16 +32,17 @@ import Sailfish.Silica 1.0
 import QtDocGallery 5.0
 import org.nemomobile.thumbnailer 1.0
 import "components"
-import "../js/main.js" as Main
+import "../js/main.js" as Script
 
 Page{
     id:showappdetail
     //allowedOrientations: Orientation.Landscape | Orientation.Portrait | Orientation.LandscapeInverted
-    property var appid
+    property string appid
     property string developer
     property string appname
     property string system
     property string type
+    property string uploaderuid
     property string category
     property string views
     property string downloads
@@ -53,16 +54,27 @@ Page{
     property string x86size
     property string summary
     property string url
+    property string icon
+    property string page
+    property int ratingnum
     property string compatible
     property int comment_num: 0
+    property alias screenShotsModel: screenShotModel
+    property alias relatedAppsModel: relatedModel
+    property alias specifiedAuthorModel:specifiedAuthorModel
+    property string nextpage
+    property string prevpage
+    property string author_nextpage
+    property string author_prevpage
+    property string comm_nextpage
+    property string comm_prevpage
+    property int pagesize
 
-    Component.onCompleted: {
-
-    }
+    property bool shrink:true
 
 
     ListModel{id:screenShotModel}
-    ListModel{id:moreAppsModel}
+    ListModel{id:specifiedAuthorModel}
     ListModel{id:commentsModel}
     ListModel{id:relatedModel}
 
@@ -77,32 +89,30 @@ Page{
         contentHeight: detailComp.height+Theme.paddingLarge*3+header.height
         //contentWidth: sfl.width
         anchors.fill: parent
-        opacity:(progress.visible?0:1)
         VerticalScrollDecorator {}
         clip:true
 
         PageHeader {
             id:header
-            title: qsTr("AppDetail")
+            title: appname
         }
         PullDownMenu {
             id:pulldownmenu
             visible: true//!install.visible && !unistall.visible && !upgrade.visible
             MenuItem {
                 id:install
-                visible: !isinstalled
+                visible:true
                 text: qsTr("Install")
                 onClicked: {
-                    console.log("Hanzi:"+downloadname);
 
-                    install.enabled = false;
-                    var downPath =Conv.codefans_net_CC2PY(downloadname.split(".")[0])+".rpm";
-                    remorse.execute(qsTr("Start downloading %1").arg(appname),function(){
-                        py.newdownload(downPath,downurl);
-                        //更新本地记录
-                        //updateDownloadList(appid,appname,downPath,icon,1);
 
-                    },3000);
+//                    var downPath =Conv.codefans_net_CC2PY(downloadname.split(".")[0])+".rpm";
+//                    remorse.execute(qsTr("Start downloading %1").arg(appname),function(){
+//                        py.newdownload(downPath,downurl);
+//                        //更新本地记录
+//                        //updateDownloadList(appid,appname,downPath,icon,1);
+
+//                    },3000);
 
 
                 }
@@ -140,7 +150,7 @@ Page{
                 id:otherheader
                 title: qsTr("otherApps")
             }
-            model:moreAppsModel
+            model:specifiedAuthorModel
             height: parent.height
             anchors.fill: parent
         }
@@ -162,21 +172,29 @@ Page{
             delegate: CommentsComponent{}
             footer: Component{
                 Item {
-                    id: footerComponent
-                    anchors { left: parent.left; right: parent.right }
-                    height: visible ? Theme.itemSizeMedium : 0
-                    signal clicked()
-                    visible: display
-                    Item {
+                    id: loadMoreID
+                    anchors {
+                        left: parent.left;
+                        right: parent.right;
+                    }
+                    height: Theme.itemSizeMedium
+                    Row {
                         id:footItem
-                        width: parent.width
-                        height: Theme.itemSizeMedium
+                        spacing: Theme.paddingLarge
+                        anchors.horizontalCenter: parent.horizontalCenter
                         Button {
-                            anchors.centerIn: parent
-                            text: qsTr("Load More...")
+                            text: qsTr("Prev Page")
+                            visible: prevpage != ""
                             onClicked: {
-                                comments_pagenum++;
-                                JS.loadComments(appid,comments_pagenum);
+                                Script.getComment(appid,prevpage)
+
+                            }
+                        }
+                        Button{
+                            text:qsTr("Next Page")
+                            visible:nextpage != ""
+                            onClicked: {
+                               Script.getComment(appid,nextpage)
                             }
                         }
                     }
@@ -213,29 +231,44 @@ Page{
             footer: Component{
 
                 Item {
-                    id: footerComponent
-                    anchors { left: parent.left; right: parent.right }
-                    height: visible ? Theme.itemSizeMedium : 0
-                    visible:(relatedModel.count<related_sum)
-                    signal clicked()
-
-                    Item {
+                    id: loadMoreID
+                    anchors {
+                        left: parent.left;
+                        right: parent.right;
+                    }
+                    height: Theme.itemSizeMedium
+                    Row {
                         id:footItem
-                        width: parent.width
-                        height: Theme.itemSizeMedium
+                        spacing: Theme.paddingLarge
+                        anchors.horizontalCenter: parent.horizontalCenter
                         Button {
-                            anchors.centerIn: parent
-                            text: qsTr("Load More...")
+                            text: qsTr("Prev Page")
+                            visible: author_prevpage != ""
                             onClicked: {
-                                related_pagenum++;
-                                //List.loadAppList(related_pagenum,window.os_type,category,relatedModel);
-                                JS.searchRelated(window.os_type,appid,category,related_pagenum);
+                                Script.getrelatedlist(sysinfo.os_type,category,author_prevpage,pagesize)
+
+                            }
+                        }
+                        Button{
+                            text:qsTr("Next Page")
+                            visible:author_nextpage != ""
+                            onClicked: {
+                               Script.getrelatedlist(sysinfo.os_type,category,author_nextpage,pagesize)
                             }
                         }
                     }
                 }
-
             }
         }
+    }
+
+    Component.onCompleted: {
+       Script.infoPage = showappdetail
+       Script.commentmodel = commentsModel
+       Script.getinfo(appid)
+       Script.getComment(appid,comm_nextpage)
+       Script.getrelatedlist(window.sysinfo.os_type,category,page,pagesize)
+       Script.getSpecifiedAuthorList(window.sysinfo.os_type,developer,page,pagesize)
+
     }
 }

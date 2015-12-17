@@ -28,11 +28,11 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 import QtQuick 2.0
-
+import Sailfish.Silica 1.0
 Text {
     id: root
     clip: true
-    property int maxHeight: 200
+    property int maxHeight: Screen.height /4
 
     property int __fullHeight: 0
     property bool __overflow: false
@@ -41,7 +41,7 @@ Text {
     onLinkActivated: {
         Qt.openUrlExternally(link);
     }
-
+    color: Theme.primaryColor
     function updateHeight() {
         if (__overflow) {
             if (__collapsed) {
@@ -64,7 +64,7 @@ Text {
     Item {
     //Rectangle {
         width: parent.width
-        height: 75
+        height: Theme.itemSizeMedium
         anchors {
             bottom: root.bottom
         }
@@ -80,14 +80,15 @@ Text {
             }
             source: __collapsed?"image://theme/icon-m-down":"image://theme/icon-m-up"
         }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                __collapsed = !__collapsed;
-                updateHeight();
-            }
-        }
+
         visible: __overflow
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            __collapsed = !__collapsed;
+            updateHeight();
+        }
+    }
 }

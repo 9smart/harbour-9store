@@ -82,7 +82,6 @@ OTHER_FILES += \
     qml/pages/components/LabelText.qml \
     qml/pages/components/LoginComponent.qml \
     qml/pages/components/MoreButton.qml \
-    qml/pages/components/Progress.qml \
     qml/pages/components/RatingBox.qml \
     qml/pages/components/RealtedComponent.qml \
     qml/pages/components/RegisterComponent.qml \

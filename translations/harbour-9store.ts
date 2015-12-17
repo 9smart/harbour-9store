@@ -22,23 +22,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>AppDetail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>otherApps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load More...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start downloading %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -55,6 +43,14 @@
     </message>
     <message>
         <source>Upgrade</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prev Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -99,10 +95,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>views</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>author</source>
         <translation type="unfinished"></translation>
     </message>
@@ -119,11 +111,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Comments (</source>
+        <source>Related Apps (</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Related Apps (</source>
+        <source>Comments</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

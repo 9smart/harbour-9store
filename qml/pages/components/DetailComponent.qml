@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../../js/main.js" as Script
+
 Item{
     height: infomess.height+summaryid.height+screenShotLabel.height+
             oteherAppsItem.height+commentsItem.height+
@@ -9,7 +11,7 @@ Item{
     CacheImage{
         id:appicon
         asynchronous: true
-        cacheurl:icon
+        cacheurl:icon//Script.getAppicon(uploaderuid,appid)
         fillMode: Image.PreserveAspectFit;
         width:  window.height/8-Theme.paddingMedium
         height: window.height/8-Theme.paddingMedium
@@ -33,8 +35,8 @@ Item{
     Label{
         id:versionid
         width: appicon.width
-        text:"<font size='2' > "+qsTr("downloads")+":</font><font size='1' >"+downloads+"</font><br/>"+
-             "<font size='2' > "+qsTr("views")+":</font><font size='1' >"+views+"</font><br/>"
+        text:"<font size='2' > "+qsTr("downloads")+":</font><font size='1' >"+downloads+"</font><br/>"
+             //+"<font size='2' > "+qsTr("views")+":</font><font size='1' >"+views+"</font><br/>"
         font.pixelSize: Theme.fontSizeExtraSmall
         truncationMode: TruncationMode.Fade
         anchors {
@@ -45,11 +47,12 @@ Item{
     }
     Label{
         id:infomess
+        //Format.formatFileSize()
         text:type+"->"+category+"<br/>"+
-             "<font size='2' > "+qsTr("author")+":</font><font size='1' >"+author+"</font><br/>"+
+             "<font size='2' > "+qsTr("author")+":</font><font size='1' >"+developer+"</font><br/>"+
              "<font size='2' > "+qsTr("version")+":</font><font size='1' >"+version+"</font><br/>"+
-             "<font size='2' > "+qsTr("filesize")+":</font><font size='1' >"+Format.formatFileSize(size)+"</font><br/>"+
-             "<font size='2' > "+qsTr("dateline")+":</font><font size='1' >"+dateline+"</font>"
+             "<font size='2' > "+qsTr("filesize")+":</font><font size='1' >"+size+"</font><br/>"+
+             "<font size='2' > "+qsTr("dateline")+":</font><font size='1' >"+getLocalTime(dateline)+"</font>"
         font.pixelSize: Theme.fontSizeExtraSmall*5/4
         horizontalAlignment: Text.AlignLeft
         anchors {
@@ -81,34 +84,9 @@ Item{
     Separator {
         width:parent.width;
         color: Theme.highlightColor
-        anchors.top:downprogress.bottom
-    }
-    Label{
-        id:summaryid
-        width: parent.width
-
-        text:"<font size='1' >"+summary+"</font>"
-        font.pixelSize: Theme.fontSizeExtraSmall*4/3
-        wrapMode: Text.WordWrap
-        //horizontalAlignment: Text.AlignRight
-        anchors {
-            top:downprogress.bottom
-            topMargin: Theme.paddingMedium
-            left:parent.left
-            leftMargin: Theme.paddingSmall
-            rightMargin: Theme.paddingSmall
-        }
-
-
-
-    }
-
-    Separator {
-        visible: (screenShotModel.count>0?true:false)
-        width:parent.width;
-        color: Theme.highlightColor;
         anchors.top:screenShotLabel.top
     }
+
     Label{
         id:screenShotLabel
         height: (screenShotModel.count>0?(window.height/3-Theme.paddingMedium):0);
@@ -134,7 +112,7 @@ Item{
             }
         }
         anchors {
-            top:summaryid.bottom
+            top:downprogress.bottom
             //topMargin: Theme.paddingLarge
             left:parent.left
             right:parent.right
@@ -143,17 +121,41 @@ Item{
 
     }
     Separator {
-        visible: (moreAppsModel.count>0?true:false)
+        visible: (screenShotModel.count>0?true:false)
+        width:parent.width;
+        color: Theme.highlightColor;
+        anchors.top:summaryid.top
+    }
+
+    TextCollapsible {
+       id:summaryid
+       anchors {
+           top:screenShotLabel.bottom
+           topMargin: Theme.paddingMedium
+           left: parent.left
+           leftMargin: 10
+           right: parent.right
+           rightMargin: 10
+       }
+
+       font.pixelSize: Theme.fontSizeSmall
+       wrapMode: Text.WordWrap
+
+       text: summary !== undefined ? summary + "<br><br>" : ""
+   }
+
+    Separator {
         width:parent.width;
         color: Theme.highlightColor;
         anchors.top:oteherAppsItem.top
     }
     BackgroundItem{
-        visible: (moreAppsModel.count>0?true:false)
-        height: (moreAppsModel.count>0?Theme.itemSizeSmall:0);
         id:oteherAppsItem
+        enabled: specifiedAuthorModel.count > 0
+        opacity: enabled?1:0.7
+        height: Theme.itemSizeSmall +Theme.paddingMedium
         anchors{
-            top:screenShotLabel.bottom
+            top:summaryid.bottom
             left:parent.left
             right:parent.right
             topMargin: Theme.paddingMedium
@@ -161,7 +163,7 @@ Item{
 
         Label{
             id:otherApps
-            text:author+" ("+moreAppsModel.count+")"
+            text:developer+" ("+specifiedAuthorModel.count+")"
             font.pixelSize: Theme.fontSizeMedium
             truncationMode: TruncationMode.Fade
             anchors{
@@ -172,7 +174,6 @@ Item{
         }
         IconButton {
             id:iconid
-
             icon.source: "image://theme/icon-m-right"
             anchors{
                 right: parent.right
@@ -187,23 +188,23 @@ Item{
     }
     Separator {
         width:parent.width;
-        visible:(commentsModel.count>0)
         anchors.top: commentsItem.top
         color: Theme.highlightColor
     }
     BackgroundItem{
-        visible: (commentsModel.count>0)
-        height: (commentsModel.count>0?Theme.itemSizeSmall:0);
+        height: Theme.itemSizeMedium
         id:commentsItem
+        enabled: commentsModel.count > 0
+        opacity: enabled?1:0.7
         anchors{
             top:oteherAppsItem.bottom
             left:parent.left
             right:parent.right
-            //topMargin: Theme.paddingLarge
+            topMargin: Theme.paddingMedium
         }
         Label{
             id:rate
-            text:qsTr("Comments (")+commentsModel.count+")"
+            text:qsTr("Comments")+"("+commentsModel.count+")"
             font.pixelSize: Theme.fontSizeMedium
             truncationMode: TruncationMode.Fade
             anchors{
@@ -213,7 +214,7 @@ Item{
 
         }
         RatingBox {
-            score:(scores/ratingnum)
+            score:score_num?(score_num == 0?0:(scores/score_num)):0
             optional:false
             //width:parent.width
             anchors {
@@ -237,15 +238,16 @@ Item{
     }
 
     Separator {
-        visible: relatedModel.count>0
         width:parent.width;
         anchors.top: relatedItem.top
         color: Theme.highlightColor
     }
     BackgroundItem{
-        visible: relatedModel.count>0
         id:relatedItem
-        height: relatedModel.count>0 ?Theme.itemSizeSmall:0
+        enabled: relatedModel.count > 0
+        opacity: enabled?1:0.7
+        height: Theme.itemSizeSmall+Theme.paddingMedium
+        contentHeight: height
         anchors{
             top:commentsItem.bottom
             left:parent.left
@@ -253,7 +255,7 @@ Item{
             //topMargin: Theme.paddingLarge
         }
         Label{
-            text:qsTr("Related Apps (")+related_sum+")"
+            text:qsTr("Related Apps (")+relatedModel.count+")"
             font.pixelSize: Theme.fontSizeMedium
             truncationMode: TruncationMode.Fade
             anchors{
@@ -281,14 +283,13 @@ Item{
         color: Theme.highlightColor
     }
 
-    SubmitCommentComponet{
+    Item{width: 1;height: Theme.paddingMedium}
+    SubmitCommentComponent{
         id:rateItem
-        enabled: userstate === 1
-        opacity:userstate === 1?1:0.5
         anchors {
             left: parent.left
             top:relatedItem.bottom
-            //topMargin: Theme.paddingMedium
+            topMargin: Theme.paddingMedium
         }
     }
 
