@@ -13,14 +13,14 @@ import datetime
 import dbus
 import json
 import urllib.request,urllib.error,urllib.parse
-from basedir import XDG_DATA_HOME
+#from basedir import XDG_DATA_HOME
 
 #/usr/share/lipstick/notificationcategories
 bus = dbus.SessionBus()
 noobject = bus.get_object('org.freedesktop.Notifications','/org/freedesktop/Notifications')
 interface = dbus.Interface(noobject,'org.freedesktop.Notifications')
 #print(interface.GetCapabilities())
-
+XDG_DATA_HOME="/home/nemo/.local/share"
 __appName="harbour-9store"
 
 DbPath=os.path.join(XDG_DATA_HOME, __appName,__appName, "QML","OfflineStorage","Databases","")

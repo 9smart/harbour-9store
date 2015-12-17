@@ -3,8 +3,9 @@ Description=Run Notifications Job
 
 [Service]
 Type=simple
-RemainAfterExit=no
+User=nemo
+WorkingDirectory=/usr/share/harbour-9store/qml/py/
 ExecStart=/usr/share/harbour-9store/qml/py/jobs.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=user-session.target

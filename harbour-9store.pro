@@ -107,5 +107,6 @@ OTHER_FILES += \
     qml/py/jobs.py \
     qml/py/mypy.py \
     qml/py/rpms.py \
+    qml/py/*.sh \
     harbour-9store.service \
     harbour-9store.timer
