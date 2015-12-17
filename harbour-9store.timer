@@ -1,9 +1,10 @@
 [Unit]
-Description=Receive Notifications.
+Description=9Store timer
 
 [Timer]
-OnBootSec=60
+OnBootSec=120
 OnUnitInactiveSec=120
 
 [Install]
-WantedBy=timers.target
+WantedBy=multi-user.target
+
