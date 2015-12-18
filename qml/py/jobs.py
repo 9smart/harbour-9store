@@ -101,7 +101,8 @@ def loadNotification(auth):
     jsondata = json.load(data)
     if jsondata.error == 0:
         notice_num = len(jsondata.notices)
-        notify("您有{0}条消息".format(notice_num))
+        if notice_num > 0:
+            notify("您有{0}条消息".format(notice_num))
     else:
         pass
 

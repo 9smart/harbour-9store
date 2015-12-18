@@ -2,9 +2,9 @@
 Description=9Store timer
 
 [Timer]
-OnBootSec=120
-OnUnitActiveSec=120
+OnBootSec=2min
+OnUnitInactiveSec=60
 Unit=harbour-9store.service
 
 [Install]
-WantedBy=user-session.target
+WantedBy=timer.target

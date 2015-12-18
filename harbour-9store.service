@@ -2,10 +2,11 @@
 Description=Run Notifications Job
 
 [Service]
-Type=simple
+Type=oneshot
 User=nemo
 WorkingDirectory=/usr/share/harbour-9store/qml/py/
-ExecStart=/usr/share/harbour-9store/qml/py/jobs.sh
+ExecStart=/usr/share/harbour-9store/qml/py/jobs.py
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/100000/dbus/user_bus_socket
 
 [Install]
-WantedBy=user-session.target
+WantedBy=multi-user.target

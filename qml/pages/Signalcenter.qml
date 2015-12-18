@@ -17,6 +17,7 @@ QtObject
          signal versionGeted;
          signal commentSendSuccessful;
          signal commentSendFailed(string errorstring);
+         signal currentAppname;
          function showMessage(msg)
                  {
                   if (msg||false)

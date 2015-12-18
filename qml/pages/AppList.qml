@@ -48,28 +48,68 @@ Page{
     property string developer:""
     property string sort
     property alias listmodel:listModel
+    property bool showsearch: false
+
     ListModel {
         id:listModel
     }
 
-    SilicaFlickable{
-        enabled: PageStatus.Active
-        anchors.fill: parent
-        PullDownMenu {
-            id:pulldownid
-            MenuItem {
-                text: qsTr("Search")
-                onClicked: pageStack.push(Qt.resolvedUrl("SearchApp.qml"))
-            }
+    onShowsearchChanged: {
+            if (showsearch) {
+                searchfield.forceActiveFocus()
+            }else{
 
+                showlist.focus=true
+            }
         }
+
+  Column {
+        id: headerContainer
+
+        width: showlist.width
+
+        PageHeader {
+            id:header
+            title: query_type === ""?qsTr("NewList"):qsTr("HotList")
+        }
+        SearchField {
+            id: searchfield
+            visible: showsearch
+            width: parent.width
+            y:showsearch?(header.y + Theme.paddingMedium):0
+            Binding {
+                target: showlist
+                property: "searchString"
+                value: searchfield.text
+            }
+            EnterKey.onClicked: {
+                //asklistmodel.clear();
+                //Main.getlist("ask/search?keyword="+searchfield.text);
+                parent.focus=true
+            }
+        }
+    }
+
         SilicaListView {
             id:view
             anchors.fill: parent
-            header: PageHeader {
-                id:header
-                title: query_type === ""?qsTr("NewList"):qsTr("HotList")
-            }
+            spacing:Theme.paddingMedium
+            PullDownMenu{
+                   MenuItem{
+                       id:pulldown
+                       text:showsearch?qsTr("Hide Search"):qsTr("Show Search")
+                       onClicked: {
+                           showsearch?(showsearch=false):(showsearch=true)
+                       }
+                   }
+               }
+          header:PageHeader{
+               id:header
+               width:headerContainer.width
+               height: headerContainer.height
+               Component.onCompleted:headerContainer.parent = header
+           }
+
             model: listModel
             visible: view.count>0
             clip: true
@@ -115,8 +155,6 @@ Page{
                 text: qsTr("No more apps")
 
             }
-        }
-
 
     }
 

@@ -69,7 +69,9 @@ Page {
                     onCanceled: {
                         imagePage.clicked()
                     }
-                    //window.pageStack.pop(Qt.resolvedUrl("ImagePage.qml"));
+                    onClicked:{
+			pageStack.pop(undefined, PageStackAction.Immediate)
+                    }
 
                 }
             }
