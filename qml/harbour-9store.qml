@@ -223,7 +223,7 @@ ApplicationWindow
             py.importModule('rpms', function () {
             });
             py.importModule('sysinfo',function(){
-	    });
+	          });
 
             setHandler('progress',progress);
 
@@ -286,6 +286,13 @@ ApplicationWindow
             return versionImg;
         }
 
+        function getSysinfo(){
+            call('sysinfo.getSysinfo',[],function(result){
+                var obj = result;
+                sysinfo.cpuModel = obj.cpuModel;
+                sysinfo.phoneName = obj.phoneName;
+            })
+        }
 
 
         //注册卸载软件方法
@@ -348,7 +355,3 @@ ApplicationWindow
         UserData.initialize()
     }
 }
-
-
-
-

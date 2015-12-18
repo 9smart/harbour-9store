@@ -11,8 +11,9 @@ def getSysinfo():
     phoneName = platform.uname().node
     osType = platform.uname().system
     cpuModel = platform.uname().processor
-    return {
-                "phoneName":phoneName,
-                "osType" :osType,
-                "cpuModel":cpuModel
-                }
+    d= {
+        "phoneName":phoneName,
+        "osType" :osType,
+        "cpuModel":cpuModel
+        }
+    return json.dumps(d,ensure_ascii=False,indent=2)
