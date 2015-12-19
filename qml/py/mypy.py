@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import sys,os
 import subprocess
 import urllib
@@ -6,6 +8,7 @@ import pyotherside
 from basedir import *
 import logging
 from distutils.version import LooseVersion, StrictVersion
+from rpms import *
 
 """
 //定义发送消息规则
@@ -60,7 +63,7 @@ def unistall(rpmpath):
 #    retval = p.wait()
 #    install(downname)
 
-appid="1"
+
 def newdownload(downname,downurl):
     urllib.request.urlretrieve(downurl,target+downname, schedule)
     install(target+downname)
@@ -78,12 +81,23 @@ def schedule(a,b,c):
     #print('%.2f%%' % per)
     pyotherside.send("progress",per)
 
-#先过滤掉相等的
-def versionCompare(v1,v2):
-    return LooseVersion(v1) < LooseVersion(v2)
+
+def versionCompare(rpmname,versioncode):
+    logging.debug("server:"+rpmname+"-"+versioncode)
+    dic = getAppinfo(rpmname)
+    print("dic:",dic)
+    if not dic.get("Name"):
+        return "Installed"
+    tmpname = (dic.get("Name"),dic.get("Version"),dic.get("Release"))
+    installedName = "-".join(tmpname)
+    logging.debug("installed:"+installedName)
+    serverName = rpmname+"-"+versioncode
+    if LooseVersion(installedName) == LooseVersion(serverName):
+        return "Uninstall"
+    elif LooseVersion(installedName) < LooseVersion(serverName):
+        return "Upgrade"
+    else:
+        return "Newer"
 
 
-#获取平台架构
-def getPlatform():
-    import platform
-    return platform.machine()
+

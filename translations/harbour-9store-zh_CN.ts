@@ -53,6 +53,10 @@
         <source>Next Page</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Send Successful!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppList</name>
@@ -63,10 +67,6 @@
     <message>
         <source>HotList</source>
         <translation>热门列表</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>搜索</translation>
     </message>
     <message>
         <source>Prev Page</source>
@@ -80,12 +80,27 @@
         <source>No more apps</source>
         <translation type="unfinished">没有更多应用了</translation>
     </message>
+    <message>
+        <source>Hide Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Search</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>9Store</source>
         <translation>久店</translation>
+    </message>
+</context>
+<context>
+    <name>CurrentOpeartion</name>
+    <message>
+        <source>Open a image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -117,6 +132,22 @@
     <message>
         <source>Comments</source>
         <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>ScreenShots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Summary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&apos;s other apps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OthersInfo</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

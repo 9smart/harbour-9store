@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import subprocess
 import datetime
+import logging
 
 app_dic={}
-
+ver_dic ={}
 
 
 def getInstalled():
@@ -22,13 +21,15 @@ def getListAppinfo(apps):
     return app_dic
 
 def getAppinfo(appname):
-    p = subprocess.getoutput("rpm -qi  %s" % (appname,))
-    infoList = p.split("\n")
-    info = parseInfo(infoList)
-    app_dic[info.get("Name")] = info
+    logging.debug(type(appname))
+    #p = subprocess.getoutput("rpm -qi "+appname)
+    p = subprocess.Popen(["rpm -qi "+appname], shell=True, stdout=subprocess.PIPE).communicate()[0]
+    infoList = p.decode('utf-8').split("\n")
+    return parseInfo(infoList)
+
 
 def parseInfo(infoList):
-    ver_dic ={}
+    ver_dic.clear()
     for i in infoList:
         if i.startswith("Name"):
             ver_dic["Name"] = i.strip("Name").lstrip().lstrip(":").lstrip(" ").rstrip("\n")

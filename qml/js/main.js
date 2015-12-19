@@ -21,8 +21,8 @@ function cutfile(file){
 }
 
 function humanedate(_dateline){
-    var thatday=new Date(_dateline*1000);
-    var now=parseInt(new Date().valueOf()/1000);
+    var thatday=new Date(_dateline);
+    var now=parseInt(new Date().valueOf());
     var cha=now-_dateline;
     if(cha<180){
         return "刚刚";
@@ -252,17 +252,17 @@ function loadinfo(oritxt){
     var obj=JSON.parse(oritxt);
     if(obj.error === 0){
         infoPage.type=obj.app.type;
+        infoPage.rpmname = obj.app.id;
         infoPage.category = obj.app.category;
         infoPage.version = obj.app.version;
-        infoPage.size = obj.app.size;
         infoPage.summary = obj.app.summary;
         infoPage.downloads = obj.app.download_num;
         infoPage.developer = obj.app.developer;
         infoPage.comment_num = obj.app.comment_num;
+        infoPage.dateline = obj.app.dateline;
         infoPage.uploaderuid = obj.app.uploader.uid;
         var size = obj.app.size?parseInt(obj.app.size):0;
         var x86size = obj.app.x86size?parseInt(obj.app.x86size):0;
-
         infoPage.size = getSize(size);
         infoPage.x86size = getSize(x86size);
         for(var i=1;i<=5;i++){
@@ -298,14 +298,13 @@ function loadDownloadUrl(oritxt){
 
 function getrelatedlist(system, category, page, pagesize){
     var url = apps(system, category, "", page, pagesize, "");
+    console.log("releatedUrl:"+url)
     sendWebRequest(url,loadrelatedlist,"GET","");
 }
 function loadrelatedlist(oritxt){
     var obj=JSON.parse(oritxt);
     if(obj.error === 0){
-        if(obj.pager.page=== 1){
-            infoPage.relatedAppsModel.clear();
-        }
+        infoPage.relatedAppsModel.clear();
         for(var i in obj.apps){
             infoPage.relatedAppsModel.append(obj.apps[i]);
         }
@@ -316,14 +315,13 @@ function loadrelatedlist(oritxt){
 
 function getSpecifiedAuthorList(system, developer, page, pageSize){
     var url = apps(system, "", developer, page, pageSize);
+    console.log("SpecifiedUrl:"+url)
     sendWebRequest(url, loadSpecifiedAuthorList, "GET", "");
 }
 function loadSpecifiedAuthorList(oritxt){
     var obj = JSON.parse(oritxt);
     if(obj.error === 0){
-        if(obj.pager.page === 1){
-            infoPage.specifiedAuthorModel.clear();
-        }
+        infoPage.specifiedAuthorModel.clear();
         for(var i in obj.apps){
             infoPage.specifiedAuthorModel.append(obj.apps[i]);
         }
@@ -342,23 +340,19 @@ function getComment(appid,page){
 }
 function loadComment(oritxt){
     var obj=JSON.parse(oritxt);
-    if(obj.pager.page==="1"){
-        commentmodel.clear();
-    }
+    commentmodel.clear();
     for(var i in obj.comments){
         commentmodel.append(obj.comments[i]);
     }
 }
 
-function sendComment(appid,auth,message,score,model) {
-    var url="http://api.9smart.cn/comments/"+appid;
-    console.log(auth);
-    console.log(encodeURIComponent(auth));
-    sendWebRequest(url,sendCommentState,"POST","auth="+encodeURIComponent(auth)+"&message="+message+"&score="+score+"&model="+model);
+function sendComment(auth,appid,content,score,model) {
+    var url=postcomments(auth,appid)
+    sendWebRequest(url,sendCommentState,"POST","&content="+content+"&score="+score+"&model="+model);
 }
 function sendCommentState(oritxt){
     var obj=JSON.parse(oritxt);
-    if(obj.success) {
+    if(obj.error === 0){
         signalcenter.commentSendSuccessful();
     }
     else signalcenter.commentSendFailed(obj.error);

@@ -188,7 +188,8 @@ ApplicationWindow
     }
 
     function getLocalTime(nS) {
-       return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+       //return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        return Script.humanedate(nS)
     }
 
     Timer{
@@ -227,7 +228,7 @@ ApplicationWindow
 
             setHandler('progress',progress);
 
-            //py.getInstalled()
+            py.getSysinfo();
         }
         onProgress: {
             currper = per;
@@ -252,6 +253,13 @@ ApplicationWindow
             })
         }
 
+        function getAppinfo(rpmname){
+            call('rpms.getAppinfo',[rpmname],function(result){
+                var rpminfo = result;
+
+            })
+        }
+
         //注册下载文件方法
         function downloadRpm(downname,downurl){
             console.log("starting download..."+downname)
@@ -269,26 +277,15 @@ ApplicationWindow
 
         //v1 < v2
         //v1 本地，v2 服务器
-        function versionCompare(v1,v2){
-            var versionImg = "image://theme/icon-s-cloud-upload";
-            if(v1 == v2){
-                versionImg = "image://theme/icon-s-installed"
-            }else{
-                call('mypy.versionCompare',[v1,v2],function(result){
-                    if(result){
-                        //需要升级
-                    }else{
-                        //已经安装
-                        versionImg = "image://theme/icon-s-installed"
-                    }
-                })
-            }
-            return versionImg;
+        function versionCompare(rpmname,versioncode){
+            call('mypy.versionCompare',[rpmname,versioncode],function(result){
+                signalCenter.currentAppmanaged(result);
+            })
         }
 
         function getSysinfo(){
             call('sysinfo.getSysinfo',[],function(result){
-                var obj = result;
+                var obj = result
                 sysinfo.cpuModel = obj.cpuModel;
                 sysinfo.phoneName = obj.phoneName;
             })
@@ -336,7 +333,10 @@ ApplicationWindow
 
         }
 
-        onError: signalCenter.showMessage(traceback)
+        onError:{
+            signalCenter.showMessage(traceback)
+            console.log(traceback)
+        }
 
     }
 

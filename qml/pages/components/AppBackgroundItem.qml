@@ -8,11 +8,10 @@ BackgroundItem {
         Label{
             id: moreAppname
             text:appname
-            //width:rectangle.width-Theme.paddingMedium
+            //width:parent.width
             truncationMode: TruncationMode.Elide
             anchors.horizontalCenter: parent.horizontalCenter
             maximumLineCount: 1
-            wrapMode: Text.WordWrap
             font {
                 pixelSize: Theme.fontSizeSmall
                 family: Theme.fontFamilyHeading
@@ -63,7 +62,7 @@ BackgroundItem {
         onClicked :{
             pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{
                                "appid":_id,
-                               "author":developer,
+                               "developer":developer,
                                "appname":appname,
                                "icon":apppic.source,
                                "category":category,

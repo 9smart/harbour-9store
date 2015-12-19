@@ -1,8 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-QtObject
-        {
+QtObject{
          id:signalcenter;
          signal loadStarted;
          signal loadFinished;
@@ -17,7 +16,7 @@ QtObject
          signal versionGeted;
          signal commentSendSuccessful;
          signal commentSendFailed(string errorstring);
-         signal currentAppname;
+         signal currentAppmanaged(string result);
          function showMessage(msg)
                  {
                   if (msg||false)

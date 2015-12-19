@@ -40,13 +40,14 @@ Page{
     property string appid
     property string developer
     property string appname
+    property string rpmname
     property string system
     property string type
     property string uploaderuid
     property string category
     property string views
     property string downloads
-    property string dateline
+    property int dateline
     property string version
     property int scores
     property int score_num
@@ -72,6 +73,8 @@ Page{
 
     property bool shrink:true
 
+    signal commentSendSuccessful()
+    signal commentSendFailed(string errorstring)
 
     ListModel{id:screenShotModel}
     ListModel{id:specifiedAuthorModel}
@@ -84,6 +87,11 @@ Page{
     RemorsePopup {
         id: remorse
     }
+
+    onVersionChanged:{
+         py.versionCompare(rpmname,version)
+    }
+
     SilicaFlickable{
         id:sfl
         contentHeight: detailComp.height+Theme.paddingLarge*3+header.height
@@ -267,8 +275,20 @@ Page{
        Script.commentmodel = commentsModel
        Script.getinfo(appid)
        Script.getComment(appid,comm_nextpage)
-       Script.getrelatedlist(window.sysinfo.os_type,category,page,pagesize)
-       Script.getSpecifiedAuthorList(window.sysinfo.os_type,developer,page,pagesize)
+       Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
+       Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
+
+    }
+
+    Connections{
+        target: signalCenter
+        onCommentSendSuccessful:{
+            Script.getComment(appid,comm_nextpage);
+            signalCenter.showMessage(qsTr("Send Successful!"))
+        }
+        onCommentSendFailed:{
+            signalCenter.showMessage(errorstring)
+        }
 
     }
 }

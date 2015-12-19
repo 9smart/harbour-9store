@@ -7,7 +7,8 @@ Item{
             oteherAppsItem.height+commentsItem.height+
             rateItem.height+relatedItem.height+Theme.paddingLarge *2
             +downprogress.height
-            //relatedApps.height+sectID.height
+            + screenshotslt.height * 4
+
     CacheImage{
         id:appicon
         asynchronous: true
@@ -64,12 +65,7 @@ Item{
 
 
     }
-    Separator {
-        width:parent.width;
-        visible: downprogress.visible
-        color: Theme.highlightColor
-        anchors.top:infomess.bottom
-    }
+
 
     CurrentOpeartion{
         id:downprogress
@@ -81,10 +77,15 @@ Item{
     }
 
 
-    Separator {
+    DetailLabelText{
+        id:screenshotslt
         width:parent.width;
-        color: Theme.highlightColor
-        anchors.top:screenShotLabel.top
+        label: qsTr("ScreenShots")
+        anchors{
+            top:downprogress.bottom
+            topMargin: Theme.paddingMedium
+        }
+
     }
 
     Label{
@@ -112,50 +113,58 @@ Item{
             }
         }
         anchors {
-            top:downprogress.bottom
-            //topMargin: Theme.paddingLarge
+            top:screenshotslt.bottom
+            topMargin: Theme.paddingMedium
             left:parent.left
             right:parent.right
         }
 
 
     }
-    Separator {
-        visible: (screenShotModel.count>0?true:false)
-        width:parent.width;
-        color: Theme.highlightColor;
-        anchors.top:summaryid.top
-    }
 
+
+    DetailLabelText{
+        id:sumlabeltext
+        width:parent.width;
+        label: qsTr("Summary")
+        anchors{
+            top:screenShotLabel.bottom
+            topMargin: Theme.paddingMedium
+        }
+    }
     TextCollapsible {
        id:summaryid
        anchors {
-           top:screenShotLabel.bottom
-           topMargin: Theme.paddingMedium
+           top:sumlabeltext.bottom
+           topMargin: Theme.paddingLarge
            left: parent.left
-           leftMargin: 10
            right: parent.right
-           rightMargin: 10
        }
 
        font.pixelSize: Theme.fontSizeSmall
        wrapMode: Text.WordWrap
 
-       text: summary !== undefined ? summary + "<br><br>" : ""
+       text: summary !== undefined ? summary : ""
    }
 
-    Separator {
+
+    DetailLabelText{
+        id:otherslt
         width:parent.width;
-        color: Theme.highlightColor;
-        anchors.top:oteherAppsItem.top
+        label: qsTr("OthersInfo")
+        anchors{
+            top:summaryid.bottom
+            topMargin: Theme.paddingMedium
+        }
     }
+
     BackgroundItem{
         id:oteherAppsItem
         enabled: specifiedAuthorModel.count > 0
         opacity: enabled?1:0.7
         height: Theme.itemSizeSmall +Theme.paddingMedium
         anchors{
-            top:summaryid.bottom
+            top:otherslt.bottom
             left:parent.left
             right:parent.right
             topMargin: Theme.paddingMedium
@@ -163,7 +172,7 @@ Item{
 
         Label{
             id:otherApps
-            text:developer+" ("+specifiedAuthorModel.count+")"
+            text:developer+qsTr("'s other apps")+" ("+specifiedAuthorModel.count+")"
             font.pixelSize: Theme.fontSizeMedium
             truncationMode: TruncationMode.Fade
             anchors{
@@ -186,13 +195,14 @@ Item{
 
 
     }
-    Separator {
-        width:parent.width;
-        anchors.top: commentsItem.top
-        color: Theme.highlightColor
-    }
+
+//    DetailLabelText{
+//        width:parent.width;
+//        label: qsTr("Comments")
+//    }
+
     BackgroundItem{
-        height: Theme.itemSizeMedium
+        height: Theme.itemSizeSmall +Theme.paddingMedium
         id:commentsItem
         enabled: commentsModel.count > 0
         opacity: enabled?1:0.7
@@ -237,16 +247,17 @@ Item{
 
     }
 
-    Separator {
-        width:parent.width;
-        anchors.top: relatedItem.top
-        color: Theme.highlightColor
-    }
+
+//    DetailLabelText{
+//        width:parent.width;
+//        label: qsTr("Related")
+//    }
+
     BackgroundItem{
         id:relatedItem
         enabled: relatedModel.count > 0
         opacity: enabled?1:0.7
-        height: Theme.itemSizeSmall+Theme.paddingMedium
+        height: Theme.itemSizeSmall +Theme.paddingMedium
         contentHeight: height
         anchors{
             top:commentsItem.bottom
@@ -277,13 +288,8 @@ Item{
 
 
     }
-    Separator {
-        width:parent.width;
-        anchors.top: rateItem.top
-        color: Theme.highlightColor
-    }
 
-    Item{width: 1;height: Theme.paddingMedium}
+
     SubmitCommentComponent{
         id:rateItem
         anchors {

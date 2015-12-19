@@ -104,7 +104,7 @@ BackgroundItem{
         pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{
                            "appid":_id,
                            "appname":appname,
-                           "author":developer,
+                           "developer":developer,
                            "icon":apppic.source,
                            "category":category,
                            "scores":scores,

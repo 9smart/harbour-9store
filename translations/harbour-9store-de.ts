@@ -53,6 +53,10 @@
         <source>Next Page</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Send Successful!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppList</name>
@@ -62,10 +66,6 @@
     </message>
     <message>
         <source>HotList</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -80,11 +80,26 @@
         <source>No more apps</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Hide Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Search</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>9Store</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CurrentOpeartion</name>
+    <message>
+        <source>Open a image</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -116,6 +131,22 @@
     </message>
     <message>
         <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ScreenShots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Summary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&apos;s other apps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OthersInfo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

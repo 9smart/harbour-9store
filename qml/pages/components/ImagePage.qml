@@ -70,7 +70,7 @@ Page {
                         imagePage.clicked()
                     }
                     onClicked:{
-			pageStack.pop(undefined, PageStackAction.Immediate)
+                        pageStack.pop(undefined/*, PageStackAction.Immediate*/)
                     }
 
                 }

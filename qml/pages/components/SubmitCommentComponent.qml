@@ -24,6 +24,7 @@ Column {
         id: firstWizardPage
 
         Dialog {
+            id:dialog
             canAccept: subcomments.text.length > 0
             acceptDestination: showappdetail
             acceptDestinationAction: PageStackAction.Pop
@@ -31,7 +32,7 @@ Column {
 
             onAccepted: {
                 var auth = user.auth;
-                Script.sendComment(showappdetail.appid,auth,subcomments.text,ratingbox.score,sysinfo.phoneName);
+                Script.sendComment(auth,showappdetail.appid,subcomments.text,ratingbox.score,sysinfo.phoneName);
             }
 
             Flickable {
@@ -104,6 +105,7 @@ Column {
                             echoMode: TextInput.Normal
                             font.pixelSize: Theme.fontSizeMedium
                             placeholderText: qsTr("input your comments")
+                            EnterKey.onClicked : dialog.accept()
                             label: qsTr("Comments")
                         }
 

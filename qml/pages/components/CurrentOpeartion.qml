@@ -4,9 +4,9 @@ import Sailfish.Silica 1.0
 Item{
     width: parent.width
     height: downprogress.height + statusName.height + Theme.paddingMedium *2
+    signal currentAppmanaged(string result)
     Label{
         id:statusName
-        text:currname
         width: parent.width
         color: Theme.primaryColor
         font.pixelSize: Theme.fontSizeSmall
@@ -31,4 +31,22 @@ Item{
         maximumValue:100
         width: parent.width - Theme.paddingLarge
     }
+
+    Button{
+        id:openLabel
+        text:qsTr("Open a image")
+        anchors.horizontalCenter: parent.horizontalCenter
+        //onClicked: pageStack.push(Qt.resolvedUrl("PreviewGrid.qml"));
+
+    }
+
+    Connections{
+        target: signalCenter
+        onCurrentAppmanaged:{
+            console.log("result:"+result)
+            openLabel.text = result
+        }
+    }
+
+
 }

@@ -93,7 +93,6 @@ Page{
         SilicaListView {
             id:view
             anchors.fill: parent
-            spacing:Theme.paddingMedium
             PullDownMenu{
                    MenuItem{
                        id:pulldown
@@ -104,10 +103,10 @@ Page{
                    }
                }
           header:PageHeader{
-               id:header
+               id:head
                width:headerContainer.width
                height: headerContainer.height
-               Component.onCompleted:headerContainer.parent = header
+               Component.onCompleted:headerContainer.parent = head
            }
 
             model: listModel
