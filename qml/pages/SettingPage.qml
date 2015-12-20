@@ -1,8 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "components"
-import com.stars.widgets 1.0
-
+import "../js/login.js" as Login
 Page{
 
     SilicaFlickable{
@@ -20,16 +19,15 @@ Page{
             width: parent.width
             height: user_avatar.height + user_nickname.height
             Item{width:1;height:1}
-            MyImage{
+            CircleCacheImage{
                 id:user_avatar
                 anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width/4
                 height: parent.width/4
                 smooth: true
-                source: user.avatar
+                cacheurl: user.avatar
                 maskSource: "../img/mask.bmp"
-                cache: true
                 MouseArea{
                     anchors.fill: parent
 //                    onClicked: {
@@ -53,6 +51,7 @@ Page{
 
             Item{width:1;height:1}
             Item{
+                id:clearcache
                 width: parent.width
                 height:cacheSwitch.height
                 anchors.top: user_nickname.bottom
@@ -62,6 +61,21 @@ Page{
                     text: qsTr("Cache Img")
                 }
 
+            }
+            Item{width:1;height:1}
+            Button{
+                id:logout
+                text:qsTr("Logout")
+                anchors{
+                    top:clearcache.bottom
+                    horizontalCenter: parent.horizontalCenter
+                }
+                onClicked: {
+                    remorse.execute(qsTr("Start logout"),function(){
+                        Login.clearValue();
+                        toLoginPage();
+                    },3000);
+                }
             }
         }
 

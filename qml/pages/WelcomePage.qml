@@ -29,10 +29,10 @@ Page{
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
-            MenuItem {
-                text: qsTr("My Apps")
-                onClicked: pageStack.push(Qt.resolvedUrl("ShortcutsPage.qml"))
-            }
+//            MenuItem {
+//                text: qsTr("My Apps")
+//                onClicked: pageStack.push(Qt.resolvedUrl("ShortcutsPage.qml"))
+//            }
             MenuItem {
                 text: qsTr("Setting")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
@@ -110,6 +110,9 @@ Page{
                     height: Theme.itemSizeMedium
                     text: qsTr("All Class")
                     onClicked: {
+                        if(loading){
+                            return;
+                        }
                         pageStack.push(Qt.resolvedUrl("AppCategory.qml"));
                     }
                     WelcomeBoxBackground {
@@ -124,6 +127,10 @@ Page{
                     height: Theme.itemSizeMedium
                     text: qsTr("Games")
                     onClicked: {
+                        if(loading){
+                            return;
+                        }
+
                         pageStack.push(Qt.resolvedUrl("AppCategory.qml"),{"type":"game"});
                     }
                 }
@@ -134,6 +141,9 @@ Page{
                     height: Theme.itemSizeMedium
                     text: qsTr("Apps")
                     onClicked: {
+                        if(loading){
+                            return;
+                        }
                         pageStack.push(Qt.resolvedUrl("AppCategory.qml"),{"type":"app"});
                     }
 

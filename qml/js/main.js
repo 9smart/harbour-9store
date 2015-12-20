@@ -21,7 +21,7 @@ function cutfile(file){
 }
 
 function humanedate(_dateline){
-    var thatday=new Date(_dateline);
+    var thatday=new Date(parseInt(_dateline));
     var now=parseInt(new Date().valueOf());
     var cha=(now-_dateline)/1000;
     if(cha<180){
@@ -31,15 +31,16 @@ function humanedate(_dateline){
     }else if(cha<86400){
         return Math.floor(cha/3600)+" 小时前";
     }else if(cha<172800){
-        return "昨天 "+thatday.getHours()+':'+thatday.getMinutes();
+        return "昨天 "+Qt.formatDateTime(thatday,"hh")+':'+Qt.formatDateTime(thatday,"mm");
     }else if(cha<259200){
-        return "前天 "+thatday.getHours()+':'+thatday.getMinutes();
+        return "前天 "+Qt.formatDateTime(thatday,"hh")+':'+Qt.formatDateTime(thatday,"mm");
     }else if(cha<345600){
         return Math.floor(cha/86400)+" 天前";
     }else{
         return thatday.getFullYear()+'-'+(thatday.getMonth()+1)+'-'+thatday.getDate();
     }
 }
+
 
 function sendWebRequest(url, callback, method, postdata) {
     var xmlhttp = new XMLHttpRequest();
@@ -336,8 +337,10 @@ function loadComment(oritxt){
     var obj=JSON.parse(oritxt);
     commentmodel.clear();
     for(var i in obj.comments){
+        if(!obj.comments[i].reply_num){
+           obj.comments[i].reply_num = 0;
+        }
         commentmodel.append(obj.comments[i]);
-        console.log(obj.comments[i].model)
     }
     infoPage.comm_nextpage = obj.pager.next_url?obj.pager.next_url:"";
     infoPage.comm_prevpage = obj.pager.pre_url?obj.pager.pre_url:"";
@@ -355,6 +358,21 @@ function sendCommentState(oritxt){
     else signalcenter.commentSendFailed(obj.error);
 }
 
+
+
+function sendReplayComment(auth,cid,reply_content,model) {
+    var url=postreplaycomments(auth,cid)
+    sendWebRequest(url,sendReplayCommentState,"POST","&reply_content="+reply_content+"&model="+model);
+}
+
+function sendReplayCommentState(oritxt){
+    console.log("oritxt:"+oritxt)
+    var obj=JSON.parse(oritxt);
+    if(obj.error === 0){
+        signalcenter.commentSendSuccessful();
+    }
+    else signalcenter.commentSendFailed(obj.error);
+}
 var version;
 function getversion() {
     var url = "http://api.9smart.cn/app/";

@@ -18,10 +18,6 @@
 <context>
     <name>AppDetail</name>
     <message>
-        <source>Install</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>otherApps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -35,14 +31,6 @@
     </message>
     <message>
         <source>Related Apps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unistall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Upgrade</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -111,6 +99,10 @@
         <source>replays:(</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Replay</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -131,6 +123,10 @@
     </message>
     <message>
         <source>UnInstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start uninstall %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -173,7 +169,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OthersInfo</source>
+        <source>Other Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add comment&amp;Rate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -270,6 +270,17 @@
     </message>
 </context>
 <context>
+    <name>ReplayCommentsComponent</name>
+    <message>
+        <source>Replys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchApp</name>
     <message>
         <source>Search</source>
@@ -288,6 +299,14 @@
     </message>
     <message>
         <source>Cache Img</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start logout</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -313,10 +332,6 @@
 <context>
     <name>SubmitCommentComponent</name>
     <message>
-        <source>Add comment&amp;Rate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Comments&amp;Rate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -326,6 +341,10 @@
     </message>
     <message>
         <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replay</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -340,10 +359,6 @@
     <name>WelcomePage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>My Apps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

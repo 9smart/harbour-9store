@@ -47,7 +47,7 @@ Page{
     property string category
     property string views
     property string downloads
-    property int dateline
+    property string dateline
     property string version
     property int scores
     property int score_num
@@ -84,9 +84,7 @@ Page{
     width: parent.width
     height: parent.height
 
-    RemorsePopup {
-        id: remorse
-    }
+
 
     onVersionChanged:{
          py.versionCompare(rpmname,version)
@@ -105,38 +103,29 @@ Page{
             title: appname
             description: developer
         }
-        PullDownMenu {
-            id:pulldownmenu
-            visible: true//!install.visible && !unistall.visible && !upgrade.visible
-            MenuItem {
-                id:install
-                visible:true
-                text: qsTr("Install")
-                onClicked: {
+//        PullDownMenu {
+//            id:pulldownmenu
+//            visible: true//!install.visible && !unistall.visible && !upgrade.visible
+//            MenuItem {
+//                id:install
+//                visible:true
+//                text: qsTr("Install")
+//                onClicked: {
 
 
-//                    var downPath =Conv.codefans_net_CC2PY(downloadname.split(".")[0])+".rpm";
-//                    remorse.execute(qsTr("Start downloading %1").arg(appname),function(){
-//                        py.newdownload(downPath,downurl);
-//                        //更新本地记录
-//                        //updateDownloadList(appid,appname,downPath,icon,1);
-
-//                    },3000);
-
-
-                }
-            }
-            MenuItem{
-                id:unistall
-                visible: false//isinstalled
-                text:qsTr("Unistall")
-            }
-            MenuItem{
-                id:upgrade
-                visible: false//
-                text:qsTr("Upgrade")
-            }
-        }
+//                }
+//            }
+//            MenuItem{
+//                id:unistall
+//                visible: false//isinstalled
+//                text:qsTr("Unistall")
+//            }
+//            MenuItem{
+//                id:upgrade
+//                visible: false//
+//                text:qsTr("Upgrade")
+//            }
+//        }
 
         DetailComponent{
             id:detailComp
@@ -154,16 +143,24 @@ Page{
 
     Page{
         id:otherAppsPage
-        AppGridComponent{
+        SilicaGridView {
+            id: gridView
+            clip: true
             header:PageHeader {
                 id:otherheader
                 title: qsTr("otherApps")
             }
             model:specifiedAuthorModel
-            height: parent.height
             anchors.fill: parent
+            //height: childrenRect.height
+            width: childrenRect.width
+            currentIndex: -1
+            cellWidth: gridView.width / 3
+            cellHeight: cellWidth
+            cacheBuffer: 2000;
+            delegate: AppBackgroundItem {
+                        }
         }
-
     }
     Page{
         id:commentsPage
@@ -214,6 +211,20 @@ Page{
         }
     }
 
+    Page{
+        id:repcommentsPage
+
+        SilicaListView {
+            header:PageHeader {
+                title: qsTr("Comments")
+            }
+            clip: true
+            model: commentsModel
+            anchors.fill: parent
+            delegate: CommentsComponent{}
+            VerticalScrollDecorator {}
+        }
+    }
     Page{
         id:relatedPage
 

@@ -12,6 +12,30 @@ Page {
     property bool searchEnabled: false
     property bool showHidden: false
     property variant selectedValues: []
+    property variant threadMenu: null;
+
+    function createMenu(index,smItem){
+        if (!threadMenu)
+            threadMenu = Qt.createComponent(contextMenu).createObject(view);
+        threadMenu.index = index;
+        threadMenu.model = view.model.get(index);
+        threadMenu.show(smItem);
+    }
+
+    function remove(rpmname) {
+        remorseAction("正在卸载", function() {
+            listModel.remove(index);
+            py.uninstallRpmNostatus(rpmname)
+        })
+    }
+
+    ContextMenu {
+        id:contextMenu
+        MenuItem {
+            text: qsTr("Uninstall")
+            onClicked: remove(model.rpmname)
+        }
+    }
 
     SilicaFlickable {
         id: view
@@ -105,19 +129,14 @@ Page {
 
     Component {
         id: shortcutDelegate
-        ListItem {
+        BackgroundItem {
             id: item
+            property bool menuOpen: threadMenu != null && threadMenu.parent === item
+            contentHeight: (menuOpen ? threadMenu.height + iconImage.height : iconImage.height) + Theme.paddingLarge
+            height: contentHeight
             width: parent.width
-            //contentHeight: iconImage.height + Theme.paddingLarge
-            //height: contentHeight
             highlighted: down || selectedValues.indexOf(model.path) >= 0
-            menu: contextMenuComponent
-            function remove(rpmname) {
-                remorseAction("正在卸载", function() {
-                    listModel.remove(index);
-                    py.uninstallRpmNostatus(rpmname)
-                })
-            }
+
 
             ListView.onRemove: animateRemoval()
             Image {
@@ -156,17 +175,10 @@ Page {
 //                }
 //            }
 
-
-            Component {
-                id: contextMenuComponent
-                ContextMenu {
-                    id:contextMenu
-                    MenuItem {
-                        text: qsTr("Uninstall")
-                        onClicked: remove(model.rpmname)
-                    }
-                }
+            onPressAndHold:{
+                createMenu(index,item);
             }
+
         }
     }
 

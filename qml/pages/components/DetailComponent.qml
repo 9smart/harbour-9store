@@ -52,8 +52,8 @@ Item{
         text:type+"->"+category+"<br/>"+
              "<font size='2' > "+qsTr("version")+":</font><font size='1' >"+version+"</font><br/>"+
              "<font size='2' > "+qsTr("filesize")+":</font><font size='1' >"+(sysinfo.cpuModel == "arm"?size:x86size)+"</font><br/>"+
-             "<font size='2' > "+qsTr("dateline")+":</font><font size='1' >"+getLocalTime(dateline)+"</font>"
-        font.pixelSize: Theme.fontSizeExtraSmall*5/4
+             "<font size='2' > "+qsTr("dateline")+":</font><font size='1' >"+Script.humanedate(dateline)+"</font>"
+        font.pixelSize: Theme.fontSizeExtraSmall
         horizontalAlignment: Text.AlignLeft
         anchors {
             top:appicon.top
@@ -150,7 +150,7 @@ Item{
     DetailLabelText{
         id:otherslt
         width:parent.width;
-        label: qsTr("OthersInfo")
+        label: qsTr("Other Info")
         anchors{
             top:summaryid.bottom
             topMargin: Theme.paddingMedium
@@ -189,6 +189,9 @@ Item{
             }
         }
         onClicked: {
+            if(loading){
+                return;
+            }
             pageStack.push(otherAppsPage)
         }
 
@@ -240,6 +243,9 @@ Item{
             }
         }
         onClicked: {
+            if(loading){
+                return;
+            }
             pageStack.push(commentsPage)
         }
 
@@ -282,6 +288,9 @@ Item{
             }
         }
         onClicked: {
+            if(loading){
+                return;
+            }
             pageStack.push(relatedPage)
         }
 
@@ -289,13 +298,43 @@ Item{
     }
 
 
-    SubmitCommentComponent{
+    Column {
         id:rateItem
         anchors {
             left: parent.left
             top:relatedItem.bottom
             topMargin: Theme.paddingMedium
         }
+        width: parent.width
+        spacing: Theme.paddingSmall
+        Button {
+            id: wizard
+
+            property string selection
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: qsTr("Add comment&Rate")
+            onClicked:{
+                if(loading){
+                    return;
+                }
+                pageStack.push(Qt.resolvedUrl("SubmitCommentComponent.qml"),
+                                                        {"parentpage":showappdetail,
+                                                          "appid":appid
+                                                        })
+            }
+        }
+
+        Label {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: wizard.selection
+            color: Theme.highlightColor
+        }
+//        SubmitCommentComponent{
+//          id:firstWizardPage
+//        }
+
+
     }
 
 }

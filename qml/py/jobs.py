@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''
 Created on 2015年12月15日
 
@@ -55,7 +53,6 @@ def notify(title):
 
 
 def getAuth():
-    print("dbname:",getDbname())
     try:
         conn = sqlite3.connect(getDbname())
         cur = conn.cursor()
@@ -64,11 +61,8 @@ def getAuth():
         if not datas:
             return ""
         res = json.loads(datas)
-        print("datas:",type(datas))
-        print(res.get("user").get("auth"))
         return res.get("user").get("auth")
     except Exception as e:
-        print(e)
         return ""
     conn.close()
 
@@ -80,7 +74,6 @@ def query(url):
         response = urllib.request.urlopen(req)
         return response.read()
     except urllib.error.HTTPError as e:
-        print("error:",e)
         pass
     return data
 
@@ -94,13 +87,12 @@ def query(url):
 """
 def loadNotification(auth):
     url = api(auth)
-    print("url:",url)
     data = query(url)
     if not data:
         return
-    jsondata = json.load(data)
-    if jsondata.error == 0:
-        notice_num = len(jsondata.notices)
+    jsondata = json.loads(data.decode('utf-8'))
+    if jsondata["error"] == 0:
+        notice_num = len(jsondata["notices"])
         if notice_num > 0:
             notify("您有{0}条消息".format(notice_num))
     else:

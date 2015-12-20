@@ -74,6 +74,10 @@ ApplicationWindow
         size: BusyIndicatorSize.Large
     }
 
+    RemorsePopup {
+        id: remorse
+    }
+
     initialPage: Component {
         Page{
             id:splashPage
@@ -112,6 +116,9 @@ ApplicationWindow
 
     //跳到登录页面
     function toLoginPage(){
+        while(pageStack.depth>1) {
+            pageStack.pop(undefined, PageStackAction.Immediate);
+        }
         pageStack.replace(Qt.resolvedUrl("pages/LoginDialog.qml"));
          //pageStack.push(Qt.resolvedUrl("pages/UserCenter.qml"));
     }
@@ -120,9 +127,15 @@ ApplicationWindow
         while(pageStack.depth>1) {
             pageStack.pop(undefined, PageStackAction.Immediate);
         }
-        //pageStack.push(Qt.resolvedUrl("pages/ShortcutsPage.qml"));
         pageStack.replace(Qt.resolvedUrl("pages/WelcomePage.qml"));
     }
+
+    function zero(num){
+           if(typeof(num)=='undefined'){
+               return 0;
+           }
+           return num;
+       }
 
     function loadLoginData(oritxt) {
             if(!oritxt) {

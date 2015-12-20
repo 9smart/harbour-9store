@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import com.stars.widgets 1.0
+
 
 BackgroundItem{
     id:showcomments
@@ -8,11 +8,11 @@ BackgroundItem{
                 (phoneModel.height+ messageid.height + numbers.height)?
                  (userPic.height + nick.height):(phoneModel.height+ messageid.height + numbers.height))
                 + Theme.paddingMedium * 4
+                +(contextMenu.active?contextMenu.height:0)
     contentHeight: height
     width: parent.width
     anchors.leftMargin: Theme.paddingSmall
     anchors.rightMargin: Theme.paddingSmall
-
 
 
     Label{
@@ -27,24 +27,12 @@ BackgroundItem{
             rightMargin: Theme.paddingMedium
         }
     }
-//     CacheImage{
-//        id:userPic
-//        width:Screen.width/6 - Theme.paddingMedium
-//        height:width
-//        cacheurl: author.avatar
-//        anchors {
-//            left: parent.left
-//            top:parent.top
-//            leftMargin: Theme.paddingSmall
-//            topMargin: Theme.paddingMedium
-//        }
-//    }
 
-    MyImage{
+    CircleCacheImage{
        id:userPic
        width:Screen.width/6 - Theme.paddingMedium
        height:width
-       source: author.avatar
+       cacheurl: author.avatar
        smooth: true;
        cache: true
        anchors {
@@ -63,11 +51,9 @@ BackgroundItem{
          truncationMode: TruncationMode.Elide
          maximumLineCount: 3
          wrapMode: Text.WordWrap
-         width: userPic.width
          anchors {
              top:userPic.bottom
-             left: parent.left
-             leftMargin: Theme.paddingSmall
+             horizontalCenter: userPic.horizontalCenter
              topMargin: Theme.paddingSmall
          }
      }
@@ -96,7 +82,7 @@ BackgroundItem{
     }
     Label{
         id:numbers
-        text:qsTr("replays:(")+(reply_num?reply_num:"0")+")"
+        text:qsTr("replays:(")+reply_num+")"
         font.pixelSize: Theme.fontSizeSmall
         color: Theme.highlightColor
         anchors {
@@ -131,5 +117,32 @@ BackgroundItem{
         width:parent.width;
         color: Theme.highlightColor
     }
+    ContextMenu {
+        id:contextMenu
+        MenuItem {
+            text: qsTr("Replay")
+            onClicked:{
+                pageStack.push(Qt.resolvedUrl("SubmitCommentComponent.qml"),{
+                                                                    "parentpage":commentsPage,
+                                                                    "cid":_id
+                                                                })
+            }
+        }
+    }
+
+    onClicked: {
+        if(reply_num == 0){
+            return
+        }
+         pageStack.push(Qt.resolvedUrl("ReplayCommentsComponent.qml"),{"replaysmodel":replys})
+    }
+
+    onPressAndHold: {
+        contextMenu.show(showcomments)
+    }
+    ListModel{
+        id:replaytemp
+      }
 
 }
+

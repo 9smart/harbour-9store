@@ -77,7 +77,11 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
-               py.uninstallRpm(rpmname,version);
+                remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
+                    py.uninstallRpm(rpmname,version);
+                },3000);
+
+
             }
 
         }
@@ -86,7 +90,7 @@ Item{
 
     ProgressBar {
         id:downprogress
-        visible: downbar||value < 99.99
+        visible: downbar && value > 99.99
         anchors{
             top: col.bottom
             topMargin: Theme.paddingMedium

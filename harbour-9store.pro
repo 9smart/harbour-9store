@@ -71,7 +71,6 @@ OTHER_FILES += \
     translations/harbour-9store-zh_CN.ts \
     qml/pages/components/ActivitiesComponent.qml \
     qml/pages/components/AppBackgroundItem.qml \
-    qml/pages/components/AppGridComponent.qml \
     qml/pages/components/AppListComponent.qml \
     qml/pages/components/CacheImage.qml \
     qml/pages/components/CommentsComponent.qml \
@@ -113,4 +112,6 @@ OTHER_FILES += \
 DISTFILES += \
     qml/pages/components/DetailLabelText.qml \
     qml/pages/components/CanvasImage.qml \
-    qml/pages/AppCategory.qml
+    qml/pages/AppCategory.qml \
+    qml/pages/components/CircleCacheImage.qml \
+    qml/pages/components/ReplayCommentsComponent.qml

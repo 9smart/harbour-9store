@@ -18,10 +18,6 @@
 <context>
     <name>AppDetail</name>
     <message>
-        <source>Install</source>
-        <translation>安装</translation>
-    </message>
-    <message>
         <source>otherApps</source>
         <translation>作者其他应用</translation>
     </message>
@@ -36,14 +32,6 @@
     <message>
         <source>Related Apps</source>
         <translation>相关应用</translation>
-    </message>
-    <message>
-        <source>Unistall</source>
-        <translation>卸载</translation>
-    </message>
-    <message>
-        <source>Upgrade</source>
-        <translation>升级</translation>
     </message>
     <message>
         <source>Prev Page</source>
@@ -101,7 +89,7 @@
     <name>CommentsComponent</name>
     <message>
         <source>from:</source>
-        <translation>来着</translation>
+        <translation>来自:</translation>
     </message>
     <message>
         <source>ratings:</source>
@@ -110,6 +98,10 @@
     <message>
         <source>replays:(</source>
         <translation>回复:(</translation>
+    </message>
+    <message>
+        <source>Replay</source>
+        <translation>回复</translation>
     </message>
 </context>
 <context>
@@ -132,6 +124,10 @@
     <message>
         <source>UnInstall</source>
         <translation>卸载</translation>
+    </message>
+    <message>
+        <source>Start uninstall %1</source>
+        <translation>即将卸载 %1</translation>
     </message>
 </context>
 <context>
@@ -173,8 +169,12 @@
         <translation>的其他应用</translation>
     </message>
     <message>
-        <source>OthersInfo</source>
-        <translation>其他信息</translation>
+        <source>Other Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add comment&amp;Rate</source>
+        <translation type="unfinished">添加评论&amp;评分</translation>
     </message>
 </context>
 <context>
@@ -270,6 +270,17 @@
     </message>
 </context>
 <context>
+    <name>ReplayCommentsComponent</name>
+    <message>
+        <source>Replys</source>
+        <translation>回复他的</translation>
+    </message>
+    <message>
+        <source>from:</source>
+        <translation>来自:</translation>
+    </message>
+</context>
+<context>
     <name>SearchApp</name>
     <message>
         <source>Search</source>
@@ -290,6 +301,14 @@
         <source>Cache Img</source>
         <translation>缓存图片</translation>
     </message>
+    <message>
+        <source>Logout</source>
+        <translation>注销</translation>
+    </message>
+    <message>
+        <source>Start logout</source>
+        <translation>正在注销</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutsPage</name>
@@ -307,15 +326,11 @@
     </message>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>卸载</translation>
     </message>
 </context>
 <context>
     <name>SubmitCommentComponent</name>
-    <message>
-        <source>Add comment&amp;Rate</source>
-        <translation>添加评论&amp;评分</translation>
-    </message>
     <message>
         <source>Comments&amp;Rate</source>
         <translation>评论&amp;评分</translation>
@@ -327,6 +342,10 @@
     <message>
         <source>Comments</source>
         <translation>评论</translation>
+    </message>
+    <message>
+        <source>Replay</source>
+        <translation>回复</translation>
     </message>
 </context>
 <context>
@@ -341,10 +360,6 @@
     <message>
         <source>About</source>
         <translation>关于</translation>
-    </message>
-    <message>
-        <source>My Apps</source>
-        <translation>我的应用程序</translation>
     </message>
     <message>
         <source>Welcome,</source>
