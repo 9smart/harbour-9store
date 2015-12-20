@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "components"
+import com.stars.widgets 1.0
+
 Page{
 
     SilicaFlickable{
@@ -18,21 +20,16 @@ Page{
             width: parent.width
             height: user_avatar.height + user_nickname.height
             Item{width:1;height:1}
-            Image{
+            MyImage{
                 id:user_avatar
                 anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width/4
                 height: parent.width/4
                 smooth: true
-                source: avatar
-                Image{
-                    source: "../img/HeadPortrait_Mask_x2.bmp"
-                    anchors.fill: parent
-
-                }
-
-
+                source: user.avatar
+                maskSource: "../img/mask.bmp"
+                cache: true
                 MouseArea{
                     anchors.fill: parent
 //                    onClicked: {
@@ -46,7 +43,7 @@ Page{
             Item{width:1;height:1}
             Text {
                 id: user_nickname
-                text: qsTr("username")+":"+nickname
+                text: user.nickName
                 anchors.top: user_avatar.bottom
                 anchors.topMargin: Theme.paddingMedium
                 anchors.horizontalCenter: parent.horizontalCenter

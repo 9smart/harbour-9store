@@ -68,7 +68,7 @@ Item {
                 label: qsTr("User Name");
                 placeholderText: label
                 RegExpValidator { regExp: /.{2,14}/ }
-                inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
+                inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
                 EnterKey.enabled: text || inputMethodComposing
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: nickname.focus = true
@@ -129,6 +129,7 @@ Item {
                 anchors { left: parent.left; right: parent.right }
                 opacity: 0
                 focus: true;
+                text: "from "+sysinfo.phoneName
                 label: qsTr("Register reason");
                 placeholderText: label
                 RegExpValidator { regExp: /.{2,20}/ }

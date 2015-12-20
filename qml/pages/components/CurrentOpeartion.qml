@@ -1,10 +1,20 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../../js/main.js" as Script
 
 Item{
     width: parent.width
-    height: downprogress.height + statusName.height + Theme.paddingMedium *2
+    height: downprogress.height + statusName.height +
+            + col.height + Theme.paddingMedium *2
     signal currentAppmanaged(string result)
+    property bool downbar: false
+
+
+
+    function showdownbar(){
+
+    }
+
     Label{
         id:statusName
         width: parent.width
@@ -18,11 +28,67 @@ Item{
         }
     }
 
+
+
+    Column{
+        id:col
+        anchors{
+            top:statusName.bottom
+            left:parent.left
+            right:parent.right
+        }
+        spacing: Theme.paddingMedium
+        Button{
+            id:installButton
+            text:qsTr("Install")
+            visible: false
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+            }
+            onClicked:{
+               var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
+               console.log("url:"+downloadurl)
+               py.newdownload(downloadurl,rpmname,version);
+               downbar = true;
+            }
+
+        }
+
+        Button{
+            id:upgradeButton
+            text:qsTr("Upgrade")
+            visible: false
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+            }
+            onClicked:{
+               var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
+               console.log("url:"+downloadurl)
+               py.newdownload(downloadurl,rpmname,version);
+            }
+
+        }
+
+        Button{
+            id:uninstallButton
+            text:qsTr("UnInstall")
+            visible: !installButton.visible
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+            }
+            onClicked:{
+               py.uninstallRpm(rpmname,version);
+            }
+
+        }
+
+    }
+
     ProgressBar {
         id:downprogress
-        visible: false
+        visible: downbar||value < 99.99
         anchors{
-            top: statusName.bottom
+            top: col.bottom
             topMargin: Theme.paddingMedium
             horizontalCenter: parent.horizontalCenter
         }
@@ -32,19 +98,23 @@ Item{
         width: parent.width - Theme.paddingLarge
     }
 
-    Button{
-        id:openLabel
-        text:qsTr("Open a image")
-        anchors.horizontalCenter: parent.horizontalCenter
-        //onClicked: pageStack.push(Qt.resolvedUrl("PreviewGrid.qml"));
-
-    }
-
     Connections{
         target: signalCenter
         onCurrentAppmanaged:{
             console.log("result:"+result)
-            openLabel.text = result
+            switch(result){
+            case ("Install"):
+                installButton.visible = true;
+                break;
+            case("Upgrade"):
+                upgradeButton.visible = true;
+                break;
+            case("Uninstall"):
+                uninstallButton.visible = true;
+                break;
+            default:
+                break;
+            }
         }
     }
 

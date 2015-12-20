@@ -1,18 +1,20 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
+import "../../js/api.js" as Api
 Item{
-    anchors.fill: parent
+    anchors{
+        left:parent.left
+        right:parent.right
+        top:parent.top
+    }
     PathView {
         z:10
         id: banner;
-        y:-height-view.contentY;
+        //y:-newappItem.contentY;
         //            opacity: view.contentY/height > 1 ? 0 : 1-view.contentY/height;
         //            visible: opacity>0.0;
         width: parent.width;
-        height: Math.floor(width *21/32);
-
-        model: ListModel{}
+        height: Screen.height/4
         preferredHighlightBegin: 0.5;
         preferredHighlightEnd: 0.5;
         path: Path {
@@ -23,6 +25,7 @@ Item{
                 y: banner.height/2;
             }
         }
+        model:coverModel
         delegate: Item {
             implicitWidth: banner.width;
             implicitHeight: banner.height;
@@ -31,14 +34,13 @@ Item{
                 anchors.centerIn: parent;
                 fillMode: Image.PreserveAspectCrop;
                 source: previewImg.status === Image.Ready
-                        ? "" : "img/image_loading_light.png";
+                        ? "" : "image://theme/icon-m-refresh";
             }
             Image {
                 id: previewImg;
                 anchors.fill: parent;
                 fillMode: Image.PreserveAspectCrop;
-                //smooth: true;
-                source: image;
+                source: Api.getPostericon(uploader.uid,_id)
             }
             Rectangle{
                 width: parent.width;
@@ -55,13 +57,13 @@ Item{
                     left: parent.left
                     right: parent.right
                     bottom: parent.bottom
-                    margins: css.paddingM
+                    margins: Theme.paddingMedium
                 }
-                text:title
-                font.pixelSize: css.fontSmall;
+                text:appname
+                font.pixelSize: Theme.fontSizeSmall;
                 wrapMode: Text.WrapAnywhere;
                 font.letterSpacing: 2;
-                color: css.clMid
+                color: Theme.highlightColor
             }
             Rectangle {
                 anchors.fill: parent;
@@ -72,12 +74,13 @@ Item{
                 id: mouseArea;
                 anchors.fill: parent;
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{"appid":appid});
+                    //pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{"appid":_id});
+                    console.log("banner height:"+banner.height)
                 }
             }
         }
         Timer {
-            running: Qt.application.active && banner.count > 1 && !banner.moving && !view.moving;
+            running: Qt.application.active && banner.count > 1 && !banner.moving
             interval: 3000;
             repeat: true;
             onTriggered: banner.incrementCurrentIndex();
@@ -89,7 +92,7 @@ Item{
         //            opacity: view.contentY/banner.height > 1 ? 0 : 1-view.contentY/banner.height;
         //            visible: opacity>0.0;
         width: parent.width;
-        height: Math.floor(width *21/64);
+        height: Screen.height/4/2
         gradient: Gradient {
             GradientStop { position: 0; color: "#08202c" }
             GradientStop { position: 1.0; color: "#00000000" }
@@ -104,8 +107,8 @@ Item{
         Repeater{
             model: 5
             Rectangle{
-                width: css.win_w/5
-                height: 10
+                width: Screen.width/5
+                height: Theme.paddingSmall
                 color: banner.currentIndex==index?"#22ffffff":"#44000000"
                 MouseArea {
                     anchors.fill: parent;

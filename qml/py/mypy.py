@@ -9,7 +9,7 @@ from basedir import *
 import logging
 from distutils.version import LooseVersion, StrictVersion
 from rpms import *
-
+from sysinfo import *
 """
 //定义发送消息规则
 //0,开始下载
@@ -23,50 +23,40 @@ from rpms import *
 target=HOME+"/Downloads/"
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
-def install(rpmpath):
+def install(rpmpath,rpmname,version):
     pyotherside.send("status","1")
     p = subprocess.Popen("pkcon -y install-local "+rpmpath,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     #0则安装成功
     retval = p.wait()
     print("installed,",rpmpath)
     if p.returncode == 0:
-        pyotherside.send("status","2")
+        pyotherside.send("status","2",rpmname,version)
         return True
     else:
-        pyotherside.send("status","-1")
+        pyotherside.send("status","-1",rpmname,version)
         return False
 
 
-def unistall(rpmpath):
-    p = subprocess.Popen("pkcon remove "+rpmpath,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+def unistall(rpmname,version):
+    p = subprocess.Popen("pkcon remove "+rpmname,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     #0则安装成功
     retval = p.wait()
-    print("removed,",rpmpath)
-    pyotherside.send("status","4")
+    print("removed,",rpmname)
+    pyotherside.send("status","4",rpmname,version)
+    return p.returncode
+
+def unistallpkg(rpmname):
+    p = subprocess.Popen("pkcon remove "+rpmname,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    #0则安装成功
+    retval = p.wait()
     return p.returncode
 
 
 
-
-"""
-    下载文件
-
-"""
-#def downloadRpm(downname,downurl):
-#    print("starting download")
-#    pyotherside.send("status","0")
-##    r=urllib.request.get(downurl)
-##    with open(downname,"wb") as code:
-##        code.write(r.content)
-#    p = subprocess.Popen("curl  -o "+downname+" "+downurl,shell=True)
-#    #0则安装成功
-#    retval = p.wait()
-#    install(downname)
-
-
-def newdownload(downname,downurl):
+def newdownload(downurl,rpmname,version):
+    downname=rpmname+"-"+version+"."+getSysinfo().get("cpuModel")+".rpm";
     urllib.request.urlretrieve(downurl,target+downname, schedule)
-    install(target+downname)
+    install(target+downname,rpmname,version)
 
 #显示下载进度
 def schedule(a,b,c):
@@ -83,11 +73,10 @@ def schedule(a,b,c):
 
 
 def versionCompare(rpmname,versioncode):
-    logging.debug("server:"+rpmname+"-"+versioncode)
     dic = getAppinfo(rpmname)
     print("dic:",dic)
     if not dic.get("Name"):
-        return "Installed"
+        return "Install"
     tmpname = (dic.get("Name"),dic.get("Version"),dic.get("Release"))
     installedName = "-".join(tmpname)
     logging.debug("installed:"+installedName)

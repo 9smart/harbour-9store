@@ -105,18 +105,26 @@ Page {
 
     Component {
         id: shortcutDelegate
-        BackgroundItem {
+        ListItem {
             id: item
             width: parent.width
-            contentHeight: 110
-            height: 110
+            //contentHeight: iconImage.height + Theme.paddingLarge
+            //height: contentHeight
             highlighted: down || selectedValues.indexOf(model.path) >= 0
+            menu: contextMenuComponent
+            function remove(rpmname) {
+                remorseAction("正在卸载", function() {
+                    listModel.remove(index);
+                    py.uninstallRpmNostatus(rpmname)
+                })
+            }
 
+            ListView.onRemove: animateRemoval()
             Image {
                 id: iconImage
                 source: model.icon
-                width: 86
-                height: 86
+                width: Screen.height/12
+                height: Screen.height/12
                 smooth: true
                 anchors {
                     left: parent.left
@@ -134,13 +142,29 @@ Page {
                 }
                 color: item.pressed ? Theme.highlightColor : Theme.primaryColor
             }
+            Item{
+                width: parent.width
+                height: Theme.itemSizeSmall
+            }
 
-            onClicked: {
-                //console.log(model.path)
-                console.log(getAppversion(model.rpmname))
-                if (shortcutsRepeater.enabled) {
-                    selected(model.path)
-                    pageStack.pop()
+//            onClicked: {
+//                //console.log(model.path)
+//                console.log(getAppversion(model.rpmname))
+//                if (shortcutsRepeater.enabled) {
+//                    selected(model.path)
+//                    pageStack.pop()
+//                }
+//            }
+
+
+            Component {
+                id: contextMenuComponent
+                ContextMenu {
+                    id:contextMenu
+                    MenuItem {
+                        text: qsTr("Uninstall")
+                        onClicked: remove(model.rpmname)
+                    }
                 }
             }
         }

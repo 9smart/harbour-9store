@@ -9,7 +9,7 @@
     </message>
 </context>
 <context>
-    <name>AppClass</name>
+    <name>AppCategory</name>
     <message>
         <source>Category</source>
         <translation type="unfinished"></translation>
@@ -65,10 +65,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HotList</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Prev Page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -88,6 +84,33 @@
         <source>Show Search</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Sort by Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sort by Timeline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sort by Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CommentsComponent</name>
+    <message>
+        <source>from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ratings:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>replays:(</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -99,7 +122,15 @@
 <context>
     <name>CurrentOpeartion</name>
     <message>
-        <source>Open a image</source>
+        <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UnInstall</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -107,10 +138,6 @@
     <name>DetailComponent</name>
     <message>
         <source>downloads</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -243,13 +270,6 @@
     </message>
 </context>
 <context>
-    <name>RpmInstall</name>
-    <message>
-        <source>The file does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SearchApp</name>
     <message>
         <source>Search</source>
@@ -264,10 +284,6 @@
     <name>SettingPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -287,6 +303,10 @@
     </message>
     <message>
         <source>Select shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uninstall</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -343,15 +363,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Game Class</source>
+        <source>Games</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Apps Class</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Loading...</source>
+        <source>Apps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -398,10 +414,6 @@
     </message>
     <message>
         <source>loading erro...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Task added!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

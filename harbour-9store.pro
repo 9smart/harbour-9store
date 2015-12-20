@@ -26,7 +26,8 @@ SOURCES += src/harbour-9store.cpp \
     src/desktopfilemodel.cpp \
     src/desktopfilemodelplugin.cpp \
     src/desktopfilesortmodel.cpp \
-    src/shortcutshelper.cpp
+    src/shortcutshelper.cpp \
+    src/MyImage.cpp
 
 QT += network quick qml dbus
 
@@ -44,12 +45,11 @@ HEADERS += \
     src/desktopfilemodel.h \
     src/desktopfilemodelplugin.h \
     src/desktopfilesortmodel.h \
-    src/qmlthreadworker.h \
-    src/shortcutshelper.h
+    src/shortcutshelper.h \
+    src/MyImage.h
 
 OTHER_FILES += \
     qml/pages/AboutPage.qml \
-    qml/pages/AppClass.qml \
     qml/pages/AppDetail.qml \
     qml/pages/AppList.qml \
     qml/pages/DownloadPage.qml \
@@ -74,7 +74,6 @@ OTHER_FILES += \
     qml/pages/components/AppGridComponent.qml \
     qml/pages/components/AppListComponent.qml \
     qml/pages/components/CacheImage.qml \
-    qml/pages/components/CanvasComponent.qml \
     qml/pages/components/CommentsComponent.qml \
     qml/pages/components/CurrentOpeartion.qml \
     qml/pages/components/DetailComponent.qml \
@@ -112,4 +111,6 @@ OTHER_FILES += \
     harbour-9store.timer
 
 DISTFILES += \
-    qml/pages/components/DetailLabelText.qml
+    qml/pages/components/DetailLabelText.qml \
+    qml/pages/components/CanvasImage.qml \
+    qml/pages/AppCategory.qml

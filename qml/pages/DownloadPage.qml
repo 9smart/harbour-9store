@@ -44,10 +44,7 @@ Page{
             id:header
             title: qsTr("Downloaded")
         }
-        Progress{
-            id:progress
-            anchors.centerIn: parent
-        }
+
         ListModel {
             id:downloadModel
         }

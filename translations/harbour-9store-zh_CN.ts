@@ -9,7 +9,7 @@
     </message>
 </context>
 <context>
-    <name>AppClass</name>
+    <name>AppCategory</name>
     <message>
         <source>Category</source>
         <translation>分类</translation>
@@ -47,15 +47,15 @@
     </message>
     <message>
         <source>Prev Page</source>
-        <translation type="unfinished"></translation>
+        <translation>上一页</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation type="unfinished"></translation>
+        <translation>下一页</translation>
     </message>
     <message>
         <source>Send Successful!</source>
-        <translation type="unfinished"></translation>
+        <translation>发送成功！</translation>
     </message>
 </context>
 <context>
@@ -65,28 +65,51 @@
         <translation>新应用</translation>
     </message>
     <message>
-        <source>HotList</source>
-        <translation>热门列表</translation>
-    </message>
-    <message>
         <source>Prev Page</source>
-        <translation type="unfinished"></translation>
+        <translation>上一页</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation type="unfinished"></translation>
+        <translation>下一页</translation>
     </message>
     <message>
         <source>No more apps</source>
-        <translation type="unfinished">没有更多应用了</translation>
+        <translation>没有更多应用了</translation>
     </message>
     <message>
         <source>Hide Search</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏搜索框</translation>
     </message>
     <message>
         <source>Show Search</source>
-        <translation type="unfinished"></translation>
+        <translation>显示搜索框</translation>
+    </message>
+    <message>
+        <source>Sort by Download</source>
+        <translation>根据下载量排序</translation>
+    </message>
+    <message>
+        <source>Sort by Timeline</source>
+        <translation>根据更新时间排序</translation>
+    </message>
+    <message>
+        <source>Sort by Comments</source>
+        <translation>根据评论数排序</translation>
+    </message>
+</context>
+<context>
+    <name>CommentsComponent</name>
+    <message>
+        <source>from:</source>
+        <translation>来着</translation>
+    </message>
+    <message>
+        <source>ratings:</source>
+        <translation>评分</translation>
+    </message>
+    <message>
+        <source>replays:(</source>
+        <translation>回复:(</translation>
     </message>
 </context>
 <context>
@@ -99,8 +122,16 @@
 <context>
     <name>CurrentOpeartion</name>
     <message>
-        <source>Open a image</source>
-        <translation type="unfinished"></translation>
+        <source>Install</source>
+        <translation>安装</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation>升级</translation>
+    </message>
+    <message>
+        <source>UnInstall</source>
+        <translation>卸载</translation>
     </message>
 </context>
 <context>
@@ -108,10 +139,6 @@
     <message>
         <source>downloads</source>
         <translation>下载量</translation>
-    </message>
-    <message>
-        <source>author</source>
-        <translation>作者</translation>
     </message>
     <message>
         <source>version</source>
@@ -131,23 +158,23 @@
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
         <source>ScreenShots</source>
-        <translation type="unfinished"></translation>
+        <translation>截图</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation type="unfinished"></translation>
+        <translation>描述</translation>
     </message>
     <message>
         <source>&apos;s other apps</source>
-        <translation type="unfinished"></translation>
+        <translation>的其他应用</translation>
     </message>
     <message>
         <source>OthersInfo</source>
-        <translation type="unfinished"></translation>
+        <translation>其他信息</translation>
     </message>
 </context>
 <context>
@@ -169,7 +196,7 @@
     </message>
     <message>
         <source>UserName</source>
-        <translation>用户名</translation>
+        <translation>账号</translation>
     </message>
     <message>
         <source>Password</source>
@@ -185,7 +212,7 @@
     </message>
     <message>
         <source>Don&apos;t have accounts?</source>
-        <translation type="unfinished"></translation>
+        <translation>还没有账号？</translation>
     </message>
 </context>
 <context>
@@ -243,13 +270,6 @@
     </message>
 </context>
 <context>
-    <name>RpmInstall</name>
-    <message>
-        <source>The file does not exist</source>
-        <translation>文件不存在</translation>
-    </message>
-</context>
-<context>
     <name>SearchApp</name>
     <message>
         <source>Search</source>
@@ -265,10 +285,6 @@
     <message>
         <source>Settings</source>
         <translation>设置</translation>
-    </message>
-    <message>
-        <source>username</source>
-        <translation>用户名</translation>
     </message>
     <message>
         <source>Cache Img</source>
@@ -288,6 +304,10 @@
     <message>
         <source>Select shortcuts</source>
         <translation>选择图标</translation>
+    </message>
+    <message>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -339,20 +359,16 @@
         <translation>所有分类</translation>
     </message>
     <message>
-        <source>Game Class</source>
+        <source>Setting</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <source>Games</source>
         <translation>游戏</translation>
     </message>
     <message>
-        <source>Apps Class</source>
+        <source>Apps</source>
         <translation>应用</translation>
-    </message>
-    <message>
-        <source>Loading...</source>
-        <translation>加载中...</translation>
-    </message>
-    <message>
-        <source>Setting</source>
-        <translation>设置</translation>
     </message>
 </context>
 <context>
@@ -399,10 +415,6 @@
     <message>
         <source>error connection:</source>
         <translation>连接失败：</translation>
-    </message>
-    <message>
-        <source>Task added!</source>
-        <translation>任务已添加！</translation>
     </message>
 </context>
 </TS>

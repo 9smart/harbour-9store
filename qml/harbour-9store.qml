@@ -39,7 +39,7 @@ import "js/login.js" as UserData
 import "js/main.js" as Script
 import "js/api.js" as Api
 import org.nemomobile.notifications 1.0
-//import org.coderus.powermenu.desktopfilemodel 1.0
+import org.coderus.powermenu.desktopfilemodel 1.0
 import org.nemomobile.configuration 1.0
 ApplicationWindow
 {
@@ -64,15 +64,7 @@ ApplicationWindow
         id:installedModel
     }
 
-    function checkUpdate(appname){
-        for(var i = 0;i<installedModel.count;i++){
-            if(installedModel.get(i).appname == appname){
 
-            }else{
-                //未安装
-            }
-        }
-    }
 
 
     BusyIndicator {
@@ -100,7 +92,7 @@ ApplicationWindow
                 onTriggered: {
                     splash.visible = false;
                     //Script.initialize(signalCenter, utility, UserData);
-                    Script.signalcenter = signalCenter;
+
                     Script.app = window;
                     Script.userData = UserData;
                     //Script.loadUserInfo(UserData.getUserData());
@@ -198,11 +190,9 @@ ApplicationWindow
         onTriggered: signalCenter.loadFailed(qsTr("error"));
     }
 
-    function downloadRpms(downurl,downloadname){
-        var flag = false;
-        function call(){
-            downloadstat = py.downloadRpm(downloadname,downurl)
-        }
+
+    function afterOpera(rpmname,version){
+        py.versionCompare(rpmname,version)
     }
 
     User{
@@ -216,7 +206,7 @@ ApplicationWindow
     Python {
         id: py
         signal progress(string per)
-        //signal status(string name)
+        signal status(string str,string rpmname,string version)
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('./py'));
             py.importModule('mypy', function () {
@@ -224,9 +214,10 @@ ApplicationWindow
             py.importModule('rpms', function () {
             });
             py.importModule('sysinfo',function(){
-	          });
+            });
 
             setHandler('progress',progress);
+            setHandler('status',status);
 
             py.getSysinfo();
         }
@@ -235,6 +226,11 @@ ApplicationWindow
         }
 
 
+        onStatus:{
+            console.log("status:"+rpmname+","+version)
+            afterOpera(rpmname,version);
+            parseMsg(str);
+        }
         //注册安装方法
         function installRpm(rpmPath){
             console.log("Path:"+rpmPath)
@@ -260,25 +256,18 @@ ApplicationWindow
             })
         }
 
-        //注册下载文件方法
-        function downloadRpm(downname,downurl){
-            console.log("starting download..."+downname)
-            call('mypy.downloadRpm',[downname,downurl],function(result){
-                return result
-            })
-        }
-        function newdownload(downname,downurl){
-            currname = ""
-            console.log("starting download..."+downname)
-            call('mypy.newdownload',[downname,downurl],function(result){
+        function newdownload(downurl,rpmname,version){
+            currname = "downname"
+            console.log("starting download..."+rpmname)
+            call('mypy.newdownload',[downurl,rpmname,version],function(result){
                 return result
             })
         }
 
         //v1 < v2
         //v1 本地，v2 服务器
-        function versionCompare(rpmname,versioncode){
-            call('mypy.versionCompare',[rpmname,versioncode],function(result){
+        function versionCompare(rpmname,version){
+            call('mypy.versionCompare',[rpmname,version],function(result){
                 signalCenter.currentAppmanaged(result);
             })
         }
@@ -293,9 +282,15 @@ ApplicationWindow
 
 
         //注册卸载软件方法
-        function uninstallRpm(realName){
+        function uninstallRpm(realName,version){
             console.log("starting remove...")
-            call('mypy.unistall',[realName],function(result){
+            call('mypy.unistall',[realName,version],function(result){
+                return result
+            })
+        }
+
+        function uninstallRpmNostatus(realName){
+            call('mypy.unistallpkg',[realName],function(result){
                 return result
             })
         }
@@ -331,6 +326,7 @@ ApplicationWindow
                 sendMsg=qsTr("Unknown")
             }
 
+            signalCenter.showMessage(sendMsg)
         }
 
         onError:{
@@ -340,18 +336,16 @@ ApplicationWindow
 
     }
 
-//    DesktopFileSortModel {
-//        id: desktopModel
-//        showHidden: false
-//        onDataFillEnd: {
-//            installedCount = desktopModel.count
-//        }
-//    }
+    DesktopFileSortModel {
+        id: desktopModel
+        showHidden: false
+
+    }
 
 
 
     Component.onCompleted: {
-        //init
+        Script.signalcenter = signalCenter;
         UserData.initialize()
     }
 }

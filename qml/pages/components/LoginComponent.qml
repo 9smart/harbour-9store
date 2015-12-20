@@ -51,7 +51,7 @@ Item {
                         id:userName
                         width:loginComponent.width - Theme.paddingLarge*4
                         height:implicitHeight
-                        inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
+                        inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
                         font.pixelSize: Theme.fontSizeMedium
                         placeholderText: "Enter Username"
                         label: qsTr("UserName")

@@ -41,24 +41,20 @@ Page{
     property bool display:false
     property int listsum:0
     property int pagesize:12
-    property string query_type:""
-    property string type:""
-    property string category:""
-    property string photoUrl: ""
-    property string developer:""
-    property string sort
+    property string category
+    property string developer
+    property string sort:""
     property alias listmodel:listModel
     property bool showsearch: false
 
     ListModel {
         id:listModel
     }
-
+    enabled: !loading
     onShowsearchChanged: {
             if (showsearch) {
                 searchfield.forceActiveFocus()
             }else{
-
                 showlist.focus=true
             }
         }
@@ -70,7 +66,10 @@ Page{
 
         PageHeader {
             id:header
-            title: query_type === ""?qsTr("NewList"):qsTr("HotList")
+            title: qsTr("NewList")
+            description: sort == ""?qsTr("Sort by Timeline"):
+                                     (sort =="comment_num"?qsTr("Sort by Comments")
+                                                          :qsTr("Sort by Download"))
         }
         SearchField {
             id: searchfield
@@ -84,7 +83,7 @@ Page{
             }
             EnterKey.onClicked: {
                 //asklistmodel.clear();
-                //Main.getlist("ask/search?keyword="+searchfield.text);
+                Script.getSearch(sysinfo.osType,searchfield.text,category,nextpage)
                 parent.focus=true
             }
         }
@@ -101,6 +100,28 @@ Page{
                            showsearch?(showsearch=false):(showsearch=true)
                        }
                    }
+                   MenuItem{
+                       //timeline--->download_num--->comment_num--->timeline
+                       text:sort == ""?qsTr("Sort by Download"):
+                                                    (sort =="comment_num"?qsTr("Sort by Timeline"):
+                                                                           qsTr("Sort by Comments"))
+
+                       onClicked: {
+                            switch(sort){
+                            case "download_num":
+                                sort ="comment_num"
+                                break;
+                            case "comment_num":
+                                sort = "";
+                                break;
+                            default:
+                                sort = "download_num";
+                                break;
+                            }
+                            console.log("sort:"+sort)
+                            Script.getlist(sysinfo.osType, category, developer, "", pagesize, sort)
+                       }
+                   }
                }
           header:PageHeader{
                id:head
@@ -110,7 +131,6 @@ Page{
            }
 
             model: listModel
-            visible: view.count>0
             clip: true
             delegate:AppListComponent{}
             VerticalScrollDecorator {}

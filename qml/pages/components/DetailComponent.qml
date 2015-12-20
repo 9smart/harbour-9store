@@ -50,9 +50,8 @@ Item{
         id:infomess
         //Format.formatFileSize()
         text:type+"->"+category+"<br/>"+
-             "<font size='2' > "+qsTr("author")+":</font><font size='1' >"+developer+"</font><br/>"+
              "<font size='2' > "+qsTr("version")+":</font><font size='1' >"+version+"</font><br/>"+
-             "<font size='2' > "+qsTr("filesize")+":</font><font size='1' >"+size+"</font><br/>"+
+             "<font size='2' > "+qsTr("filesize")+":</font><font size='1' >"+(sysinfo.cpuModel == "arm"?size:x86size)+"</font><br/>"+
              "<font size='2' > "+qsTr("dateline")+":</font><font size='1' >"+getLocalTime(dateline)+"</font>"
         font.pixelSize: Theme.fontSizeExtraSmall*5/4
         horizontalAlignment: Text.AlignLeft

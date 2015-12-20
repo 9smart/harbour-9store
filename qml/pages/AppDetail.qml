@@ -70,7 +70,7 @@ Page{
     property string comm_nextpage
     property string comm_prevpage
     property int pagesize
-
+    property string downloadurl
     property bool shrink:true
 
     signal commentSendSuccessful()
@@ -103,6 +103,7 @@ Page{
         PageHeader {
             id:header
             title: appname
+            description: developer
         }
         PullDownMenu {
             id:pulldownmenu
@@ -176,7 +177,6 @@ Page{
             clip: true
             model: commentsModel
             anchors.fill: parent
-            spacing:Theme.paddingLarge
             delegate: CommentsComponent{}
             footer: Component{
                 Item {
@@ -217,7 +217,7 @@ Page{
     Page{
         id:relatedPage
 
-        SilicaListView {
+        SilicaGridView {
             id:view
             anchors.fill: parent
             header: PageHeader{
@@ -232,8 +232,10 @@ Page{
             }
             model : relatedModel
             clip: true
-            spacing:Theme.paddingLarge
-            delegate:AppListComponent{}
+            currentIndex: -1
+            cellWidth: view.width / 3
+            cellHeight: cellWidth
+            delegate:AppBackgroundItem{}
 
             VerticalScrollDecorator {}
             footer: Component{
@@ -274,6 +276,7 @@ Page{
        Script.infoPage = showappdetail
        Script.commentmodel = commentsModel
        Script.getinfo(appid)
+       Script.getDownloadUrl(appid,user.auth,sysinfo.cpuModel)
        Script.getComment(appid,comm_nextpage)
        Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
        Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)

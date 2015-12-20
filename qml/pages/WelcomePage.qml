@@ -5,13 +5,11 @@ import "../js/main.js" as Script
 
 Page{
     id:welcome
-    property alias coverModel: covermodel;
+    property alias covermodel: coverModel;
     property alias featuredModel: featuredmodel;
     property alias listmodel: listmodel;
-
-
    ListModel{
-       id:covermodel;
+       id:coverModel;
    }
    ListModel{
        id:featuredmodel;
@@ -33,7 +31,7 @@ Page{
             }
             MenuItem {
                 text: qsTr("My Apps")
-                onClicked: pageStack.push(Qt.resolvedUrl("DownloadPage.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("ShortcutsPage.qml"))
             }
             MenuItem {
                 text: qsTr("Setting")
@@ -46,96 +44,27 @@ Page{
             title:qsTr("Welcome,")+user.nickName
         }
         anchors.fill: parent
-        contentHeight: content.height + header.height+ category.height + Theme.paddingLarge
+        contentHeight: content.height + header.height + Theme.paddingLarge
         Item{
             id: content
             width: parent.width
-            height: newappItem.height
-            Component.onCompleted: {
-                conBusy.running=false
-                content.visible = true;
-            }
-            BusyIndicator {
-                id: conBusy
-                anchors.centerIn: parent
-                running: true
-                size: BusyIndicatorSize.Medium
-            }
-            visible: false
+            height: posterItem.height+ newappItem.height + category.height
             anchors.top: header.bottom
-//            Item{
-//                id:hotappBak
-//                Component.onCompleted: {
-//                    habusy.running = false
-//                }
-//                BusyIndicator {
-//                    id: habusy
-//                    anchors.centerIn: parent
-//                    running:true
-//                    size: BusyIndicatorSize.Small
-//                }
-//                visible: !habusy.running
-//                anchors.top:parent.top
-//                height: hotgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
-//                width: parent.width
-//                MoreButton{
-//                    id:feedButton
-//                    width:parent.width
-//                    visible: !habusy.running
-//                    anchors.top: parent.top
-//                    height: Theme.itemSizeMedium
-//                    text: qsTr("Recommendation")
-//                    onClicked: {
-//                        pageStack.push(Qt.resolvedUrl("HotList.qml"),
-//                                       {"query_type":"views"
-//                                       });
-//                    }
-//                    WelcomeBoxBackground {
-//                        anchors.fill: parent
-//                        z: -1
-//                    }
-//                }
-
-//                Grid{
-//                    id:hotgrid
-//                    width:parent.width
-//                    anchors{
-//                        top:feedButton.bottom
-//                        left:parent.left
-//                        right:parent.right
-//                    }
-
-//                    columns: 3
-//                    Repeater {
-//                        model:
-//                        AppBackgroundItem {
-//                        }
-//                    }
-//                }
-
-
-//            }
-
-            Item{
-                Component.onCompleted: {
-                    nibusy.running = false
-                }
-                BusyIndicator {
-                    id: nibusy
-                    anchors.centerIn: parent
-                    running: true
-                    size: BusyIndicatorSize.Small
-                }
-                id:newappItem
-                visible: !nibusy.running
+            ActivitiesComponent{
+                id:posterItem
                 anchors.top:parent.top
+                width: parent.width
+                height: Screen.height/4
+            }
+            Item{
+                id:newappItem
+                anchors.top:posterItem.bottom
                 //height: childrenRect.height
                 //contentHeight:childrenRect.height
                 height: newgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
                 width: parent.width
                 MoreButton{
                     id:newapps
-                    visible: !nibusy.running
                     width:parent.width
                     anchors.top: parent.top
                     height: Theme.itemSizeMedium
@@ -170,30 +99,18 @@ Page{
             }
 
             Item{
-                Component.onCompleted: {
-                    apclassbi.running = false
-                    category.visible = true
-                }
-                BusyIndicator {
-                    id: apclassbi
-                    anchors.centerIn: parent
-                    running: true
-                    size: BusyIndicatorSize.Small
-                }
                 id:category
-                visible: !apclassbi.running
                 anchors.top:newappItem.bottom
                 height: allclass.height + gameclass.height+ appclass.height
                 width: parent.width
                 MoreButton{
                     id:allclass
-                    visible: !apclassbi.running
                     width:parent.width
                     anchors.top: parent.top
                     height: Theme.itemSizeMedium
                     text: qsTr("All Class")
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("AppClass.qml"));
+                        pageStack.push(Qt.resolvedUrl("AppCategory.qml"));
                     }
                     WelcomeBoxBackground {
                         anchors.fill: parent
@@ -203,23 +120,21 @@ Page{
                 MoreButton{
                     id:gameclass
                     width:parent.width
-                    visible: !apclassbi.running
                     anchors.top: allclass.bottom
                     height: Theme.itemSizeMedium
-                    text: qsTr("Game Class")
+                    text: qsTr("Games")
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("AppClass.qml"),{"classtype":"game"});
+                        pageStack.push(Qt.resolvedUrl("AppCategory.qml"),{"type":"game"});
                     }
                 }
                 MoreButton{
                     id:appclass
-                    visible: !apclassbi.running
                     width:parent.width
                     anchors.top: gameclass.bottom
                     height: Theme.itemSizeMedium
-                    text: qsTr("Apps Class")
+                    text: qsTr("Apps")
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("AppClass.qml"),{"classtype":"app"});
+                        pageStack.push(Qt.resolvedUrl("AppCategory.qml"),{"type":"app"});
                     }
 
                 }
@@ -232,25 +147,9 @@ Page{
 
     }
 
-//    BusyIndicator {
-//        id: busyIndicator
-//        anchors.centerIn: parent
-//        running: !PageStatus.Active
-//        size: BusyIndicatorSize.Large
-//    }
-    Label {
-        anchors.centerIn: parent
-        width: parent.width
-        visible:!PageStatus.Active
-        horizontalAlignment: Text.AlignHCenter
-        wrapMode: Text.Wrap
-        font.pixelSize: Theme.fontSizeExtraLarge
-        color: Theme.highlightColor
-        text: qsTr("Loading...")
-    }
-
     Component.onCompleted: {
         Script.mainPage = welcome;
         Script.getfeatured(sysinfo.osType);
+        Script.getcover();//sysinfo.osType
     }
 }

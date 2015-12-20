@@ -23,7 +23,7 @@ function cutfile(file){
 function humanedate(_dateline){
     var thatday=new Date(_dateline);
     var now=parseInt(new Date().valueOf());
-    var cha=now-_dateline;
+    var cha=(now-_dateline)/1000;
     if(cha<180){
         return "刚刚";
     }else if(cha<3600){
@@ -76,12 +76,12 @@ function sendWebRequest(url, callback, method, postdata) {
 var app;
 function logIn(userName, passWord){
     var url = login();
-    var postData = loginData(userName, passWord);
+    var postData = loginData(encodeURIComponent(userName), passWord);
     sendWebRequest(url, loadLogInResult, "POST", postData);
 }
 function loadLogInResult(oritxt){
     var obj = JSON.parse(oritxt);
-    if(obj.error=== 0){
+    if(obj.error === 0){
         app.user._id = obj._id;
         app.user.auth = obj.auth;
         var url = user(obj._id, obj.auth);
@@ -102,7 +102,7 @@ function loadUserInfo(oritxt){
         app.user.nickName = obj.user.nickname;
         app.user.avatar = obj.user.avatar;
         app.user.avatar_hd = obj.user.avatar_hd;
-        app.user.noticeNumber = obj.user.notice_num;
+        //app.user.noticeNumber = obj.user.notice_num;
         app.user.userState = true;
         if(obj.user.auth){
             app.user.auth = obj.user.auth;
@@ -148,15 +148,17 @@ function loadfeatured(oritxt){
 }
 
 function getcover(system){
-    var url = getPoster(system);
+    //var url = getPoster(system);
+    var url = "http://api.9smart.cn/apps/getPoster";
+    console.log("cover:"+url)
     sendWebRequest(url,loadcover,"GET","");
 }
 function loadcover(oritxt){
     var obj = JSON.parse(oritxt);
     if(obj.error === 0){
-        mainPage.coverModel.clear();
+        mainPage.covermodel.clear();
         for(var i in obj.apps){
-            mainPage.coverModel.append(obj.apps[i]);
+            mainPage.covermodel.append(obj.apps[i]);
         }
     }
     else signalcenter.showMessage(obj.error);
@@ -275,23 +277,15 @@ function loadinfo(oritxt){
     else signalcenter.showMessage(obj.error);
 }
 
-var downloadName;
-var downloadIcon;
-function getDownloadUrl(id, auth, name, icon){
-    var url = download(id, auth, "");
-    downloadName = name;
-    downloadIcon = icon;
+function getDownloadUrl(id,auth,type){
+    var url = download(id, auth, type);
     sendWebRequest(url, loadDownloadUrl, "GET", "");
 }
 function loadDownloadUrl(oritxt){
     var obj = JSON.parse(oritxt);
     if(obj.error === 0){
-        application.downloadModel.append({"name": downloadName, "url": obj.down_url,
-                                          "filename": settings.downloadPath + "/" +downloadName + ".sis", "icon": downloadIcon});
-        console.log(downloadName);
-        console.log(settings.downloadPath)
-        qCurl.appenddl(obj.down_url, settings.downloadPath + "/" + downloadName + ".sis");
-        signalCenter.showMessage(qsTr("Task added!"));
+        infoPage.downloadurl = obj.down_url;
+        //signalcenter.showMessage(qsTr("Task added!"));
     }
     else signalcenter.showMessage(obj.error);
 }
@@ -343,7 +337,10 @@ function loadComment(oritxt){
     commentmodel.clear();
     for(var i in obj.comments){
         commentmodel.append(obj.comments[i]);
+        console.log(obj.comments[i].model)
     }
+    infoPage.comm_nextpage = obj.pager.next_url?obj.pager.next_url:"";
+    infoPage.comm_prevpage = obj.pager.pre_url?obj.pager.pre_url:"";
 }
 
 function sendComment(auth,appid,content,score,model) {

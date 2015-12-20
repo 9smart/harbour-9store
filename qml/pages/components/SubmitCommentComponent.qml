@@ -93,22 +93,21 @@ Column {
                                 horizontalCenter: parent.horizontalCenter
                             }
                         }
-                        TextField {
+                        TextArea {
                             id:subcomments
                             anchors{
                                 top:slope.bottom
                                 topMargin: Theme.paddingMedium
                             }
-                            validator: RegExpValidator { regExp: /.{1,20}/ }
+                            //validator: RegExpValidator { regExp: /.{1,128}/ }
                             width:window.width - Theme.paddingLarge*4
                             height: Math.max(firstWizardPage.width/3, implicitHeight)
-                            echoMode: TextInput.Normal
                             font.pixelSize: Theme.fontSizeMedium
+                            wrapMode: Text.WordWrap
                             placeholderText: qsTr("input your comments")
                             EnterKey.onClicked : dialog.accept()
                             label: qsTr("Comments")
                         }
-
                     }
 
                 }

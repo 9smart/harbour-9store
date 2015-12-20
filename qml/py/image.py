@@ -71,6 +71,7 @@ def sumMd5(s):
 def findImgType(cachedFile):
     imgType = imghdr.what(cachedFile)
     return imgType
+
 """
     圆角
 """

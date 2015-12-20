@@ -28,37 +28,27 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 import QtQuick 2.0
-import "../js/appclass.js" as JS
+import "../js/main.js" as Script
 import Sailfish.Silica 1.0
-
 import "components"
+
 Page{
-    id:searchPage
-    property int operationType: PageStackAction.Animated
-    property int pagenum:1
-    property string classtype:''
-    Component.onCompleted: {
-        JS.loadAppClass(window.os_type,classtype);
+    id:categoryPage
+    property alias categorymodel:categoryModel;
+    property string type
+
+    ListModel{
+        id:categoryModel
     }
     SilicaFlickable {
         anchors.fill: parent
 
-         PageHeader {
+        PageHeader {
             id:header
             title: qsTr("Category")
         }
-        Progress{
-            id:progress
-            anchors.centerIn: parent
-        }
-        ListModel {
-            id:appClassModel
-        }
-
         SilicaListView {
-
             id:view
-
             anchors{
                 top:header.bottom
                 left:parent.left
@@ -66,15 +56,14 @@ Page{
                 bottom:parent.bottom
                 //bottomMargin: Theme.paddingMedium
             }
-            model : appClassModel
+            model : categoryModel
             clip: true
             delegate:BackgroundItem{
                 id:showlist
                 width: parent.width
                 Label{
                     id:classnameid
-
-                    text:name
+                    text:category
                     font.pixelSize: Theme.fontSizeMedium
                     truncationMode: TruncationMode.Fade
                     anchors{
@@ -93,9 +82,8 @@ Page{
                 }
 
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("HotList.qml"),{
-                                       "pagenum":"1",
-                                       "category":name
+                    pageStack.push(Qt.resolvedUrl("AppList.qml"),{
+                                       "category":category
                                    })
                 }
             }
@@ -106,5 +94,8 @@ Page{
 
     }
 
-
+    Component.onCompleted: {
+        Script.mainPage =categoryPage;
+        Script.getcategory(type)
+    }
 }
