@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 Created on 2015年12月15日
 
@@ -66,6 +67,25 @@ def getAuth():
         return ""
     conn.close()
 
+"""
+{'error': 0, '
+notices': [{'target': {'appname': 'appname', 'id': '565d82154da44ec52692e3e7'}, 'dateline': 1450515757662, 'content': 'asad', 'type': 'c_app', '_id': '56751d2d352564e26683cc87', 'to': {'uid': '56529db13d6625c318492a08', 'nickname': 'BirdZhang', 'avatar': 'http://avatar.9smart.cn/56529db13d6625c318492a08'}, 'from': {'uid': '5651adc04659c523785b698a', 'nickname': '蝉曦', 'avatar': 'http://avatar.9smart.cn/5651adc04659c523785b698a'}}], 
+'pager': {'pre_page': 0, 'count': 1, 'pages': 1, 'pre_url': None, 'next_url': None, 'next_page': 0, 'pagesize': 20, 'page': 1}}
+"""
+def saveNotifications(notice_list):
+    try:
+        conn = sqlite3.connect(getDbname())
+        cur = conn.cursor()
+        cur.execute('''CREATE TABLE IF NOT EXISTS NotificationData
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT, json text) ''')
+        sql = "insert into NotificationData(json) values ('%s') "
+        for i in notice_list:
+            cur.execute(sql % json.dumps(i))
+        conn.commit()
+    except Exception as e:
+        print(e)
+    conn.close()
+    
 def query(url):
     headers = ("Referer","http://www.9smart.cn/")
     data = ""
@@ -94,7 +114,9 @@ def loadNotification(auth):
     if jsondata["error"] == 0:
         notice_num = len(jsondata["notices"])
         if notice_num > 0:
-            notify("您有{0}条消息".format(notice_num))
+            #保存到数据库
+            saveNotifications(jsondata["notices"])
+            notify("您有{0}条新消息".format(notice_num))
     else:
         pass
 
