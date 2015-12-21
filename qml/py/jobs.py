@@ -46,12 +46,12 @@ def notify(title):
                  str(title),
                  "9Store notification",
                  dbus.Array(),
-                 dbus.Dictionary({"category":"x-nemo.messaging.9store",
-                                                "x-nemo-preview-body": "9Store notification",
-                                                "x-nemo-preview-summary":str(title) },
-                                                 signature='sv'),
-                                            0)
-
+                 dbus.Dictionary({
+				     "desktop-entry":"/usr/share/applications/harbour-9store.desktop",
+                                     "x-nemo-preview-body": "9Store notification",
+                                     "x-nemo-preview-summary":str(title) },
+                                      signature='sv'),
+                                      0)
 
 def getAuth():
     try:
@@ -67,11 +67,6 @@ def getAuth():
         return ""
     conn.close()
 
-"""
-{'error': 0, '
-notices': [{'target': {'appname': 'appname', 'id': '565d82154da44ec52692e3e7'}, 'dateline': 1450515757662, 'content': 'asad', 'type': 'c_app', '_id': '56751d2d352564e26683cc87', 'to': {'uid': '56529db13d6625c318492a08', 'nickname': 'BirdZhang', 'avatar': 'http://avatar.9smart.cn/56529db13d6625c318492a08'}, 'from': {'uid': '5651adc04659c523785b698a', 'nickname': '蝉曦', 'avatar': 'http://avatar.9smart.cn/5651adc04659c523785b698a'}}], 
-'pager': {'pre_page': 0, 'count': 1, 'pages': 1, 'pre_url': None, 'next_url': None, 'next_page': 0, 'pagesize': 20, 'page': 1}}
-"""
 def saveNotifications(notice_list):
     try:
         conn = sqlite3.connect(getDbname())
