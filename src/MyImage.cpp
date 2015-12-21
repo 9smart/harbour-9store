@@ -1,4 +1,4 @@
-#include "myimage.h"
+#include "MyImage.h"
 #include <QPainter>
 #include <QBitmap>
 #include <QDir>

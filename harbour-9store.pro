@@ -31,6 +31,8 @@ SOURCES += src/harbour-9store.cpp \
 
 QT += network quick qml dbus
 
+RESOURCES += harbour-9store.qrc
+
 #SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 
@@ -90,7 +92,6 @@ OTHER_FILES += \
     qml/pages/components/WelcomeFeedItem.qml \
     qml/pages/model/SysInfo.qml \
     qml/pages/model/User.qml \
-    qml/js/api.js \
     qml/js/base64.js \
     qml/js/des.js \
     qml/js/login.js \

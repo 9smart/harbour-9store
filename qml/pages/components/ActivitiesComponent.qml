@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../../js/api.js" as Api
+import "../../js/main.js" as Script
 Item{
     anchors{
         left:parent.left
@@ -40,7 +40,7 @@ Item{
                 id: previewImg;
                 anchors.fill: parent;
                 fillMode: Image.PreserveAspectCrop;
-                source: Api.getPostericon(uploader.uid,_id)
+                source: Script.getPostericon(uploader.uid,_id)
             }
             Rectangle{
                 width: parent.width;
