@@ -34,6 +34,8 @@ import Sailfish.Silica 1.0
 CoverBackground {
     CoverPlaceholder{
         icon.source:"../img/harbour-9smart.png"
+        //icon.width: parent.width / 2 - Theme.paddingMedium
+        //icon.height: icon.width
         text:qsTr("9Store")
     }
 }

@@ -47,7 +47,7 @@ def notify(title):
                  "9Store notification",
                  dbus.Array(),
                  dbus.Dictionary({
-				     "desktop-entry":"/usr/share/applications/harbour-9store.desktop",
+                                     "desktop-entry":"harbour-9store.desktop",
                                      "x-nemo-preview-body": "9Store notification",
                                      "x-nemo-preview-summary":str(title) },
                                       signature='sv'),

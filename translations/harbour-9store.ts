@@ -214,6 +214,14 @@
         <source>Don&apos;t have accounts?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enter Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RealtedComponent</name>

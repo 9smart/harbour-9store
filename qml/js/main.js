@@ -1,7 +1,7 @@
 .pragma library
 Qt.include("des.js");
 Qt.include("base64.js")
-Qt.include("api.js")
+Qt.include("qrc:/qml/js/api.js")
 var signalcenter;
 var utility;
 var userData
@@ -182,7 +182,7 @@ function loadcategory(oritxt){
 
 function getlist(system, category, developer, page, pagesize, sort){
     var url = apps(system, category, developer, page, pagesize, sort);
-    //console.log("url:"+url)
+    console.log("url:"+url)
     sendWebRequest(url,loadlist,"GET","");
 }
 function loadlist(oritxt){

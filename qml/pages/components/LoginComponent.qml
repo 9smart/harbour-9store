@@ -53,7 +53,7 @@ Item {
                         height:implicitHeight
                         inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
                         font.pixelSize: Theme.fontSizeMedium
-                        placeholderText: "Enter Username"
+                        placeholderText: qsTr("Enter Username")
                         label: qsTr("UserName")
                         EnterKey.enabled: text || inputMethodComposing
                         EnterKey.iconSource: "image://theme/icon-m-enter-next"
@@ -65,10 +65,16 @@ Item {
                         height:implicitHeight
                         echoMode: TextInput.Password
                         font.pixelSize: Theme.fontSizeMedium
-                        placeholderText: "Enter Password"
+                        placeholderText: qsTr("Enter Password")
                         label: qsTr("Password")
                         EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                        EnterKey.onClicked: submitButton.focus = true
+                        EnterKey.onClicked: {
+                            submitButton.focus = true
+                            errorLabel.visible = false;
+                            busyIndicator.running = true;
+                            Script.app = window
+                            Script.logIn(userName.text,password.text)
+                        }
                     }
                 }
             }

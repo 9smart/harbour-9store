@@ -39,9 +39,10 @@ def cacheImg(url):
     if os.path.exists(cachedFile):
         pass
     else:
-        default_avatar = downloadImg(cachedFile,url)
-        if default_avatar == "default":
-            return "/usr/share/harbour-9store/img/default_avatar.png"
+        downloadImg(cachedFile,url)
+        #default_avatar = downloadImg(cachedFile,url)
+        #if default_avatar == "default":
+            #return "/usr/share/harbour-9store/img/default_avatar.png"
     #判断图片格式
     return cachedFile
 

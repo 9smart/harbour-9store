@@ -25,7 +25,7 @@ MyImage{
         id:waitingIcon
         anchors.centerIn: parent
         fillMode: Image.PreserveAspectFit
-        source: "image://theme/icon-m-refresh";
-        //visible: parent.status==Image.Loading
+        source: "../../img/default_avatar.png";
+        visible: parent.status==Image.Error
     }
 }
