@@ -108,7 +108,7 @@ Page{
                     width:parent.width
                     anchors.top: parent.top
                     height: Theme.itemSizeMedium
-                    text: qsTr("All Class")
+                    text: qsTr("All Category")
                     onClicked: {
                         if(loading){
                             return;

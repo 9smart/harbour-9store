@@ -5,15 +5,10 @@ import "../../js/main.js" as Script
 Item{
     width: parent.width
     height: downprogress.height + statusName.height +
-            + col.height + Theme.paddingMedium *2
+            + col.height + Theme.paddingMedium
     signal currentAppmanaged(string result)
     property bool downbar: false
 
-
-
-    function showdownbar(){
-
-    }
 
     Label{
         id:statusName
@@ -48,8 +43,8 @@ Item{
             onClicked:{
                var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
                console.log("url:"+downloadurl)
-               py.newdownload(downloadurl,rpmname,version);
                downbar = true;
+               py.newdownload(downloadurl,rpmname,version);
             }
 
         }
@@ -90,22 +85,25 @@ Item{
 
     ProgressBar {
         id:downprogress
-        visible: downbar && value > 99.99
+        visible: downbar
+        width: parent.width
         anchors{
             top: col.bottom
             topMargin: Theme.paddingMedium
+            leftMargin: Theme.paddingLarge
+            rightMargin: Theme.paddingLarge
             horizontalCenter: parent.horizontalCenter
         }
         value: currper
         minimumValue:0
         maximumValue:100
-        width: parent.width - Theme.paddingLarge
     }
 
     Connections{
         target: signalCenter
         onCurrentAppmanaged:{
-            console.log("result:"+result)
+            downbar = false;
+            console.log(result)
             switch(result){
             case ("Install"):
                 installButton.visible = true;

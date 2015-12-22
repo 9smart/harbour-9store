@@ -3,68 +3,53 @@ import Sailfish.Silica 1.0
 import "../../js/main.js" as Script
 
 Item{
-    height: infomess.height+summaryid.height+screenShotLabel.height+
+    height: infomess.height +infocate.height +summaryid.height+screenShotLabel.height+
             oteherAppsItem.height+commentsItem.height+
             rateItem.height+relatedItem.height+Theme.paddingLarge *2
             +downprogress.height
             + screenshotslt.height * 4
 
-    CacheImage{
-        id:appicon
-        asynchronous: true
-        cacheurl:icon//Script.getAppicon(uploaderuid,appid)
-        fillMode: Image.PreserveAspectFit;
-        width:  window.height/8-Theme.paddingMedium
-        height: window.height/8-Theme.paddingMedium
-        Image{
-            anchors.fill: parent;
-            source: "../../img/App_icon_Loading.svg";
-            visible: parent.status==Image.Loading;
-        }
-        Image{
-            anchors.fill: parent;
-            source: "../../img/App_icon_Error.svg";
-            visible: parent.status==Image.Error;
-        }
-        anchors {
-            left: parent.left
-            leftMargin: window.width/3-appicon.width - Theme.paddingMedium
-            topMargin: Theme.paddingSmall
-        }
-
-    }
     Label{
-        id:versionid
-        width: appicon.width
-        text:"<font size='2' > "+qsTr("downloads")+":</font><font size='1' >"+downloads+"</font><br/>"
-             //+"<font size='2' > "+qsTr("views")+":</font><font size='1' >"+views+"</font><br/>"
-        font.pixelSize: Theme.fontSizeExtraSmall
-        truncationMode: TruncationMode.Fade
+        id:infocate
+        text:type+"->"+category
+        font.pixelSize: Theme.fontSizeSmall
+        horizontalAlignment: Text.AlignLeft
         anchors {
-            left: appicon.left
-            top:appicon.bottom
+            top:parent.top
+            left:parent.left
+            topMargin: Theme.paddingMedium
             leftMargin: Theme.paddingSmall
         }
     }
+
     Label{
         id:infomess
-        //Format.formatFileSize()
-        text:type+"->"+category+"<br/>"+
-             "<font size='2' > "+qsTr("version")+":</font><font size='1' >"+version+"</font><br/>"+
-             "<font size='2' > "+qsTr("filesize")+":</font><font size='1' >"+(sysinfo.cpuModel == "arm"?size:x86size)+"</font><br/>"+
-             "<font size='2' > "+qsTr("dateline")+":</font><font size='1' >"+Script.humanedate(dateline)+"</font>"
-        font.pixelSize: Theme.fontSizeExtraSmall
+        text:
+             "<font size='2' color='"+Theme.highlightColor+"'> "+qsTr("version")+":</font><font size='1' >"+version+"</font><br/>"+
+             "<font size='2' color='"+Theme.highlightColor+"'> "+qsTr("filesize")+":</font><font size='1' >"+(sysinfo.cpuModel == "arm"?size:x86size)+"</font><br/>"
+        font.pixelSize: Theme.fontSizeSmall
         horizontalAlignment: Text.AlignLeft
         anchors {
-            top:appicon.top
-            left:appicon.right
-            //topMargin: Theme.paddingSmall
-            leftMargin: Theme.paddingLarge*2
+            top:infocate.bottom
+            left:parent.left
+            topMargin: Theme.paddingMedium
+            leftMargin: Theme.paddingSmall
         }
-
-
     }
 
+    Label{
+        id:extinfomess
+        text:
+             "<font size='2' color='"+Theme.highlightColor+"'> "+qsTr("downloads")+":</font><font size='1' >"+downloads+"</font><br/>"+
+             "<font size='2' color='"+Theme.highlightColor+"'> "+qsTr("dateline")+":</font><font size='1' >"+Script.humanedate(dateline)+"</font>"
+        font.pixelSize: Theme.fontSizeSmall
+        horizontalAlignment: Text.AlignLeft
+        anchors {
+            top: infomess.top
+            right:parent.right
+            rightMargin: Theme.paddingSmall
+        }
+    }
 
     CurrentOpeartion{
         id:downprogress
@@ -330,11 +315,6 @@ Item{
             text: wizard.selection
             color: Theme.highlightColor
         }
-//        SubmitCommentComponent{
-//          id:firstWizardPage
-//        }
-
-
     }
 
 }

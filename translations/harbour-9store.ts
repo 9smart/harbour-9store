@@ -287,6 +287,10 @@
         <source>from:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Replay</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchApp</name>
@@ -303,10 +307,6 @@
     <name>SettingPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cache Img</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -344,15 +344,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>input your comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Comments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>max 80 character</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -378,10 +378,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>All Class</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
@@ -391,6 +387,10 @@
     </message>
     <message>
         <source>Apps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Category</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -426,6 +426,18 @@
     </message>
     <message>
         <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9Store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Welcome to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9Smart</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

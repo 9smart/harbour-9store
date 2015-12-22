@@ -4,6 +4,13 @@ import Sailfish.Silica 1.0
 Page{
     id:replaysPage
     property ListModel replaysmodel
+    property string _id
+    property alias replaysTmpModel:replaystmpModel
+    signal commentSendSuccessful
+
+    ListModel{
+        id:replaystmpModel
+    }
 
     SilicaListView {
         id: commentsView
@@ -18,6 +25,7 @@ Page{
             height:((userPic.height + nick.height)>
                         (phoneModel.height+ messageid.height )?
                          (userPic.height + nick.height):(phoneModel.height+ messageid.height))
+                         +(contextMenu.active?contextMenu.height:0)
                         + Theme.paddingMedium * 4
             contentHeight: height
             width: parent.width
@@ -100,15 +108,40 @@ Page{
                 width:parent.width;
                 color: Theme.highlightColor
             }
+            ContextMenu {
+                id:contextMenu
+                MenuItem {
+                    text: qsTr("Replay")
+                    onClicked:{
+                        pageStack.push(Qt.resolvedUrl("SubmitCommentComponent.qml"),{
+                                                                            "parentpage":replaysPage,
+                                                                            "cid":_id,
+                                                                            "foolreplay":"@"+author.nickname+": ",
+                                                                            "replaysTmpModel":replaysTmpModel
+                                                                        })
+                    }
+                }
+            }
 
-
+            onPressAndHold: {
+                contextMenu.show(showcomments)
+            }
         }
         VerticalScrollDecorator {}
     }
 
     Component.onCompleted: {
+
         commentsView.model = replaysmodel
         console.log("count:"+replaysmodel.count)
     }
 
+    Connections{
+        target: signalCenter
+        onCommentSendSuccessful:{
+            if(replaysTmpModel&&replaysTmpModel.count > 0){
+               replaysmodel.append(replaysTmpModel.get(0))
+            }
+        }
+    }
 }

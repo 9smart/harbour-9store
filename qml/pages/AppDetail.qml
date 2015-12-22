@@ -102,30 +102,65 @@ Page{
             id:header
             title: appname
             description: developer
+            anchors{
+                right:appicon.left
+                rightMargin: Theme.paddingMedium
+            }
+         }
+       CacheImage{
+            id:appicon
+            asynchronous: true
+            cacheurl:icon//Script.getAppicon(uploaderuid,appid)
+            fillMode: Image.PreserveAspectFit;
+            width: Screen.width>540 ? (window.width / 6):(window.width / 5)
+            height: width
+            Image{
+                anchors.fill: parent;
+                source: "../img/App_icon_Loading.svg";
+                visible: parent.status==Image.Loading;
+            }
+            Image{
+                anchors.fill: parent;
+                source: "../img/App_icon_Error.svg";
+                visible: parent.status==Image.Error;
+            }
+            anchors {
+                top:parent.top
+                right: parent.right
+                rightMargin: Theme.paddingSmall
+                topMargin: Theme.paddingSmall
+            }
+
         }
-//        PullDownMenu {
-//            id:pulldownmenu
-//            visible: true//!install.visible && !unistall.visible && !upgrade.visible
-//            MenuItem {
-//                id:install
-//                visible:true
-//                text: qsTr("Install")
-//                onClicked: {
 
+        RatingBox{
+            id:batingbox
+            anchors{
+                top:appicon.bottom
+                topMargin: Theme.paddingMedium
+                right:avgsocre.left
+            }
+            score:score_num == 0?0:(scores/score_num)
+            optional:false
+            width: appicon.width * 1.5
+            height: width/5
+        }
 
-//                }
-//            }
-//            MenuItem{
-//                id:unistall
-//                visible: false//isinstalled
-//                text:qsTr("Unistall")
-//            }
-//            MenuItem{
-//                id:upgrade
-//                visible: false//
-//                text:qsTr("Upgrade")
-//            }
-//        }
+        Label{
+            id:avgsocre
+            text:score_num == 0?0:(scores/score_num)
+            font.bold: true
+            font.pixelSize: Theme.fontSizeMedium
+            font.italic: true
+            color: Theme.highlightColor
+
+            anchors{
+                right:parent.right
+                top:appicon.bottom
+                topMargin: Theme.paddingMedium
+                rightMargin: Theme.paddingSmall
+            }
+        }
 
         DetailComponent{
             id:detailComp
@@ -133,7 +168,7 @@ Page{
             anchors {
                 left: parent.left
                 right:parent.right
-                top:header.bottom
+                top:batingbox.bottom
                 leftMargin: Theme.paddingMedium
                 rightMargin: Theme.paddingMedium
             }
