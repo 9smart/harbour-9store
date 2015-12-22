@@ -13,7 +13,7 @@ Name:       harbour-9store
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    9smart shop
-Version:    0.1
+Version:    0.2
 Release:    2
 Group:      Qt/Qt
 License:    LICENSE
