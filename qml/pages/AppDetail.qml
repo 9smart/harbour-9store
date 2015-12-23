@@ -158,7 +158,7 @@ Page{
                 right:parent.right
                 top:appicon.bottom
                 topMargin: Theme.paddingMedium
-                rightMargin: Theme.paddingSmall
+                rightMargin: Theme.paddingMedium
             }
         }
 
