@@ -65,6 +65,7 @@ Item {
                 id: email
                 anchors { left: parent.left; right: parent.right }
                 label: qsTr("Email address");
+                focus: true;
                 inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
                 validator: RegExpValidator { regExp:/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/ }
                 placeholderText: label
@@ -94,7 +95,7 @@ Item {
                 //echoMode: TextInput.text
                 EnterKey.enabled: text || inputMethodComposing
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: email.focus = true
+                EnterKey.onClicked: password.focus = true
             }
 
 

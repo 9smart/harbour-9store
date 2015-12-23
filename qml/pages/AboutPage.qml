@@ -57,7 +57,15 @@ Page {
                 top:header.bottom
             }
             spacing: Theme.paddingMedium
+            Item {width: 1;height: 1}
+            LabelText {
+                anchors {
+                    margins: Theme.paddingLarge
+                }
+                label: qsTr("Thanks")
+                text: qsTr("Thanks warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!")
 
+            }
             Item {width: 1;height: 1}
             LabelText {
                 anchors {

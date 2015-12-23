@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>No notification now,try to discuss with other Sailors</source>
-        <translation>暂无通知，还不快去软件下面评论，跟其他机友一起愉快的玩耍～</translation>
+        <translation>暂无通知，去软件下面评论，跟其他机友一起愉快的玩耍吧～</translation>
     </message>
 </context>
 <context>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Start logout</source>
-        <translation>正在注销</translation>
+        <translation>即将注销</translation>
     </message>
 </context>
 <context>
