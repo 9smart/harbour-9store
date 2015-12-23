@@ -57,8 +57,7 @@ Page{
              id:head
              title:qsTr("Notifications")
          }
-
-          model: listModel
+          model: notifyModel
           clip: true
           delegate:NotificationsComponent{}
           VerticalScrollDecorator {}

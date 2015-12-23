@@ -224,6 +224,40 @@
     </message>
 </context>
 <context>
+    <name>NotificationPage</name>
+    <message>
+        <source>Show History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Unread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No notification now,try to discuss with other Sailors</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NotificationsComponent</name>
+    <message>
+        <source>comment app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>replay comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RealtedComponent</name>
     <message>
         <source>Related</source>
@@ -236,10 +270,6 @@
 </context>
 <context>
     <name>RegisterComponent</name>
-    <message>
-        <source>User Name</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Email address</source>
         <translation type="unfinished"></translation>

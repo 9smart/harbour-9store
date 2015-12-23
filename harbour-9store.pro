@@ -63,6 +63,7 @@ OTHER_FILES += \
     qml/pages/Signalcenter.qml \
     qml/pages/UserCenter.qml \
     qml/pages/WelcomePage.qml \
+    qml/pages/NotificationPage.qml \
     qml/harbour-9store.qml \
     harbour-9store.desktop \
     rpm/harbour-9store.yaml \
@@ -90,6 +91,11 @@ OTHER_FILES += \
     qml/pages/components/TextCollapsible.qml \
     qml/pages/components/WelcomeBoxBackground.qml \
     qml/pages/components/WelcomeFeedItem.qml \
+    qml/pages/components/NotificationsComponent.qml \
+    qml/pages/components/DetailLabelText.qml \
+    qml/pages/AppCategory.qml \
+    qml/pages/components/CircleCacheImage.qml \
+    qml/pages/components/ReplayCommentsComponent.qml \
     qml/pages/model/SysInfo.qml \
     qml/pages/model/User.qml \
     qml/js/base64.js \
@@ -97,7 +103,7 @@ OTHER_FILES += \
     qml/js/login.js \
     qml/js/main.js \
     qml/js/md5.js \
-    qml/js/Setting.js \
+    qml/js/setting.js \
     qml/cover/CoverPage.qml \
     qml/py/__init__.py \
     qml/py/basedir.py \
@@ -106,13 +112,5 @@ OTHER_FILES += \
     qml/py/mypy.py \
     qml/py/rpms.py \
     qml/py/sysinfo.py \
-    qml/py/*.sh \
     harbour-9store.service \
     harbour-9store.timer
-
-DISTFILES += \
-    qml/pages/components/DetailLabelText.qml \
-    qml/pages/components/CanvasImage.qml \
-    qml/pages/AppCategory.qml \
-    qml/pages/components/CircleCacheImage.qml \
-    qml/pages/components/ReplayCommentsComponent.qml

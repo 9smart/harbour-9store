@@ -98,7 +98,7 @@ fi
 %files
 %defattr(-,root,root,-)
 %{_bindir}
-#%{_datadir}/%{name}
+%{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 /etc/systemd/system/

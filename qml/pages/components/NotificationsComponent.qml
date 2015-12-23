@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../../js/main.js" as Script
+import "../../js/setting.js" as Script
 
 BackgroundItem{
     id:showcomments
@@ -106,12 +106,14 @@ BackgroundItem{
         width:parent.width;
         color: Theme.highlightColor
     }
+    ListView.onRemove: animateRemoval()
     ContextMenu {
         id:contextMenu
         MenuItem {
             text: qsTr("Clear")
             onClicked:{
-
+                notifyModel.remove(index)
+                Script.clearNotifyData(id)
             }
         }
     }
