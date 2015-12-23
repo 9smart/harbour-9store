@@ -7,21 +7,44 @@ Dialog {
     property Page parentpage;
     property string cid;
     property string appid;
-    canAccept: subcomments.text.length > 0
+    property string foolreplay;
+    property ListModel replaysTmpModel
+    canAccept: subcomments.text.length > 4 && subcomments.text.length < 81
     acceptDestination: parentpage
     acceptDestinationAction: PageStackAction.Pop
-    allowedOrientations: Orientation.Landscape | Orientation.Portrait | Orientation.LandscapeInverted
+    acceptDestinationProperties:replaysTmpModel
 
     onAccepted: {
         var auth = user.auth;
+        //评论楼中楼
         if(cid){
-            Script.sendReplayComment(auth,cid,subcomments.text,sysinfo.phoneName)
+            if(foolreplay){
+                Script.sendReplayComment(auth,cid,foolreplay+subcomments.text,sysinfo.phoneName);
+                replaysTmpModel.append(
+                                    {
+                                        "author": {
+                                                "uid": user._id,
+                                                "nickname": user.nickName,
+                                                "avatar": user.avatar
+                                                },
+                                        "dateline": new Date().getTime(),
+                                        "content": foolreplay+subcomments.text,
+                                        "model": sysinfo.phoneName
+                                        }
+                                )
+            }else{
+                Script.sendReplayComment(auth,cid,subcomments.text,sysinfo.phoneName)
+            }
+
+
         }else{
+        //评论app
            Script.sendComment(auth,appid,subcomments.text,ratingbox.score,sysinfo.phoneName);
         }
 
 
     }
+
 
     Flickable {
         // ComboBox requires a flickable ancestor
@@ -89,7 +112,7 @@ Dialog {
                     height: Math.max(dialog.width/3, implicitHeight)
                     font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.WordWrap
-                    placeholderText: qsTr("input your comments")
+                    placeholderText: qsTr("max 80 character")
                     EnterKey.onClicked : dialog.accept()
                     label: qsTr("Comments")
                 }

@@ -3,7 +3,7 @@ Description=9Store timer
 
 [Timer]
 OnBootSec=2min
-OnUnitInactiveSec=120
+OnUnitInactiveSec=1800
 Unit=harbour-9store.service
 
 [Install]

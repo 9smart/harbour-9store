@@ -26,7 +26,7 @@ Page{
                 width: parent.width/4
                 height: parent.width/4
                 smooth: true
-                cacheurl: user.avatar
+                cacheurl: user.avatar_hd
                 maskSource: "../img/mask.bmp"
                 MouseArea{
                     anchors.fill: parent
@@ -50,24 +50,24 @@ Page{
             }
 
             Item{width:1;height:1}
-            Item{
-                id:clearcache
-                width: parent.width
-                height:cacheSwitch.height
-                anchors.top: user_nickname.bottom
-                TextSwitch {
-                    id: cacheSwitch
-                    checked: false
-                    text: qsTr("Cache Img")
-                }
+//            Item{
+//                id:clearcache
+//                width: parent.width
+//                height:cacheSwitch.height
+//                anchors.top: user_nickname.bottom
+//                TextSwitch {
+//                    id: cacheSwitch
+//                    checked: false
+//                    text: qsTr("Cache Img")
+//                }
 
-            }
+//            }
             Item{width:1;height:1}
             Button{
                 id:logout
                 text:qsTr("Logout")
                 anchors{
-                    top:clearcache.bottom
+                    top:user_nickname.bottom
                     horizontalCenter: parent.horizontalCenter
                 }
                 onClicked: {

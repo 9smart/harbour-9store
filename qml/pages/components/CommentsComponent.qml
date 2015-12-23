@@ -134,15 +134,13 @@ BackgroundItem{
         if(reply_num == 0){
             return
         }
-         pageStack.push(Qt.resolvedUrl("ReplayCommentsComponent.qml"),{"replaysmodel":replys})
+         pageStack.push(Qt.resolvedUrl("ReplayCommentsComponent.qml"),{"replaysmodel":replys,
+                                                                        "_id":_id})
     }
 
     onPressAndHold: {
         contextMenu.show(showcomments)
     }
-    ListModel{
-        id:replaytemp
-      }
 
 }
 

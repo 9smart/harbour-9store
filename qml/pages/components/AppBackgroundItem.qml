@@ -13,7 +13,7 @@ BackgroundItem {
             anchors.horizontalCenter: parent.horizontalCenter
             maximumLineCount: 1
             font {
-                pixelSize: Theme.fontSizeSmall
+                pixelSize: Theme.fontSizeMedium
                 family: Theme.fontFamilyHeading
             }
         }

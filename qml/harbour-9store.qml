@@ -40,6 +40,8 @@ import "js/main.js" as Script
 import org.nemomobile.notifications 1.0
 import org.coderus.powermenu.desktopfilemodel 1.0
 import org.nemomobile.configuration 1.0
+import org.nemomobile.dbus 2.0
+
 ApplicationWindow
 {
     id:window
@@ -77,32 +79,84 @@ ApplicationWindow
         id: remorse
     }
 
+
     initialPage: Component {
         Page{
             id:splashPage
-            Image {
+            SilicaFlickable {
                 id: splash
-                anchors.fill: parent;
-                source: "./img/splash.png"
-                fillMode: Image.PreserveAspectCrop
-                clip: true
+                anchors.fill:parent
+                Item{
+                    anchors.fill: parent
+                    width: parent.width
+                    height: parent.height
+                    Label{
+                        id:welcomFont
+                        text:qsTr("Welcome to")
+                        font.pixelSize: Theme.fontSizeExtraLarge
+                        anchors{
+                            left:parent.left
+                            leftMargin:Theme.paddingLarge
+                            bottom:storeName.top
+                            //bottomMargin: Theme.paddingSmall
+                        }
+                    }
+                    Label{
+                        id:storeName
+                        text:qsTr("9Store")
+                        font.pixelSize: Theme.fontSizeExtraLarge
+                        color: Theme.highlightColor
+                        anchors{
+                            left:parent.left
+                            leftMargin:Theme.paddingLarge
+                            bottom:vendor.top
+                            bottomMargin: Theme.paddingLarge * 2
+                        }
+                    }
+
+                    Label{
+                        id:vendor
+                        text:qsTr("9Smart")
+                        font.pixelSize: Theme.fontSizeMedium
+                        //color: Theme.highlightColor
+                        opacity:0.5
+                        anchors{
+                            left:parent.left
+                            leftMargin:Theme.paddingLarge
+                            bottom:parent.bottom
+                            bottomMargin: Theme.paddingLarge
+                        }
+                    }
+
+                    BusyIndicator{
+                        anchors{
+                            right:parent.right
+                            rightMargin: Theme.paddingLarge
+                            bottom:parent.bottom
+                            bottomMargin: Theme.paddingLarge
+                        }
+                        running: true
+                        size: BusyIndicatorSize.Small
+                    }
+
+                }
+
+
                 NumberAnimation on opacity {duration: 500}
-            }
+
             Timer {
                 id: timerDisplay
                 running: true; repeat: false; triggeredOnStart: false
-                interval: 3 * 1000
+                interval: 2 * 1000
                 onTriggered: {
                     splash.visible = false;
-                    //Script.initialize(signalCenter, utility, UserData);
-
                     Script.app = window;
                     Script.userData = UserData;
-                    //Script.loadUserInfo(UserData.getUserData());
                     loadLoginData(UserData.getUserData());
 
                 }
             }
+          }
         }
     }
 
@@ -192,7 +246,6 @@ ApplicationWindow
     }
 
     function getLocalTime(nS) {
-       //return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
         return Script.humanedate(nS)
     }
 

@@ -86,7 +86,7 @@ def versionCompare(rpmname,versioncode):
     elif LooseVersion(installedName) < LooseVersion(serverName):
         return "Upgrade"
     else:
-        return "Newer"
+        return "Uninstall"
 
 
 

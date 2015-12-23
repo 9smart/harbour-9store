@@ -174,7 +174,7 @@
     </message>
     <message>
         <source>Add comment&amp;Rate</source>
-        <translation type="unfinished">添加评论&amp;评分</translation>
+        <translation>添加评论&amp;评分</translation>
     </message>
 </context>
 <context>
@@ -216,11 +216,11 @@
     </message>
     <message>
         <source>Enter Username</source>
-        <translation type="unfinished"></translation>
+        <translation>输入用户名</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>输入密码</translation>
     </message>
 </context>
 <context>
@@ -287,6 +287,10 @@
         <source>from:</source>
         <translation>来自:</translation>
     </message>
+    <message>
+        <source>Replay</source>
+        <translation>回复</translation>
+    </message>
 </context>
 <context>
     <name>SearchApp</name>
@@ -304,10 +308,6 @@
     <message>
         <source>Settings</source>
         <translation>设置</translation>
-    </message>
-    <message>
-        <source>Cache Img</source>
-        <translation>缓存图片</translation>
     </message>
     <message>
         <source>Logout</source>
@@ -344,16 +344,16 @@
         <translation>评论&amp;评分</translation>
     </message>
     <message>
-        <source>input your comments</source>
-        <translation>输入你的评论</translation>
-    </message>
-    <message>
         <source>Comments</source>
         <translation>评论</translation>
     </message>
     <message>
         <source>Replay</source>
         <translation>回复</translation>
+    </message>
+    <message>
+        <source>max 80 character</source>
+        <translation>最多80个字</translation>
     </message>
 </context>
 <context>
@@ -378,7 +378,7 @@
         <translation>最新应用</translation>
     </message>
     <message>
-        <source>All Class</source>
+        <source>All Category</source>
         <translation>所有分类</translation>
     </message>
     <message>
@@ -427,6 +427,18 @@
     <message>
         <source>Error</source>
         <translation>安装出错</translation>
+    </message>
+    <message>
+        <source>9Store</source>
+        <translation>9Store</translation>
+    </message>
+    <message>
+        <source>Welcome to</source>
+        <translation>Welcome to</translation>
+    </message>
+    <message>
+        <source>9Smart</source>
+        <translation>9Smart</translation>
     </message>
 </context>
 <context>

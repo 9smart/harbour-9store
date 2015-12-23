@@ -366,7 +366,6 @@ function sendReplayComment(auth,cid,reply_content,model) {
 }
 
 function sendReplayCommentState(oritxt){
-    console.log("oritxt:"+oritxt)
     var obj=JSON.parse(oritxt);
     if(obj.error === 0){
         signalcenter.commentSendSuccessful();
