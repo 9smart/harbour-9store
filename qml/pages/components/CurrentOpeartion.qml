@@ -104,6 +104,9 @@ Item{
         onCurrentAppmanaged:{
             downbar = false;
             console.log(result)
+            installButton.visible = false
+            upgradeButton.visible = false
+            uninstallButton.visible =  false
             switch(result){
             case ("Install"):
                 installButton.visible = true;

@@ -68,6 +68,7 @@ desktop-file-install --delete-original       \
 
 
 %post
+chmod a+x /usr/share/harbour-9store/qml/py/jobs.py
 systemctl start harbour-9store.timer
 systemctl enable harbour-9store.timer
 systemctl start harbour-9store.service
@@ -85,6 +86,8 @@ systemctl disable harbour-9store.service
 rm /etc/systemd/system/harbour-9store.timer
 rm /etc/systemd/system/harbour-9store.service
 rm -rf /usr/share/harbour-9store
+rm -rf /home/nemo/.local/share/harbour-9store/harbour-9store/QML/OfflineStorage/Databases/*.sqlite
+rm -rf /home/nemo/.local/share/harbour-9store/harbour-9store/QML/OfflineStorage/Databases/*.ini
 else
 if [ $1 = 1 ]; then
     // Do stuff specific to upgrades
@@ -95,7 +98,7 @@ fi
 %files
 %defattr(-,root,root,-)
 %{_bindir}
-%{_datadir}/%{name}
+#%{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 /etc/systemd/system/

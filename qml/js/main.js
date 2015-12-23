@@ -443,6 +443,3 @@ function registerResult(oritxt){
         signalcenter.registerFailed(obj.error)
     }
 }
-
-
-
