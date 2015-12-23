@@ -14,8 +14,7 @@ TARGET = harbour-9store
 
 targer.path = /usr/bin
 
-CONFIG += sailfishapp \
-          sailfishapp_no_deploy_qml
+CONFIG += sailfishapp sailfishapp_no_deploy_qml
 
 PKGCONFIG += mlite5
 
@@ -111,7 +110,6 @@ OTHER_FILES += \
 !sailfishapp_no_deploy_qml {
     qml.files = qml
     qml.path = /usr/share/$${TARGET}
-
     INSTALLS += qml
 }
 # to disable building translations every time, comment out the
@@ -120,5 +118,10 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-9store-de.ts \
                 translations/harbour-9store-zh_CN.ts
 
-INSTALL += target \
-           translations
+pyo.files += qml/py/*.py
+pyo.path = /usr/share/$${TARGET}/qml/py
+
+INSTALL += target
+
+RESOURCES += \
+     harbour-9store.qrc

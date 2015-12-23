@@ -274,7 +274,7 @@ ApplicationWindow
         signal progress(string per)
         signal status(string str,string rpmname,string version)
         Component.onCompleted: {
-            addImportPath(Qt.resolvedUrl('./py'));
+            addImportPath('/usr/share/harbour-9store/qml/py');
             py.importModule('mypy', function () {
             });
             py.importModule('rpms', function () {

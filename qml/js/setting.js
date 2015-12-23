@@ -4,8 +4,6 @@ function getDatabase() {
     return SQL.LocalStorage.openDatabaseSync("9store", "1.0", "9smart app shop", 10000);
 }
 
-
-
 function initialize() {
     var db = getDatabase();
     db.transaction(
