@@ -7,6 +7,14 @@
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Thanks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thanks warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppCategory</name>
@@ -43,6 +51,10 @@
     </message>
     <message>
         <source>Send Successful!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add comment&amp;Rate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -182,10 +194,6 @@
     </message>
     <message>
         <source>Other Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add comment&amp;Rate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

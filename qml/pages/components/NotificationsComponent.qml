@@ -5,8 +5,8 @@ import "../../js/setting.js" as Script
 BackgroundItem{
     id:showcomments
     height:((userPic.height + nick.height)>
-                (c_type.height+ messageid.height + numbers.height)?
-                 (userPic.height + nick.height):(c_type.height+ messageid.height + numbers.height))
+                (c_type.height+ messageid.height )?
+                 (userPic.height + nick.height):(c_type.height+ messageid.height ))
                 + Theme.paddingMedium * 4
                 +(contextMenu.active?contextMenu.height:0)
     contentHeight: height
@@ -94,7 +94,7 @@ BackgroundItem{
         horizontalAlignment: Text.AlignLeft
         truncationMode: TruncationMode.Elide
         anchors {
-            top:phoneModel.bottom
+            top:c_conent.bottom
             left:userPic.right
             margins: Theme.paddingMedium
         }
@@ -106,14 +106,15 @@ BackgroundItem{
         width:parent.width;
         color: Theme.highlightColor
     }
-    ListView.onRemove: animateRemoval()
+    //ListView.onRemove: animateRemoval()
+
     ContextMenu {
         id:contextMenu
         MenuItem {
             text: qsTr("Clear")
             onClicked:{
+                Script.clearNotifyData(_id)
                 notifyModel.remove(index)
-                Script.clearNotifyData(id)
             }
         }
     }

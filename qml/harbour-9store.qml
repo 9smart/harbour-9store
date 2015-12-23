@@ -184,6 +184,9 @@ ApplicationWindow
         pageStack.replace(Qt.resolvedUrl("pages/WelcomePage.qml"));
     }
 
+    function toNotificationPage(){
+        pageStack.replace(Qt.resolvedUrl("pages/NotificationPage.qml"));
+    }
     function zero(num){
            if(typeof(num)=='undefined'){
                return 0;
@@ -237,6 +240,23 @@ ApplicationWindow
     Notification{
         id:notification
         appName: "9Store"
+        remoteActions: [ {
+                "name": "9Store",
+                "displayName": qsTr("9Store"),
+                "icon": "icon-s-do-it",
+                "service": "org.nemomobile.example",
+                "path": "/example",
+                "iface": "org.nemomobile.example",
+                "method": "doSomething",
+                "arguments": [ "argument", 1 ]
+            } ]
+        onClicked:{
+            console.log("clicked!!!")
+            window.activate()
+            toNotificationPage()
+
+        }
+
     }
 
     function addNotification(message) {

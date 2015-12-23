@@ -15,7 +15,7 @@ MyImage{
          addImportPath('/usr/share/harbour-9store/qml/py'); // adds import path to the directory of the Python script
          imgpy.importModule('image', function () {
                 call('image.cacheImg',[cacheurl],function(result){
-                     thumbnail.source = result;
+                     thumbnail.source = "file:///"+result;
                      waitingIcon.visible = false;
                 });
        })

@@ -5,7 +5,7 @@ Description=Run Notifications Job
 Type=oneshot
 User=nemo
 WorkingDirectory=/usr/share/harbour-9store/qml/py/
-ExecStart=/usr/share/harbour-9store/qml/py/jobs.py
+ExecStart=/usr/bin/python3 /usr/share/harbour-9store/qml/py/jobs.py
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/100000/dbus/user_bus_socket
 
 [Install]

@@ -1,9 +1,5 @@
-#!/usr/bin/env python3
-'''
-Created on 2015年12月15日
+# -*- coding: utf-8 -*-
 
-@author: zhangdebo
-'''
 import os
 import sqlite3
 import hashlib
@@ -35,7 +31,6 @@ def parseTime(year,month,day):
     return datetime.datetime(year,month,day)
 
 """
-提醒
 notify_interface.Notify(self.app_name, 1, self.icon, self.summary, self.body,
                                     self.actions, self.hints, self.timeout)
 """
@@ -72,10 +67,10 @@ def saveNotifications(notice_list):
         conn = sqlite3.connect(getDbname())
         cur = conn.cursor()
         cur.execute('''CREATE TABLE IF NOT EXISTS NotificationData
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT, json text,status INTEGER DEFAULT 0) ''')
-        sql = "insert into NotificationData(json) values ('%s') "
+                 (id text, json text,status INTEGER DEFAULT 0) ''')
+        sql = "insert into NotificationData(id,json) values ('%s','%s') "
         for i in notice_list:
-            cur.execute(sql % json.dumps(i))
+            cur.execute(sql % (i["_id"],json.dumps(i)))
         conn.commit()
     except Exception as e:
         print(e)
@@ -93,13 +88,6 @@ def query(url):
     return data
 
 
-"""
-    {
-        error:0,
-        notices:[通知列表],
-        pager:{分页信息}
-    }
-"""
 def loadNotification(auth):
     url = api(auth)
     data = query(url)

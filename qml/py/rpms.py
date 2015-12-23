@@ -31,11 +31,11 @@ def parseInfo(infoList):
     ver_dic.clear()
     for i in infoList:
         if i.startswith("Name"):
-            ver_dic["Name"] = i.strip("Name").lstrip().lstrip(":").lstrip(" ").rstrip("\n")
+            ver_dic["Name"] = i.replace("Name","").replace(":","").lstrip().rstrip().rstrip("\n")
         elif i.startswith("Version"):
-            ver_dic["Version"] = i.strip("Version").lstrip().lstrip(":").lstrip(" ").rstrip("\n")
+            ver_dic["Version"] = i.replace("Version","").replace(":","").lstrip().rstrip().rstrip("\n")
         elif i.startswith("Release"):
-            ver_dic["Release"] = i.strip("Release").lstrip().lstrip(":").lstrip(" ").rstrip("\n")
+            ver_dic["Release"] = i.replace("Release","").replace(":","").lstrip().rstrip().rstrip("\n")
         elif i.startswith("Architecture"):
-            ver_dic["Architecture"] = i.strip("Architecture").lstrip().lstrip(":").lstrip(" ").rstrip("\n")
+            ver_dic["Architecture"] = i.replace("Architecture","").replace(":","").lstrip().rstrip().rstrip("\n")
     return ver_dic

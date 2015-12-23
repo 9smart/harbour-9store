@@ -81,10 +81,6 @@ Page{
     ListModel{id:commentsModel}
     ListModel{id:relatedModel}
 
-    width: parent.width
-    height: parent.height
-
-
 
     onVersionChanged:{
          py.versionCompare(rpmname,version)
@@ -92,14 +88,12 @@ Page{
 
     SilicaFlickable{
         id:sfl
-        contentHeight: detailComp.height + Theme.paddingLarge * 3
-                        + appicon.height + batingbox.heght
-        //contentWidth: sfl.width
+        contentHeight: appicon.height * 2 + appicon.width/5 + detailComp.height + Theme.paddingLarge * 4
         anchors.fill: parent
-        VerticalScrollDecorator {}
+        VerticalScrollDecorator {flickable:sfl}
         clip:true
 
-        PageHeader {
+       PageHeader {
             id:header
             title: appname
             description: developer
@@ -114,7 +108,7 @@ Page{
             cacheurl:icon//Script.getAppicon(uploaderuid,appid)
             fillMode: Image.PreserveAspectFit;
             width: Screen.width>540 ? (window.width / 6):(window.width / 5)
-            height: width
+            height: Screen.width>540 ? (window.width / 6):(window.width / 5)
             Image{
                 anchors.fill: parent;
                 source: "../img/App_icon_Loading.svg";
@@ -135,16 +129,17 @@ Page{
         }
 
         RatingBox{
-            id:batingbox
+            id:ratingbox
             anchors{
                 top:appicon.bottom
                 topMargin: Theme.paddingMedium
                 right:avgsocre.left
+                rightMargin: Theme.paddingSmall
             }
             score:score_num == 0?0:(scores/score_num)
             optional:false
             width: appicon.width * 1.5
-            height: width/5
+            height: appicon.width * 1.5/5
         }
 
         Label{
@@ -169,7 +164,7 @@ Page{
             anchors {
                 left: parent.left
                 right:parent.right
-                top:batingbox.bottom
+                top:ratingbox.bottom
                 leftMargin: Theme.paddingMedium
                 rightMargin: Theme.paddingMedium
             }
@@ -207,6 +202,20 @@ Page{
                 id:commentsheader
                 title: qsTr("Comments")
             }
+
+            PullDownMenu{
+                MenuItem{
+                    id:addComments
+                    text:qsTr("Add comment&Rate")
+                    onClicked: {
+                        pageStack.push(Qt.resolvedUrl("./components/SubmitCommentComponent.qml"),
+                                                                {"parentpage":commentsPage,
+                                                                  "appid":appid
+                                                                })
+                    }
+                }
+            }
+
             clip: true
             model: commentsModel
             anchors.fill: parent

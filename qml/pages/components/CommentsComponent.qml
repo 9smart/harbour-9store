@@ -32,7 +32,7 @@ BackgroundItem{
        id:userPic
        width:Screen.width/6 - Theme.paddingMedium
        height:width
-       cacheurl: author.avatar+"_hd"
+       cacheurl: author.avatar+"/hd"
        smooth: true;
        cache: true
        anchors {

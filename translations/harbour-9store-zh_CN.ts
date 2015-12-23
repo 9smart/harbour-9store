@@ -7,6 +7,14 @@
         <source>About</source>
         <translation>关于</translation>
     </message>
+    <message>
+        <source>Thanks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thanks warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
+        <translation>感谢warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder这些软件，感谢你！</translation>
+    </message>
 </context>
 <context>
     <name>AppCategory</name>
@@ -44,6 +52,10 @@
     <message>
         <source>Send Successful!</source>
         <translation>发送成功！</translation>
+    </message>
+    <message>
+        <source>Add comment&amp;Rate</source>
+        <translation>添加评论&amp;评分</translation>
     </message>
 </context>
 <context>
@@ -131,15 +143,15 @@
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"></translation>
+        <translation>安装中</translation>
     </message>
     <message>
         <source>Upgrading</source>
-        <translation type="unfinished"></translation>
+        <translation>升级中</translation>
     </message>
     <message>
         <source>Uninstalling</source>
-        <translation type="unfinished"></translation>
+        <translation>卸载中</translation>
     </message>
 </context>
 <context>
@@ -183,10 +195,6 @@
     <message>
         <source>Other Info</source>
         <translation>其他信息</translation>
-    </message>
-    <message>
-        <source>Add comment&amp;Rate</source>
-        <translation>添加评论&amp;评分</translation>
     </message>
 </context>
 <context>

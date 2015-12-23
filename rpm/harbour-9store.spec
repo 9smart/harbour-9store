@@ -39,7 +39,7 @@ Short description of my SailfishOS Application
 # >> build pre
 # << build pre
 
-qmake -qt=5 MEEGO_EDITION=nemo
+
 
 %qtc_make %{?_smp_mflags}
 
@@ -50,7 +50,7 @@ qmake -qt=5 MEEGO_EDITION=nemo
 rm -rf %{buildroot}
 make INSTALL_ROOT=%{buildroot} install
 mkdir -p %{buildroot}/usr/share/%{name}/qml/py
-cp qml/py/*.py %{buildroot}/usr/share/%{name}/qml/py/
+
 # >> install pre
 # << install pre
 %qmake5_install

@@ -26,15 +26,16 @@ Item {
                             return "../../img/Score_2.png";
                         else return "../../img/Score_3.png"
                     }
-                 MouseArea{
-                    anchors.fill: parent;
-                    enabled: optional;
-                    onClicked: {
-                     score=index+1;
-                   }
+                    MouseArea{
+                        anchors.fill: parent;
+                        enabled: optional;
+                        onClicked: {
+                            score=index+1;
+                        }
+                    }
                 }
             }
         }
-    }
 
+    }
 }

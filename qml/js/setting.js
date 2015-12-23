@@ -8,7 +8,7 @@ function initialize() {
     var db = getDatabase();
     db.transaction(
                 function(tx) {
-                    tx.executeSql('CREATE TABLE IF NOT EXISTS NotificationData(id INTEGER PRIMARY KEY AUTOINCREMENT, json text,status INTEGER DEFAULT 0);');
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS NotificationData(id text, json text,status INTEGER DEFAULT 0);');
                 });
 }
 
@@ -19,11 +19,11 @@ function getNotifyData(status) {
     db.transaction(function(tx) {
         var rs = tx.executeSql('SELECT * FROM NotificationData where status = ?;',[status]);
         for(var i =0;i<rs.rows.length;i++){
-          notifModel.append(rs.rows.item(i).json)
+          notifyModel.append(JSON.parse(rs.rows.item(i).json))
         }
     });
 
-    return notifModel;
+    return notifyModel;
 }
 
 function clearNotifyData(id){

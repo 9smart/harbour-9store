@@ -58,7 +58,7 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
-              upgradeButton.text = qsTr("Upgrading")
+               upgradeButton.text = qsTr("Upgrading")
                var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
                console.log("url:"+downloadurl)
                py.newdownload(downloadurl,rpmname,version);
@@ -74,8 +74,9 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
-                uninstallButton.text = qsTr("Uninstalling")
+
                 remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
+                    uninstallButton.text = qsTr("Uninstalling")
                     py.uninstallRpm(rpmname,version);
                 },3000);
 
@@ -106,18 +107,20 @@ Item{
         target: signalCenter
         onCurrentAppmanaged:{
             downbar = false;
-            console.log(result)
             installButton.visible = false
             upgradeButton.visible = false
             uninstallButton.visible =  false
             switch(result){
             case ("Install"):
+                installButton.text = qsTr("Install")
                 installButton.visible = true;
                 break;
             case("Upgrade"):
+                upgradeButton.text = qsTr("Upgrade")
                 upgradeButton.visible = true;
                 break;
             case("Uninstall"):
+                uninstallButton.text = qsTr("Uninstall")
                 uninstallButton.visible = true;
                 break;
             default:

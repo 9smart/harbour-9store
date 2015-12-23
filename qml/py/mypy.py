@@ -55,7 +55,10 @@ def unistallpkg(rpmname):
 
 def newdownload(downurl,rpmname,version):
     downname=rpmname+"-"+version+"."+getSysinfo().get("cpuModel")+".rpm";
-    urllib.request.urlretrieve(downurl,target+downname, schedule)
+    if os.path.exists(downname):
+        pyotherside.send("progress",100)
+    else:
+        urllib.request.urlretrieve(downurl,target+downname, schedule)
     install(target+downname,rpmname,version)
 
 #显示下载进度

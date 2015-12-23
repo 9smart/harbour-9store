@@ -4,10 +4,9 @@ import "../../js/main.js" as Script
 
 Item{
     height: infomess.height +infocate.height +summaryid.height+screenShotLabel.height+
-            oteherAppsItem.height+commentsItem.height+
-            rateItem.height+relatedItem.height+Theme.paddingLarge *2
+            oteherAppsItem.height+commentsItem.height
+            +relatedItem.height+Theme.paddingLarge *2
             +downprogress.height
-            + screenshotslt.height * 4
 
     Label{
         id:infocate
@@ -147,6 +146,7 @@ Item{
         enabled: specifiedAuthorModel.count > 0
         opacity: enabled?1:0.7
         height: Theme.itemSizeSmall +Theme.paddingMedium
+        width: parent.width
         anchors{
             top:otherslt.bottom
             left:parent.left
@@ -190,6 +190,7 @@ Item{
 
     BackgroundItem{
         height: Theme.itemSizeSmall +Theme.paddingMedium
+        width: parent.width
         id:commentsItem
         enabled: commentsModel.count > 0
         opacity: enabled?1:0.7
@@ -248,6 +249,7 @@ Item{
         enabled: relatedModel.count > 0
         opacity: enabled?1:0.7
         height: Theme.itemSizeSmall +Theme.paddingMedium
+        width: parent.width
         contentHeight: height
         anchors{
             top:commentsItem.bottom
@@ -283,38 +285,35 @@ Item{
     }
 
 
-    Column {
-        id:rateItem
-        anchors {
-            left: parent.left
-            top:relatedItem.bottom
-            topMargin: Theme.paddingMedium
-        }
-        width: parent.width
-        spacing: Theme.paddingSmall
-        Button {
-            id: wizard
+//    Column {
+//        id:rateItem
+//        anchors {
+//            left: parent.left
+//            top:relatedItem.bottom
+//            topMargin: Theme.paddingMedium
+//        }
+//        width: parent.width
+//        spacing: Theme.paddingSmall
+//        Button {
+//            id: wizard
 
-            property string selection
+//            property string selection
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Add comment&Rate")
-            onClicked:{
-                if(loading){
-                    return;
-                }
-                pageStack.push(Qt.resolvedUrl("SubmitCommentComponent.qml"),
-                                                        {"parentpage":showappdetail,
-                                                          "appid":appid
-                                                        })
-            }
-        }
+//            anchors.horizontalCenter: parent.horizontalCenter
+//            text: qsTr("Add comment&Rate")
+//            onClicked:{
+//                if(loading){
+//                    return;
+//                }
 
-        Label {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: wizard.selection
-            color: Theme.highlightColor
-        }
-    }
+//            }
+//        }
+
+//        Label {
+//            anchors.horizontalCenter: parent.horizontalCenter
+//            text: wizard.selection
+//            color: Theme.highlightColor
+//        }
+//    }
 
 }

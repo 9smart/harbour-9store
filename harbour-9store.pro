@@ -24,6 +24,12 @@ service.files += harbour-9store.service \
 
 INSTALLS += service
 
+
+pyo.path = /usr/share/harbour-9store/qml/py
+pyo.files += qml/py/*.py
+
+INSTALLS += pyo
+
 SOURCES += src/harbour-9store.cpp \
     src/desktopfilemodel.cpp \
     src/desktopfilemodelplugin.cpp \
@@ -100,7 +106,6 @@ OTHER_FILES += \
     qml/py/__init__.py \
     qml/py/basedir.py \
     qml/py/image.py \
-    qml/py/jobs.py \
     qml/py/mypy.py \
     qml/py/rpms.py \
     qml/py/sysinfo.py \
@@ -118,10 +123,13 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-9store-de.ts \
                 translations/harbour-9store-zh_CN.ts
 
-pyo.files += qml/py/*.py
-pyo.path = /usr/share/$${TARGET}/qml/py
+
 
 INSTALL += target
 
+
 RESOURCES += \
      harbour-9store.qrc
+
+DISTFILES += \
+    qml/py/jobs.py

@@ -35,7 +35,6 @@ import "components"
 import "model"
 Page{
     id:notifylist
-    property alias notifyModel:notifyModel
     property bool showhistory:false
     ListModel {
         id:notifyModel

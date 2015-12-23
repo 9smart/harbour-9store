@@ -45,7 +45,7 @@ Page {
             title: qsTr("About")
         }
         width: parent.width
-        contentHeight: aboutColumn.height + Theme.paddingLarge * 7
+        contentHeight: aboutColumn.height + Theme.paddingLarge * 8
         contentWidth: aboutFlick.width
         clip:true
         VerticalScrollDecorator { flickable: aboutFlick }
