@@ -8,10 +8,6 @@ Name:       harbour-9store
 # >> macros
 # << macros
 
-%{!?qtc_qmake:%define qtc_qmake %qmake}
-%{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
-%{!?qtc_make:%define qtc_make make}
-%{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    9smart shop
 Version:    0.2
 Release:    2
@@ -43,7 +39,7 @@ Short description of my SailfishOS Application
 # >> build pre
 # << build pre
 
-%qtc_qmake5
+qmake -qt=5 MEEGO_EDITION=nemo
 
 %qtc_make %{?_smp_mflags}
 
@@ -52,6 +48,9 @@ Short description of my SailfishOS Application
 
 %install
 rm -rf %{buildroot}
+make INSTALL_ROOT=%{buildroot} install
+mkdir -p %{buildroot}/usr/share/%{name}/qml/py
+cp qml/py/jobs.py %{buildroot}/usr/share/%{name}/qml/py/
 # >> install pre
 # << install pre
 %qmake5_install

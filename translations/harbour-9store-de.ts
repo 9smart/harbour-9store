@@ -122,11 +122,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UnInstall</source>
+        <source>Start uninstall %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Start uninstall %1</source>
+        <source>Installing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uninstalling</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

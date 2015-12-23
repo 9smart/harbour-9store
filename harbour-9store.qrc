@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>qml/js/api.js</file>
-    </qresource>
-</RCC>

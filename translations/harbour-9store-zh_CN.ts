@@ -122,12 +122,24 @@
         <translation>升级</translation>
     </message>
     <message>
-        <source>UnInstall</source>
+        <source>Uninstall</source>
         <translation>卸载</translation>
     </message>
     <message>
         <source>Start uninstall %1</source>
         <translation>即将卸载 %1</translation>
+    </message>
+    <message>
+        <source>Installing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uninstalling</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
