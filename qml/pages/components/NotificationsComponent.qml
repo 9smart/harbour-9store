@@ -1,12 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
+import "../../js/setting.js" as Script
 
 BackgroundItem{
     id:showcomments
     height:((userPic.height + nick.height)>
-                (phoneModel.height+ messageid.height + numbers.height)?
-                 (userPic.height + nick.height):(phoneModel.height+ messageid.height + numbers.height))
+                (c_type.height+ messageid.height + numbers.height)?
+                 (userPic.height + nick.height):(c_type.height+ messageid.height + numbers.height))
                 + Theme.paddingMedium * 4
                 +(contextMenu.active?contextMenu.height:0)
     contentHeight: height
@@ -32,7 +32,7 @@ BackgroundItem{
        id:userPic
        width:Screen.width/6 - Theme.paddingMedium
        height:width
-       cacheurl: author.avatar+"_hd"
+       cacheurl: from.avatar+"/hd"
        smooth: true;
        cache: true
        anchors {
@@ -45,7 +45,7 @@ BackgroundItem{
    }
      Label{
          id:nick
-         text:author.nickname
+         text:from.nickname
          font.pixelSize: Theme.fontSizeExtraSmall * 0.7
          horizontalAlignment: Text.AlignLeft
          truncationMode: TruncationMode.Elide
@@ -59,8 +59,10 @@ BackgroundItem{
      }
 
     Label{
-        id:phoneModel
-        text:qsTr("from:")+model+" "+qsTr("ratings:")
+        id:c_type
+        text:type == "c_app"?qsTr("comment app"):
+                        //type == "r_comment"
+                        qsTr("replay comment")
         font.pixelSize: Theme.fontSizeExtraSmall
         anchors {
             top:userPic.top
@@ -68,32 +70,19 @@ BackgroundItem{
             leftMargin: Theme.paddingMedium
         }
     }
-    RatingBox {
-        id:scoreBox
-        score:score
-        optional:false
-        opacity: 0.9
-        width: userPic.width
-        height: width/5
-        anchors {
-            verticalCenter: phoneModel.verticalCenter
-            left:phoneModel.right
-        }
-    }
+
     Label{
-        id:numbers
-        text:qsTr("replays:(")+reply_num+")"
-        font.pixelSize: Theme.fontSizeSmall
-        color: Theme.highlightColor
+        id:c_conent
+        text:type == "c_app"?target.appname:target.content
+        font.pixelSize: Theme.fontSizeExtraSmall
+        maximumLineCount : 1
         anchors {
-            top:messageid.bottom
-            topMargin: Theme.paddingMedium
-            right: parent.right
-            rightMargin: Theme.paddingMedium
+            top:c_type.top
+            left:c_type.right
+            leftMargin: Theme.paddingSmall
+            right:parent.right
         }
     }
-
-
     Label{
         id:messageid
         text:content
@@ -117,29 +106,23 @@ BackgroundItem{
         width:parent.width;
         color: Theme.highlightColor
     }
+    ListView.onRemove: animateRemoval()
     ContextMenu {
         id:contextMenu
         MenuItem {
-            text: qsTr("Replay")
+            text: qsTr("Clear")
             onClicked:{
-                pageStack.push(Qt.resolvedUrl("SubmitCommentComponent.qml"),{
-                                                                    "parentpage":commentsPage,
-                                                                    "cid":_id
-                                                                })
+                notifyModel.remove(index)
+                Script.clearNotifyData(id)
             }
         }
     }
 
     onClicked: {
-        if(reply_num == 0){
-            return
-        }
-         pageStack.push(Qt.resolvedUrl("ReplayCommentsComponent.qml"),{"replaysmodel":replys,
-                                                                        "_id":_id})
+      contextMenu.show(showcomments)
     }
 
-    onPressAndHold: {
-        contextMenu.show(showcomments)
-    }
+    // onPressAndHold: {
+    // }
 
 }

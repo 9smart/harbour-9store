@@ -62,18 +62,29 @@ Item {
             }
             spacing: Theme.paddingMedium
             TextField {
-                id: firstname
+                id: email
                 anchors { left: parent.left; right: parent.right }
+                label: qsTr("Email address");
                 focus: true;
-                label: qsTr("User Name");
+                inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
+                validator: RegExpValidator { regExp:/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/ }
                 placeholderText: label
-                RegExpValidator { regExp: /.{2,14}/ }
-                inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
                 EnterKey.enabled: text || inputMethodComposing
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: nickname.focus = true
+                EnterKey.onClicked: password.focus = true
             }
-
+            // TextField {
+            //     id: firstname
+            //     anchors { left: parent.left; right: parent.right }
+            //     focus: true;
+            //     label: qsTr("User Name");
+            //     placeholderText: label
+            //     RegExpValidator { regExp: /.{2,14}/ }
+            //     inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
+            //     EnterKey.enabled: text || inputMethodComposing
+            //     EnterKey.iconSource: "image://theme/icon-m-enter-next"
+            //     EnterKey.onClicked: nickname.focus = true
+            // }
             TextField {
                 id: nickname
                 anchors { left: parent.left; right: parent.right }
@@ -84,19 +95,9 @@ Item {
                 //echoMode: TextInput.text
                 EnterKey.enabled: text || inputMethodComposing
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: email.focus = true
-            }
-            TextField {
-                id: email
-                anchors { left: parent.left; right: parent.right }
-                label: qsTr("Email address");
-                inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
-                validator: RegExpValidator { regExp:/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/ }
-                placeholderText: label
-                EnterKey.enabled: text || inputMethodComposing
-                EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: password.focus = true
             }
+
 
             TextField {
                 id: password
@@ -147,12 +148,12 @@ Item {
                 horizontalCenter: parent.horizontalCenter
             }
             text:qsTr("Register")
-            enabled: firstname.text && password.text && email.text && confirmPassword.text &&
+            enabled: email.text && password.text && confirmPassword.text &&
                      password.text == confirmPassword.text
             onClicked: {
                 errorLabel.visible = false;
                 busyIndicator.running = true;
-                Script.registeR(firstname.text,nickname.text,password.text,confirmPassword.text,reason.text)
+                Script.registeR(email.text,nickname.text,password.text,confirmPassword.text,reason.text)
 
             }
         }

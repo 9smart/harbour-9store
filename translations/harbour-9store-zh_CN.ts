@@ -122,12 +122,24 @@
         <translation>升级</translation>
     </message>
     <message>
-        <source>UnInstall</source>
+        <source>Uninstall</source>
         <translation>卸载</translation>
     </message>
     <message>
         <source>Start uninstall %1</source>
         <translation>即将卸载 %1</translation>
+    </message>
+    <message>
+        <source>Installing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uninstalling</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -170,7 +182,7 @@
     </message>
     <message>
         <source>Other Info</source>
-        <translation type="unfinished"></translation>
+        <translation>其他信息</translation>
     </message>
     <message>
         <source>Add comment&amp;Rate</source>
@@ -224,6 +236,40 @@
     </message>
 </context>
 <context>
+    <name>NotificationPage</name>
+    <message>
+        <source>Show History</source>
+        <translation>历史消息</translation>
+    </message>
+    <message>
+        <source>Show Unread</source>
+        <translation>未读消息</translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation>通知</translation>
+    </message>
+    <message>
+        <source>No notification now,try to discuss with other Sailors</source>
+        <translation>暂无通知，去软件下面评论，跟其他机友一起愉快的玩耍吧～</translation>
+    </message>
+</context>
+<context>
+    <name>NotificationsComponent</name>
+    <message>
+        <source>comment app</source>
+        <translation>软件评论</translation>
+    </message>
+    <message>
+        <source>replay comment</source>
+        <translation>评论回复</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>清除</translation>
+    </message>
+</context>
+<context>
     <name>RealtedComponent</name>
     <message>
         <source>Related</source>
@@ -239,10 +285,6 @@
     <message>
         <source>Create Account</source>
         <translation>创建账号</translation>
-    </message>
-    <message>
-        <source>User Name</source>
-        <translation>用户名</translation>
     </message>
     <message>
         <source>Nick Name</source>
@@ -315,7 +357,7 @@
     </message>
     <message>
         <source>Start logout</source>
-        <translation>正在注销</translation>
+        <translation>即将注销</translation>
     </message>
 </context>
 <context>

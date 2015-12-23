@@ -18,6 +18,13 @@ Page{
        id:listmodel;
    }
 
+   onStatusChanged: {
+           if (status == PageStatus.Active) {
+               if (pageStack._currentContainer.attachedContainer == null) {
+                   pageStack.pushAttached(Qt.resolvedUrl("NotificationPage.qml"))
+               }
+           }
+       }
 
     SilicaFlickable{
         id:flick

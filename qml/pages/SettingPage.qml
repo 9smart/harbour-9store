@@ -23,8 +23,8 @@ Page{
                 id:user_avatar
                 anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width/4
-                height: parent.width/4
+                width: parent.width/5
+                height: parent.width/5
                 smooth: true
                 cacheurl: user.avatar_hd
                 maskSource: "../img/mask.bmp"

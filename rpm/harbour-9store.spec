@@ -8,12 +8,8 @@ Name:       harbour-9store
 # >> macros
 # << macros
 
-%{!?qtc_qmake:%define qtc_qmake %qmake}
-%{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
-%{!?qtc_make:%define qtc_make make}
-%{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    9smart shop
-Version:    0.1
+Version:    0.2
 Release:    2
 Group:      Qt/Qt
 License:    LICENSE
@@ -43,7 +39,7 @@ Short description of my SailfishOS Application
 # >> build pre
 # << build pre
 
-%qtc_qmake5
+qmake -qt=5 MEEGO_EDITION=nemo
 
 %qtc_make %{?_smp_mflags}
 
@@ -52,6 +48,9 @@ Short description of my SailfishOS Application
 
 %install
 rm -rf %{buildroot}
+make INSTALL_ROOT=%{buildroot} install
+mkdir -p %{buildroot}/usr/share/%{name}/qml/py
+cp qml/py/*.py %{buildroot}/usr/share/%{name}/qml/py/
 # >> install pre
 # << install pre
 %qmake5_install
@@ -68,6 +67,7 @@ desktop-file-install --delete-original       \
 
 
 %post
+chmod a+x /usr/share/harbour-9store/qml/py/jobs.py
 systemctl start harbour-9store.timer
 systemctl enable harbour-9store.timer
 systemctl start harbour-9store.service
@@ -85,6 +85,8 @@ systemctl disable harbour-9store.service
 rm /etc/systemd/system/harbour-9store.timer
 rm /etc/systemd/system/harbour-9store.service
 rm -rf /usr/share/harbour-9store
+rm -rf /home/nemo/.local/share/harbour-9store/harbour-9store/QML/OfflineStorage/Databases/*.sqlite
+rm -rf /home/nemo/.local/share/harbour-9store/harbour-9store/QML/OfflineStorage/Databases/*.ini
 else
 if [ $1 = 1 ]; then
     // Do stuff specific to upgrades

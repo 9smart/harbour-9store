@@ -12,7 +12,9 @@
 # The name of your application
 TARGET = harbour-9store
 
-CONFIG += sailfishapp
+targer.path = /usr/bin
+
+CONFIG += sailfishapp sailfishapp_no_deploy_qml
 
 PKGCONFIG += mlite5
 
@@ -31,17 +33,13 @@ SOURCES += src/harbour-9store.cpp \
 
 QT += network quick qml dbus
 
-RESOURCES += harbour-9store.qrc
+
 
 #SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 
 
-# to disable building translations every time, comment out the
-# following CONFIG line
-CONFIG += sailfishapp_i18n
-TRANSLATIONS += translations/harbour-9store-de.ts \
-                translations/harbour-9store-zh_CN.ts
+
 
 HEADERS += \
     src/desktopfilemodel.h \
@@ -63,6 +61,7 @@ OTHER_FILES += \
     qml/pages/Signalcenter.qml \
     qml/pages/UserCenter.qml \
     qml/pages/WelcomePage.qml \
+    qml/pages/NotificationPage.qml \
     qml/harbour-9store.qml \
     harbour-9store.desktop \
     rpm/harbour-9store.yaml \
@@ -90,14 +89,13 @@ OTHER_FILES += \
     qml/pages/components/TextCollapsible.qml \
     qml/pages/components/WelcomeBoxBackground.qml \
     qml/pages/components/WelcomeFeedItem.qml \
+    qml/pages/components/NotificationsComponent.qml \
+    qml/pages/components/DetailLabelText.qml \
+    qml/pages/AppCategory.qml \
+    qml/pages/components/CircleCacheImage.qml \
+    qml/pages/components/ReplayCommentsComponent.qml \
     qml/pages/model/SysInfo.qml \
     qml/pages/model/User.qml \
-    qml/js/base64.js \
-    qml/js/des.js \
-    qml/js/login.js \
-    qml/js/main.js \
-    qml/js/md5.js \
-    qml/js/Setting.js \
     qml/cover/CoverPage.qml \
     qml/py/__init__.py \
     qml/py/basedir.py \
@@ -106,13 +104,24 @@ OTHER_FILES += \
     qml/py/mypy.py \
     qml/py/rpms.py \
     qml/py/sysinfo.py \
-    qml/py/*.sh \
     harbour-9store.service \
     harbour-9store.timer
 
-DISTFILES += \
-    qml/pages/components/DetailLabelText.qml \
-    qml/pages/components/CanvasImage.qml \
-    qml/pages/AppCategory.qml \
-    qml/pages/components/CircleCacheImage.qml \
-    qml/pages/components/ReplayCommentsComponent.qml
+!sailfishapp_no_deploy_qml {
+    qml.files = qml
+    qml.path = /usr/share/$${TARGET}
+    INSTALLS += qml
+}
+# to disable building translations every time, comment out the
+# following CONFIG line
+CONFIG += sailfishapp_i18n
+TRANSLATIONS += translations/harbour-9store-de.ts \
+                translations/harbour-9store-zh_CN.ts
+
+pyo.files += qml/py/*.py
+pyo.path = /usr/share/$${TARGET}/qml/py
+
+INSTALL += target
+
+RESOURCES += \
+     harbour-9store.qrc

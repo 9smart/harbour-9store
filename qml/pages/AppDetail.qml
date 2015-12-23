@@ -92,7 +92,8 @@ Page{
 
     SilicaFlickable{
         id:sfl
-        contentHeight: detailComp.height+Theme.paddingLarge*3+header.height
+        contentHeight: detailComp.height + Theme.paddingLarge * 3
+                        + appicon.height + batingbox.heght
         //contentWidth: sfl.width
         anchors.fill: parent
         VerticalScrollDecorator {}

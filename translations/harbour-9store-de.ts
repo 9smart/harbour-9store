@@ -122,11 +122,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UnInstall</source>
+        <source>Start uninstall %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Start uninstall %1</source>
+        <source>Installing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uninstalling</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -224,6 +236,40 @@
     </message>
 </context>
 <context>
+    <name>NotificationPage</name>
+    <message>
+        <source>Show History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Unread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No notification now,try to discuss with other Sailors</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NotificationsComponent</name>
+    <message>
+        <source>comment app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>replay comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RealtedComponent</name>
     <message>
         <source>Related</source>
@@ -238,10 +284,6 @@
     <name>RegisterComponent</name>
     <message>
         <source>Create Account</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

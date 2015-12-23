@@ -1,7 +1,7 @@
 .pragma library
 Qt.include("des.js");
 Qt.include("base64.js")
-Qt.include("qrc:/qml/js/api.js")
+Qt.include("api.js")
 var signalcenter;
 var utility;
 var userData
@@ -443,6 +443,3 @@ function registerResult(oritxt){
         signalcenter.registerFailed(obj.error)
     }
 }
-
-
-

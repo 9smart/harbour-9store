@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 Item {
     id: scorebox
-    property int score: 5
+    property real score: 5
     property bool optional:  false;
     Loader {
         id: loader
@@ -26,7 +26,12 @@ Item {
                             return "../../img/Score_2.png";
                         else return "../../img/Score_3.png"
                     }
-
+                 MouseArea{
+                    anchors.fill: parent;
+                    enabled: optional;
+                    onClicked: {
+                     score=index+1;
+                   }
                 }
             }
         }

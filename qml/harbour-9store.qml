@@ -37,6 +37,7 @@ import "pages/components"
 import "pages/model"
 import "js/login.js" as UserData
 import "js/main.js" as Script
+import "js/setting.js" as Setting
 import org.nemomobile.notifications 1.0
 import org.coderus.powermenu.desktopfilemodel 1.0
 import org.nemomobile.configuration 1.0
@@ -273,7 +274,7 @@ ApplicationWindow
         signal progress(string per)
         signal status(string str,string rpmname,string version)
         Component.onCompleted: {
-            addImportPath(Qt.resolvedUrl('./py'));
+            addImportPath('/usr/share/harbour-9store/qml/py');
             py.importModule('mypy', function () {
             });
             py.importModule('rpms', function () {
@@ -412,5 +413,6 @@ ApplicationWindow
     Component.onCompleted: {
         Script.signalcenter = signalCenter;
         UserData.initialize()
+        Setting.initialize()
     }
 }

@@ -49,7 +49,7 @@ Page{
                id:userPic
                width:Screen.width/6 - Theme.paddingMedium
                height:width
-               cacheurl: author.avatar
+               cacheurl: author.avatar+"/hd"
                smooth: true;
                cache: true
                anchors {

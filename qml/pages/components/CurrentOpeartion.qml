@@ -41,6 +41,7 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
+               installButton.text = qsTr("Installing")
                var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
                console.log("url:"+downloadurl)
                downbar = true;
@@ -57,6 +58,7 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
+              upgradeButton.text = qsTr("Upgrading")
                var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
                console.log("url:"+downloadurl)
                py.newdownload(downloadurl,rpmname,version);
@@ -66,12 +68,13 @@ Item{
 
         Button{
             id:uninstallButton
-            text:qsTr("UnInstall")
+            text:qsTr("Uninstall")
             visible: !installButton.visible
             anchors{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
+                uninstallButton.text = qsTr("Uninstalling")
                 remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
                     py.uninstallRpm(rpmname,version);
                 },3000);
@@ -104,6 +107,9 @@ Item{
         onCurrentAppmanaged:{
             downbar = false;
             console.log(result)
+            installButton.visible = false
+            upgradeButton.visible = false
+            uninstallButton.visible =  false
             switch(result){
             case ("Install"):
                 installButton.visible = true;

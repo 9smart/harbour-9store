@@ -72,7 +72,7 @@ def saveNotifications(notice_list):
         conn = sqlite3.connect(getDbname())
         cur = conn.cursor()
         cur.execute('''CREATE TABLE IF NOT EXISTS NotificationData
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT, json text) ''')
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT, json text,status INTEGER DEFAULT 0) ''')
         sql = "insert into NotificationData(json) values ('%s') "
         for i in notice_list:
             cur.execute(sql % json.dumps(i))
@@ -80,7 +80,7 @@ def saveNotifications(notice_list):
     except Exception as e:
         print(e)
     conn.close()
-    
+
 def query(url):
     headers = ("Referer","http://www.9smart.cn/")
     data = ""
