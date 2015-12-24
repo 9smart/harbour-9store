@@ -62,5 +62,14 @@
         <file>qml/pages/components/NotificationsComponent.qml</file>
         <file>qml/pages/components/CurrentOpeartion.qml</file>
         <file>qml/harbour-9store.qml</file>
+        <file>qml/pages/FirstOpenSplash.qml</file>
+        <file>qml/img/FirstOpen/011.jpg</file>
+        <file>qml/img/FirstOpen/012.png</file>
+        <file>qml/img/FirstOpen/021.jpg</file>
+        <file>qml/img/FirstOpen/022.png</file>
+        <file>qml/img/FirstOpen/031.png</file>
+        <file>qml/img/FirstOpen/032.jpg</file>
+        <file>qml/img/FirstOpen/033.png</file>
+        <file>qml/img/FirstOpen/034.png</file>
     </qresource>
 </RCC>

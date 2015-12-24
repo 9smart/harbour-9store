@@ -68,6 +68,7 @@ OTHER_FILES += \
     qml/pages/LoginDialog.qml \
     qml/pages/RegisterPage.qml \
     qml/pages/SearchApp.qml \
+    qml/pages/FirstOpenSplash.qml \
     qml/pages/SettingPage.qml \
     qml/pages/ShortcutsPage.qml \
     qml/pages/Signalcenter.qml \

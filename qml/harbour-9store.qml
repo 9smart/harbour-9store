@@ -84,8 +84,24 @@ ApplicationWindow
     initialPage: Component {
         Page{
             id:splashPage
+
+            Component.onCompleted: {
+                var flag = Setting.firstLoad()
+                if(flag){
+                    firstopen.visible = true;
+                }else{
+                    splash.visible = true;
+                    timerDisplay.running = true;
+                }
+            }
+
+            FirstOpenSplash{
+                id:firstopen
+            }
+
             SilicaFlickable {
                 id: splash
+                visible: false
                 anchors.fill:parent
                 Item{
                     anchors.fill: parent
@@ -145,9 +161,13 @@ ApplicationWindow
 
                 NumberAnimation on opacity {duration: 500}
 
+
+          }
             Timer {
                 id: timerDisplay
-                running: true; repeat: false; triggeredOnStart: false
+                running: false;
+                repeat: false;
+                triggeredOnStart: false
                 interval: 2 * 1000
                 onTriggered: {
                     splash.visible = false;
@@ -157,7 +177,6 @@ ApplicationWindow
 
                 }
             }
-          }
         }
     }
 
