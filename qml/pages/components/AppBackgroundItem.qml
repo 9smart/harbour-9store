@@ -12,6 +12,8 @@ BackgroundItem {
             truncationMode: TruncationMode.Elide
             anchors.horizontalCenter: parent.horizontalCenter
             maximumLineCount: 1
+            color: Theme.highlightColor
+            opacity:0.8
             font {
                 pixelSize: Theme.fontSizeMedium
                 family: Theme.fontFamilyHeading

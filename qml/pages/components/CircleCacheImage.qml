@@ -15,7 +15,12 @@ MyImage{
          addImportPath('/usr/share/harbour-9store/qml/py'); // adds import path to the directory of the Python script
          imgpy.importModule('image', function () {
                 call('image.cacheImg',[cacheurl],function(result){
-                     thumbnail.source = "file:///"+result;
+                    if(!result){
+                        thumbnail.source = "file:///usr/share/harbour-9store/qml/img/default_avatar.png"
+                    }else{
+                        thumbnail.source = "file:///"+result;
+                    }
+
                      waitingIcon.visible = false;
                 });
        })

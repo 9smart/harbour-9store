@@ -39,10 +39,10 @@ def cacheImg(url):
     if os.path.exists(cachedFile):
         pass
     else:
-        downloadImg(cachedFile,url)
-        #default_avatar = downloadImg(cachedFile,url)
-        #if default_avatar == "default":
-            #return "/usr/share/harbour-9store/img/default_avatar.png"
+        #downloadImg(cachedFile,url)
+        default_avatar = downloadImg(cachedFile,url)
+        if default_avatar == "default":
+            return ""
     #判断图片格式
     return cachedFile
 
@@ -54,11 +54,11 @@ def cacheImg(url):
 def downloadImg(downname,downurl):
     try:
         urllib.request.urlretrieve(downurl,downname)
-        return ""
     except urllib.error.HTTPError:
         return "default"
     except urllib.error.ContentTooShortError:
         return ""
+    return ""
 
 def clearImg():
     shutil.rmtree(cachePath)

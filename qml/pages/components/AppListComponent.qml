@@ -40,6 +40,7 @@ BackgroundItem{
         width: parent.width-apppic.width-Theme.paddingSmall
         font.pixelSize: Theme.fontSizeMedium
         color: Theme.highlightColor
+        opacity:0.8
         font.bold: true
         //truncationMode: TruncationMode.Fade
         horizontalAlignment: Text.AlignLeft

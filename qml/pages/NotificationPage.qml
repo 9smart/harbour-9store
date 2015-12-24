@@ -35,7 +35,7 @@ import "components"
 import "model"
 Page{
     id:notifylist
-    property bool showhistory:false
+    property bool showhistory:true
     ListModel {
         id:notifyModel
     }
@@ -47,8 +47,8 @@ Page{
                      id:pulldown
                      text:showhistory?qsTr("Show History"):qsTr("Show Unread")
                      onClicked: {
+                         Notify.getNotifyData(showhistory?1:0);
                          showhistory=!showhistory
-                         Notify.getNotifyData(showhistory?-1:0);
                      }
                  }
              }

@@ -115,6 +115,7 @@ BackgroundItem{
             onClicked:{
                 Script.clearNotifyData(_id)
                 notifyModel.remove(index)
+                contextMenu.hide()
             }
         }
     }

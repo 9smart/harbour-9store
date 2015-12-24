@@ -27,8 +27,10 @@ function getNotifyData(status) {
 }
 
 function clearNotifyData(id){
+    console.log("id:"+id)
     var db = getDatabase();
     db.transaction(function(tx) {
-        var rs = tx.executeSql('update NotificationData set status = -1 where id = ? ;',[id]);
+        var rs = tx.executeSql('update NotificationData set status = 1 where id = ? ;',[id]);
+        console.log(rs.rowsAffected)
     });
 }
