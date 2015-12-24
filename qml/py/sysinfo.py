@@ -7,8 +7,25 @@ Created on 2015年12月16日
 '''
 import platform
 
+#/etc/hw-release
+propFile= open("/etc/sbj-release", "r" )
+propDict= {}
+for propLine in propFile:
+    propDef= propLine.strip()
+    if len(propDef) == 0:
+        continue
+    if propDef[0] in ( '!', '#' ):
+        continue
+    punctuation= [ propDef.find(c) for c in ':= ' ] + [ len(propDef) ]
+    found= min( [ pos for pos in punctuation if pos != -1 ] )
+    name= propDef[:found].rstrip()
+    value= propDef[found:].lstrip(":= ").rstrip()
+    propDict[name]= value
+propFile.close()
+
 def getSysinfo():
-    phoneName = platform.uname().node
+    #phoneName = platform.uname().node
+    phoneName = propDict.get("NAME","Sailfish")
     osType = platform.uname().system
     cpuModel = platform.uname().processor
     if "86" in cpuModel:
