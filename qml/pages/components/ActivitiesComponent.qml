@@ -74,8 +74,12 @@ Item{
                 id: mouseArea;
                 anchors.fill: parent;
                 onClicked: {
-                    //pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{"appid":_id});
-                    console.log("banner height:"+banner.height)
+                    pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{
+                                       "appid":_id,
+                                       "appname":appname,
+                                       "developer":developer,
+                                       "icon":Script.getAppicon(uploader.uid,_id)
+                                   });
                 }
             }
         }

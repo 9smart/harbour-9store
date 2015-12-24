@@ -68,6 +68,7 @@ Page{
                 text:qsTr("Logout")
                 anchors{
                     top:user_nickname.bottom
+                    topMargin: Theme.paddingLarge
                     horizontalCenter: parent.horizontalCenter
                 }
                 onClicked: {
@@ -77,6 +78,19 @@ Page{
                     },3000);
                 }
             }
+//           Item{width:1;height:1}
+//           Button{
+//               id:check
+//               text:qsTr("Check Update")
+//               anchors{
+//                   top:logout.bottom
+//                   topMargin: Theme.paddingLarge
+//                   horizontalCenter: parent.horizontalCenter
+//               }
+//               onClicked: {
+//                   py.versionCompare(rpmname,version)
+//               }
+//           }
         }
 
     }

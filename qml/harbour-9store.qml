@@ -46,7 +46,7 @@ import org.nemomobile.dbus 2.0
 ApplicationWindow
 {
     id:window
-    property string version:"0.5.1";
+    property string version:"0.2-3";
     property bool loading:false;
     property alias user: user;
     property alias sysinfo:sysinfo;
@@ -313,7 +313,6 @@ ApplicationWindow
 
 
         onStatus:{
-            console.log("status:"+rpmname+","+version)
             afterOpera(rpmname,version);
             parseMsg(str);
         }

@@ -93,7 +93,7 @@ Item{
 
                 remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
                     uninstallButton.text = qsTr("Uninstalling")
-                    uninstallButton.enable = false
+                    uninstallButton.enabled = false
                     py.uninstallRpm(rpmname,version);
                 },3000);
 

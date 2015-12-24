@@ -193,7 +193,7 @@ Item{
         height: Theme.itemSizeSmall +Theme.paddingMedium
         width: parent.width
         id:commentsItem
-        enabled: commentsModel.count > 0
+        //enabled: commentsModel.count > 0
         opacity: enabled?1:0.7
         anchors{
             top:oteherAppsItem.bottom

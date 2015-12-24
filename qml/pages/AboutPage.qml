@@ -84,7 +84,7 @@ Page {
                 label: "开发团队"
                 text: "Qshen目前正在负责塞班3黑莓以及米狗系统下的久店开发与维护。<br/>"+
                       "沛秦目前负责久店的S60V5版的移植和适配。<br/>Birdzhang目前负责久店的旗鱼版开发。<br/>梦梦目前负责久店的图标设计。"+
-                      "<br/>雨后星辰目前负责久闻的开发及Ubuntu版的久店开发。<br/>掌叔目前负责久店的服务器端开发与web平台的搭建。"
+                      "<br/>掌叔目前负责久店的服务器端开发与web平台的搭建。"
 
             }
             Item {width: 1;height: 1}
@@ -103,8 +103,7 @@ Page {
                     margins: Theme.paddingLarge
                 }
                 label: "目前成果"
-                text: "久店（9Store）小众系统应用商店，塞班版，米狗版，旗鱼版开发中。<br/>久闻（9News）小众系"+
-                      "统相关最新资讯。"
+                text: "久店（9Store）小众系统应用商店，塞班版，米狗版，旗鱼版。"
 
             }
             Item {width: 1;height: 1}

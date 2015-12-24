@@ -57,6 +57,14 @@
         <source>Add comment&amp;Rate</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No comments yet,pull down to comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No comments yet,hold and click to comment</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppList</name>
@@ -461,6 +469,10 @@
     </message>
     <message>
         <source>All Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

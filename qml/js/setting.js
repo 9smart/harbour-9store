@@ -10,6 +10,10 @@ function initialize() {
                 function(tx) {
                     tx.executeSql('CREATE TABLE IF NOT EXISTS NotificationData(id VARCHAR(60) PRIMARY KEY, json text,status INTEGER DEFAULT 0);');
                 });
+    db.transaction(
+                function(tx) {
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS Splash(id integer PRIMARY KEY);');
+                });
 }
 
 var notifyModel;
@@ -31,5 +35,29 @@ function clearNotifyData(id){
     var db = getDatabase();
     db.transaction(function(tx) {
         var rs = tx.executeSql('update NotificationData set status = 1 where id = ? ;',[id]);
+    });
+}
+
+//判断首次启动
+
+var flag=true;
+function firstLoad(){
+    var db = getDatabase();
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('SELECT * from Splash;');
+
+        if(rs.rows.length >0){
+            flag = false;
+        }else{
+            flag = true;
+        }
+    });
+   return flag;
+}
+
+function upLoad(){
+    var db = getDatabase();
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('insert into Splash values(1);');
     });
 }

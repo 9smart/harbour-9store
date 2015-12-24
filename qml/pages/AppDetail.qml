@@ -83,7 +83,7 @@ Page{
 
 
     onVersionChanged:{
-         py.versionCompare(rpmname,version)
+        py.versionCompare(rpmname,version)
     }
 
     SilicaFlickable{
@@ -93,7 +93,7 @@ Page{
         VerticalScrollDecorator {flickable:sfl}
         clip:true
 
-       PageHeader {
+        PageHeader {
             id:header
             title: appname
             description: developer
@@ -101,8 +101,8 @@ Page{
                 right:appicon.left
                 rightMargin: Theme.paddingMedium
             }
-         }
-       CacheImage{
+        }
+        CacheImage{
             id:appicon
             asynchronous: true
             cacheurl:icon//Script.getAppicon(uploaderuid,appid)
@@ -190,7 +190,7 @@ Page{
             cellHeight: cellWidth
             cacheBuffer: 2000;
             delegate: AppBackgroundItem {
-                        }
+            }
         }
     }
     Page{
@@ -209,9 +209,9 @@ Page{
                     text:qsTr("Add comment&Rate")
                     onClicked: {
                         pageStack.push(Qt.resolvedUrl("./components/SubmitCommentComponent.qml"),
-                                                                {"parentpage":commentsPage,
-                                                                  "appid":appid
-                                                                })
+                                       {"parentpage":commentsPage,
+                                           "appid":appid
+                                       })
                     }
                 }
             }
@@ -244,7 +244,7 @@ Page{
                             text:qsTr("Next Page")
                             visible:nextpage != ""
                             onClicked: {
-                               Script.getComment(appid,nextpage)
+                                Script.getComment(appid,nextpage)
                             }
                         }
                     }
@@ -253,6 +253,10 @@ Page{
             }
 
             VerticalScrollDecorator {}
+            ViewPlaceholder{
+                enabled: commentsView.count == 0
+                text:qsTr("No comments yet,pull down to comment")
+            }
         }
     }
 
@@ -260,6 +264,7 @@ Page{
         id:repcommentsPage
 
         SilicaListView {
+            id:repcommentsView
             header:PageHeader {
                 title: qsTr("Comments")
             }
@@ -268,6 +273,10 @@ Page{
             anchors.fill: parent
             delegate: CommentsComponent{}
             VerticalScrollDecorator {}
+            ViewPlaceholder{
+                enabled: repcommentsView.count == 0
+                text:qsTr("No comments yet,hold and click to comment")
+            }
         }
     }
     Page{
@@ -319,7 +328,7 @@ Page{
                             text:qsTr("Next Page")
                             visible:author_nextpage != ""
                             onClicked: {
-                               Script.getrelatedlist(sysinfo.os_type,category,author_nextpage,pagesize)
+                                Script.getrelatedlist(sysinfo.os_type,category,author_nextpage,pagesize)
                             }
                         }
                     }
@@ -329,13 +338,14 @@ Page{
     }
 
     Component.onCompleted: {
-       Script.infoPage = showappdetail
-       Script.commentmodel = commentsModel
-       Script.getinfo(appid)
-       Script.getDownloadUrl(appid,user.auth,sysinfo.cpuModel)
-       Script.getComment(appid,comm_nextpage)
-       Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
-       Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
+
+        Script.infoPage = showappdetail
+        Script.commentmodel = commentsModel
+        Script.getinfo(appid)
+        Script.getDownloadUrl(appid,user.auth,sysinfo.cpuModel)
+        Script.getComment(appid,comm_nextpage)
+        Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
+        Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
 
     }
 

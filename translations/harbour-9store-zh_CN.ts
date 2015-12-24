@@ -57,6 +57,14 @@
         <source>Add comment&amp;Rate</source>
         <translation>添加评论&amp;评分</translation>
     </message>
+    <message>
+        <source>No comments yet,pull down to comment</source>
+        <translation>暂无评论，下来菜单进行评论</translation>
+    </message>
+    <message>
+        <source>No comments yet,hold and click to comment</source>
+        <translation>暂无回复，长按来回复</translation>
+    </message>
 </context>
 <context>
     <name>AppList</name>
@@ -214,7 +222,7 @@
     </message>
     <message>
         <source>app</source>
-        <translation type="unfinished"></translation>
+        <translation>应用</translation>
     </message>
 </context>
 <context>
@@ -462,6 +470,10 @@
     <message>
         <source>Apps</source>
         <translation>应用</translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished">通知</translation>
     </message>
 </context>
 <context>

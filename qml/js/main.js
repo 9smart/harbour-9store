@@ -149,9 +149,7 @@ function loadfeatured(oritxt){
 }
 
 function getcover(system){
-    //var url = getPoster(system);
-    var url = "http://api.9smart.cn/apps/getPoster";
-    console.log("cover:"+url)
+    var url = getPoster(system);
     sendWebRequest(url,loadcover,"GET","");
 }
 function loadcover(oritxt){
@@ -264,6 +262,8 @@ function loadinfo(oritxt){
         infoPage.comment_num = obj.app.comment_num;
         infoPage.dateline = obj.app.dateline;
         infoPage.uploaderuid = obj.app.uploader.uid;
+        infoPage.scores = obj.app.scores;
+        infoPage.score_num = obj.app.score_num;
         var size = obj.app.size?parseInt(obj.app.size):0;
         var x86size = obj.app.x86size?parseInt(obj.app.x86size):0;
         infoPage.size = getSize(size);
@@ -293,6 +293,7 @@ function loadDownloadUrl(oritxt){
 
 function getrelatedlist(system, category, page, pagesize){
     var url = apps(system, category, "", page, pagesize, "");
+    url = url.replace("?&","?");
     console.log("releatedUrl:"+url)
     sendWebRequest(url,loadrelatedlist,"GET","");
 }
@@ -310,6 +311,7 @@ function loadrelatedlist(oritxt){
 
 function getSpecifiedAuthorList(system, developer, page, pageSize){
     var url = apps(system, "", developer, page, pageSize);
+    url = url.replace("?&","?");
     console.log("SpecifiedUrl:"+url)
     sendWebRequest(url, loadSpecifiedAuthorList, "GET", "");
 }
@@ -331,6 +333,7 @@ function loadSpecifiedAuthorList(oritxt){
 var commentmodel;
 function getComment(appid,page){
     var url = comments(appid, page);
+    url = url.replace("?&","?");
     sendWebRequest(url,loadComment,"GET","");
 }
 function loadComment(oritxt){

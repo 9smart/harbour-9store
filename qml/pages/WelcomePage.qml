@@ -18,13 +18,13 @@ Page{
        id:listmodel;
    }
 
-   onStatusChanged: {
-           if (status == PageStatus.Active) {
-               if (pageStack._currentContainer.attachedContainer == null) {
-                   pageStack.pushAttached(Qt.resolvedUrl("NotificationPage.qml"))
-               }
-           }
-       }
+//   onStatusChanged: {
+//           if (status == PageStatus.Active) {
+//               if (pageStack._currentContainer.attachedContainer == null) {
+//                   pageStack.pushAttached(Qt.resolvedUrl("NotificationPage.qml"))
+//               }
+//           }
+//       }
 
     SilicaFlickable{
         id:flick
@@ -36,10 +36,10 @@ Page{
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
-//            MenuItem {
-//                text: qsTr("My Apps")
-//                onClicked: pageStack.push(Qt.resolvedUrl("ShortcutsPage.qml"))
-//            }
+            MenuItem {
+                text: qsTr("Notifications")
+                onClicked: pageStack.push(Qt.resolvedUrl("NotificationPage.qml"))
+            }
             MenuItem {
                 text: qsTr("Setting")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
@@ -170,6 +170,6 @@ Page{
     Component.onCompleted: {
         Script.mainPage = welcome;
         Script.getfeatured(sysinfo.osType);
-        Script.getcover();//sysinfo.osType
+        Script.getcover(sysinfo.osType);
     }
 }
