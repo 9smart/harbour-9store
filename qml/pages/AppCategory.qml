@@ -68,7 +68,7 @@ Page{
                     truncationMode: TruncationMode.Fade
                     anchors{
                         right: iconid.left
-                        leftMargin: Theme.paddingLarge
+                        rightMargin: Theme.paddingMedium
                         verticalCenter:parent.verticalCenter
                     }
                 }
