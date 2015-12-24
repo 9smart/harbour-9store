@@ -170,7 +170,7 @@
     </message>
     <message>
         <source>dateline</source>
-        <translation>日期</translation>
+        <translation>更新日期</translation>
     </message>
     <message>
         <source>Related Apps (</source>
