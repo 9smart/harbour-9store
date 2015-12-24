@@ -24,7 +24,6 @@ target=HOME+"/Downloads/"
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 def install(rpmpath,rpmname,version):
-    pyotherside.send("status","1")
     p = subprocess.Popen("pkcon -y install-local "+rpmpath,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     #0则安装成功
     retval = p.wait()
@@ -51,12 +50,30 @@ def unistallpkg(rpmname):
     retval = p.wait()
     return p.returncode
 
+def openApp(rpmname):
+    p = subprocess.Popen("dbus-launch --exit-with-session "+rpmname,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    #0则安装成功
+    retval = p.wait()
+    return p.returncode
 
 
 def newdownload(downurl,rpmname,version):
     downname=rpmname+"-"+version+"."+getSysinfo().get("cpuModel")+".rpm";
     if os.path.exists(downname):
-        pyotherside.send("progress",100)
+        #判断是否下载完
+        headers = {
+            	'Range': 'bytes=0-20'
+            }
+        r = urllib.requests.head(downurl,headers = headers)
+        content_length = r.headers.get("Content-Range").split("/")[-1]
+        localfile_length = os.path.getsize(downname)
+        if int(content_length) == (localfile_length):
+            #给一种下载的感觉
+            pyotherside.send("progress",20)
+            pyotherside.send("progress",50)
+            pyotherside.send("progress",100)
+        else:
+            urllib.request.urlretrieve(downurl,target+downname, schedule)
     else:
         urllib.request.urlretrieve(downurl,target+downname, schedule)
     install(target+downname,rpmname,version)
@@ -90,6 +107,3 @@ def versionCompare(rpmname,versioncode):
         return "Upgrade"
     else:
         return "Uninstall"
-
-
-

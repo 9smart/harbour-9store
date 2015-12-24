@@ -63,7 +63,7 @@ Page {
                     margins: Theme.paddingLarge
                 }
                 label: qsTr("Thanks")
-                text: qsTr("Thanks warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!")
+                text: qsTr("Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!")
 
             }
             Item {width: 1;height: 1}

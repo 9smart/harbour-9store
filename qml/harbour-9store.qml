@@ -326,6 +326,12 @@ ApplicationWindow
 
         }
 
+        //注册打开方法
+        function openapp(rpmname){
+            call('mypy.openApp',[rpmname],function(result){
+                return result
+            })
+        }
 
         //注册检查是否需要更新方法
 

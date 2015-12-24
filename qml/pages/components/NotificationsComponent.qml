@@ -115,11 +115,15 @@ BackgroundItem{
             onClicked:{
                 Script.clearNotifyData(_id)
                 notifyModel.remove(index)
+                contextMenu.close()
             }
         }
     }
 
     onClicked: {
+      if(showhistory){
+        return;
+      }
       contextMenu.show(showcomments)
     }
 

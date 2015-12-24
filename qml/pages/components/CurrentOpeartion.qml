@@ -34,6 +34,19 @@ Item{
         }
         spacing: Theme.paddingMedium
         Button{
+            id:openButton
+            text:qsTr("Open")
+            visible: uninstallButton.visible && !installButton.visible
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+            }
+            onClicked:{
+               installButton.text = qsTr("Opening")
+               py.openapp(rpmname);
+            }
+
+        }
+        Button{
             id:installButton
             text:qsTr("Install")
             visible: false

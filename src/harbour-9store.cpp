@@ -18,6 +18,6 @@ int main(int argc, char *argv[])
     view->engine()->addImportPath("/usr/share/harbour-9store/qml");
     view->setSource(QUrl("qrc:/qml/harbour-9store.qml"));
     view->show();
-
+    QObject::connect((QObject*)view->engine(), SIGNAL(quit()), app, SLOT(quit()));
     return app->exec();
 }
