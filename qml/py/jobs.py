@@ -40,13 +40,13 @@ def notify(title):
                  "/usr/share/icons/hicolor/86x86/apps/harbour-9store.png",
                  str(title),
                  "9Store notification",
-                 dbus.Array(),
+                 ["x-nemo-remote-action-harbour-9store"],
                  dbus.Dictionary({
                                      "desktop-entry":"harbour-9store.desktop",
                                      "x-nemo-preview-body": "9Store notification",
                                      "x-nemo-preview-summary":str(title) },
                                       signature='sv'),
-                                      0)
+                                      3600)
 
 def getAuth():
     try:
@@ -67,8 +67,8 @@ def saveNotifications(notice_list):
         conn = sqlite3.connect(getDbname())
         cur = conn.cursor()
         cur.execute('''CREATE TABLE IF NOT EXISTS NotificationData
-                 (id text, json text,status INTEGER DEFAULT 0) ''')
-        sql = "insert into NotificationData(id,json) values ('%s','%s') "
+                 (id VARCHAR(60) PRIMARY KEY, json text,status INTEGER DEFAULT 0) ''')
+        sql = "insert OR IGNORE into NotificationData(id,json) values ('%s','%s')  "
         for i in notice_list:
             cur.execute(sql % (i["_id"],json.dumps(i)))
         conn.commit()

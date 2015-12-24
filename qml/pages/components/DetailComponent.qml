@@ -10,7 +10,8 @@ Item{
 
     Label{
         id:infocate
-        text:type+"->"+category
+        text:type == "app"?qsTr("type"):qsTr("game")+
+                    ("->"+category)
         font.pixelSize: Theme.fontSizeSmall
         horizontalAlignment: Text.AlignLeft
         anchors {

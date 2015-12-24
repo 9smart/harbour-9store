@@ -12,8 +12,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
-        <translation>感谢warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder这些软件，感谢你！</translation>
+        <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
+        <translation>感谢warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder这些软件，感谢你！</translation>
     </message>
 </context>
 <context>
@@ -170,7 +170,7 @@
     </message>
     <message>
         <source>dateline</source>
-        <translation>日期</translation>
+        <translation>更新日期</translation>
     </message>
     <message>
         <source>Related Apps (</source>

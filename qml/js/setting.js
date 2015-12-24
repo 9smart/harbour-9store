@@ -8,7 +8,7 @@ function initialize() {
     var db = getDatabase();
     db.transaction(
                 function(tx) {
-                    tx.executeSql('CREATE TABLE IF NOT EXISTS NotificationData(id text, json text,status INTEGER DEFAULT 0);');
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS NotificationData(id VARCHAR(60) PRIMARY KEY, json text,status INTEGER DEFAULT 0);');
                 });
 }
 
@@ -31,6 +31,5 @@ function clearNotifyData(id){
     var db = getDatabase();
     db.transaction(function(tx) {
         var rs = tx.executeSql('update NotificationData set status = 1 where id = ? ;',[id]);
-        console.log(rs.rowsAffected)
     });
 }
