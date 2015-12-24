@@ -50,7 +50,7 @@ Short description of my SailfishOS Application
 rm -rf %{buildroot}
 make INSTALL_ROOT=%{buildroot} install
 mkdir -p %{buildroot}/usr/share/%{name}/qml/py
-
+mkdir -p %{buildroot}/usr/share/%{name}/qml/img
 # >> install pre
 # << install pre
 %qmake5_install
@@ -85,8 +85,7 @@ systemctl disable harbour-9store.service
 rm /etc/systemd/system/harbour-9store.timer
 rm /etc/systemd/system/harbour-9store.service
 rm -rf /usr/share/harbour-9store
-rm -rf /home/nemo/.local/share/harbour-9store/harbour-9store/QML/OfflineStorage/Databases/*.sqlite
-rm -rf /home/nemo/.local/share/harbour-9store/harbour-9store/QML/OfflineStorage/Databases/*.ini
+rm -rf /home/nemo/.local/share/harbour-9store/harbour-9store/QML/
 else
 if [ $1 = 1 ]; then
     // Do stuff specific to upgrades

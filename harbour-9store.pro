@@ -30,6 +30,12 @@ pyo.files += qml/py/*.py
 
 INSTALLS += pyo
 
+
+ava.path = /usr/share/harbour-9store/qml/img
+ava.files += qml/img/default_avatar.png
+
+INSTALLS += ava
+
 SOURCES += src/harbour-9store.cpp \
     src/desktopfilemodel.cpp \
     src/desktopfilemodelplugin.cpp \

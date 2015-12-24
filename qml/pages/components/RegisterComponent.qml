@@ -121,8 +121,12 @@ Item {
                 EnterKey.enabled: text || inputMethodComposing
                 EnterKey.highlighted: !errorHighlight
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                //EnterKey.onClicked: reason.focus = true
-                EnterKey.onClicked: registerButton.focus = true
+                EnterKey.onClicked: {
+                    errorLabel.visible = false;
+                    registerButton.enabled = false;
+                    busyIndicator.running = true;
+                    Script.registeR(email.text,nickname.text,password.text,confirmPassword.text,reason.text)
+                }
 
             }
             TextField {
@@ -152,6 +156,7 @@ Item {
                      password.text == confirmPassword.text
             onClicked: {
                 errorLabel.visible = false;
+                registerButton.enabled = false;
                 busyIndicator.running = true;
                 Script.registeR(email.text,nickname.text,password.text,confirmPassword.text,reason.text)
 
@@ -180,6 +185,7 @@ Item {
             onRegisterFailed: {
                 busyIndicator.running = false;
                 errorLabel.visible = true;
+                registerButton.enabled = true;
                 errorLabel.text = qsTr("Register fail")+" [ "+fail+" ]. " + qsTr("Please try again.");
             }
         }

@@ -16,7 +16,7 @@ MyImage{
          imgpy.importModule('image', function () {
                 call('image.cacheImg',[cacheurl],function(result){
                     if(!result){
-                        thumbnail.source = "file:///usr/share/harbour-9store/qml/img/default_avatar.png"
+                        thumbnail.source = "file:////usr/share/harbour-9store/qml/img/default_avatar.png"
                     }else{
                         thumbnail.source = "file:///"+result;
                     }
