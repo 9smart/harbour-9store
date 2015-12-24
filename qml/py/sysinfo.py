@@ -8,7 +8,7 @@ Created on 2015年12月16日
 import platform
 
 #/etc/hw-release
-propFile= open("/etc/sbj-release", "r" )
+propFile= open("/etc/hw-release", "r" )
 propDict= {}
 for propLine in propFile:
     propDef= propLine.strip()

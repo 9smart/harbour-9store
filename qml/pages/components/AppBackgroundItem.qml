@@ -62,6 +62,9 @@ BackgroundItem {
             }
         }
         onClicked :{
+            if(loading){
+                return;
+            }
             pageStack.push(Qt.resolvedUrl("../AppDetail.qml"),{
                                "appid":_id,
                                "developer":developer,

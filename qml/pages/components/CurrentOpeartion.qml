@@ -43,6 +43,7 @@ Item{
             onClicked:{
                openButton.text = qsTr("Opening")
                py.openapp(rpmname);
+               openButton.text = qsTr("Opened")
             }
 
         }
@@ -55,7 +56,7 @@ Item{
             }
             onClicked:{
                installButton.text = qsTr("Installing")
-               installButton.enable = false
+               installButton.enabled = false
                var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
                console.log("url:"+downloadurl)
                downbar = true;
@@ -73,7 +74,7 @@ Item{
             }
             onClicked:{
                upgradeButton.text = qsTr("Upgrading")
-               upgradeButton.enable = false
+               upgradeButton.enabled = false
                var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
                console.log("url:"+downloadurl)
                py.newdownload(downloadurl,rpmname,version);
@@ -130,17 +131,17 @@ Item{
             case ("Install"):
                 installButton.text = qsTr("Install")
                 installButton.visible = true;
-                installButton.enable = true;
+                installButton.enabled = true;
                 break;
             case("Upgrade"):
                 upgradeButton.text = qsTr("Upgrade")
                 upgradeButton.visible = true;
-                upgradeButton.enable = true;
+                upgradeButton.enabled = true;
                 break;
             case("Uninstall"):
                 uninstallButton.text = qsTr("Uninstall")
                 uninstallButton.visible = true;
-                uninstallButton.enable = true;
+                uninstallButton.enabled = true;
                 break;
             default:
                 break;

@@ -12,7 +12,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks warehouse,jolla-store,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
+        <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -153,6 +153,18 @@
         <source>Uninstalling</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opened</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DetailComponent</name>
@@ -194,6 +206,14 @@
     </message>
     <message>
         <source>Other Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>app</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>感谢</translation>
     </message>
     <message>
         <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
@@ -153,6 +153,18 @@
         <source>Uninstalling</source>
         <translation>卸载中</translation>
     </message>
+    <message>
+        <source>Open</source>
+        <translation>打开</translation>
+    </message>
+    <message>
+        <source>Opening</source>
+        <translation>打开中</translation>
+    </message>
+    <message>
+        <source>Opened</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DetailComponent</name>
@@ -195,6 +207,14 @@
     <message>
         <source>Other Info</source>
         <translation>其他信息</translation>
+    </message>
+    <message>
+        <source>game</source>
+        <translation>游戏</translation>
+    </message>
+    <message>
+        <source>app</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

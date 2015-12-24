@@ -77,6 +77,9 @@ Page{
                     height: Theme.itemSizeMedium
                     text: qsTr("NewApps")
                     onClicked: {
+                        if(loading){
+                            return;
+                        }
                         pageStack.push(Qt.resolvedUrl("AppList.qml"),
                                        {"query_type":""
                                        });
