@@ -91,6 +91,7 @@ ApplicationWindow
                     firstopen.visible = true;
                 }else{
                     splash.visible = true;
+                    timerDisplay.interval = 2 * 1000;
                     timerDisplay.running = true;
                 }
             }
@@ -168,7 +169,7 @@ ApplicationWindow
                 running: false;
                 repeat: false;
                 triggeredOnStart: false
-                interval: 2 * 1000
+                interval: 0
                 onTriggered: {
                     splash.visible = false;
                     Script.app = window;
