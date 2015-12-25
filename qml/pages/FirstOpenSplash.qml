@@ -18,7 +18,7 @@ Rectangle {
     property real text_32_alpha: 0;
 
     property color background_color: "#70737C";
-    visible: false;
+    //visible: false;
     anchors.fill: parent;
     color: background_color;
     Image{
@@ -49,17 +49,23 @@ Rectangle {
 
     Image{
         id: image_3_1;
-        anchors.left: parent.left;
+        anchors{
+            top:parent.top
+            left: parent.left;
+        }
         width: 624/1080*parent.width
-        fillMode: Image.PreserveAspectFit
+        //fillMode: Image.PreserveAspectFit
         source: "../img/FirstOpen/031.png";
         opacity: image_31_alpha;
     }
     Image{
         id: image_3_2;
         width: 456/1080*parent.width
-        anchors.right: parent.right;
-        fillMode: Image.PreserveAspectFit
+        anchors{
+            top:parent.top
+            right: parent.right;
+        }
+        //fillMode: Image.PreserveAspectFit
         source: "../img/FirstOpen/032.jpg";
         opacity: image_32_alpha;
     }

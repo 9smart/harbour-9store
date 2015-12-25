@@ -142,8 +142,7 @@ Page {
                 }
                 label: "联系方式"
                 text: "QQ群：346578991<br/>"+
-                      "Email：contact@9smart.cn<br/>"+
-                      "官网：www.9smart.cn"
+                      "Email：contact@9smart.cn<br/>"
 
 
             }

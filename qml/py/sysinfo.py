@@ -28,7 +28,7 @@ else:
 
 def getSysinfo():
     #phoneName = platform.uname().node
-    phoneName = propDict.get("NAME","Sailfish").strip('"')
+    phoneName = propDict.get("NAME","SailfishOS").strip('"')
     osType = platform.uname().system
     cpuModel = platform.uname().processor
     if "86" in cpuModel:

@@ -10,7 +10,7 @@ Name:       harbour-9store
 
 Summary:    9smart shop
 Version:    0.2
-Release:    3
+Release:    4
 Group:      Qt/Qt
 License:    LICENSE
 URL:        http://example.org/

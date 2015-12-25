@@ -86,10 +86,14 @@ ApplicationWindow
             id:splashPage
 
             Component.onCompleted: {
+                Setting.initialize()
                 var flag = Setting.firstLoad()
                 if(flag){
+                    splash.visible = false;
                     firstopen.visible = true;
+                    timerDisplay.running = false;
                 }else{
+                    firstopen.visible = false;
                     splash.visible = true;
                     timerDisplay.running = true;
                 }
@@ -168,7 +172,7 @@ ApplicationWindow
                 running: false;
                 repeat: false;
                 triggeredOnStart: false
-                interval: 0
+                interval: 2 * 1000
                 onTriggered: {
                     splash.visible = false;
                     Script.app = window;

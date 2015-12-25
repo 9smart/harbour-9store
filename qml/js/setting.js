@@ -12,7 +12,7 @@ function initialize() {
                 });
     db.transaction(
                 function(tx) {
-                    tx.executeSql('CREATE TABLE IF NOT EXISTS Splash(id integer PRIMARY KEY);');
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS Christmas(id integer PRIMARY KEY);');
                 });
 }
 
@@ -44,9 +44,8 @@ var flag=true;
 function firstLoad(){
     var db = getDatabase();
     db.transaction(function(tx) {
-        var rs = tx.executeSql('SELECT * from Splash;');
-
-        if(rs.rows.length >0){
+        var rs = tx.executeSql('SELECT * from Christmas;');
+        if(rs.rows.length > 0){
             flag = false;
         }else{
             flag = true;
@@ -58,13 +57,13 @@ function firstLoad(){
 function upLoad(){
     var db = getDatabase();
     db.transaction(function(tx) {
-        var rs = tx.executeSql('insert into Splash values(1);');
+        var rs = tx.executeSql('insert into Christmas values(1);');
     });
 }
 
 function reopenLoad(){
     var db = getDatabase();
     db.transaction(function(tx) {
-        var rs = tx.executeSql('delete from Splash;');
+        var rs = tx.executeSql('delete from Christmas;');
     });
 }
