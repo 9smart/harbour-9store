@@ -84,9 +84,6 @@ Page{
 
     onVersionChanged:{
         py.versionCompare(rpmname,version)
-    }
-
-    onRpmnameChanged: {
         py.isopened(rpmname)
     }
 

@@ -473,7 +473,7 @@
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished">通知</translation>
+        <translation>通知</translation>
     </message>
 </context>
 <context>

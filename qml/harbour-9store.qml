@@ -392,6 +392,7 @@ ApplicationWindow
         }
 
     function isopened(rpmname){
+        signalCenter.appisopened("")
         call('mypy.isopened',[rpmname],function(result){
                 signalCenter.appisopened(result)
         })

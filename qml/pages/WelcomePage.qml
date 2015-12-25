@@ -57,10 +57,11 @@ Page{
             width: parent.width
             height: posterItem.height+ newappItem.height + category.height
             anchors.top: header.bottom
+            //banner
             ActivitiesComponent{
                 id:posterItem
                 anchors.top:parent.top
-                width: parent.width
+                width: Screen.width
                 height: Screen.height/4
             }
             Item{
