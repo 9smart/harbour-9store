@@ -92,14 +92,11 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
-
                 remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
                     uninstallButton.text = qsTr("Uninstalling")
                     uninstallButton.enabled = false
                     py.uninstallRpm(rpmname,version);
                 },3000);
-
-
             }
 
         }
@@ -152,7 +149,7 @@ Item{
 
        onAppisopened:{
            console.log("result:"+result)
-            if(result == "yes"){
+            if(result.toString() == "yes"){
                 openButton.text = qsTr("Opened")
                 openButton.enabled = false;
             }else{

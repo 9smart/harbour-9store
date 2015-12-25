@@ -4,7 +4,6 @@ import sys,os
 import subprocess
 import urllib
 import urllib.request
-import requests
 import pyotherside
 from basedir import *
 import logging

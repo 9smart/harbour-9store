@@ -61,3 +61,10 @@ function upLoad(){
         var rs = tx.executeSql('insert into Splash values(1);');
     });
 }
+
+function reopenLoad(){
+    var db = getDatabase();
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('delete from Splash;');
+    });
+}

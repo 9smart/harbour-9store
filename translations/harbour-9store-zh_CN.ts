@@ -15,6 +15,10 @@
         <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
         <translation>感谢warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder这些软件，感谢你！</translation>
     </message>
+    <message>
+        <source>egg opened!</source>
+        <translation>已开启节日彩蛋！</translation>
+    </message>
 </context>
 <context>
     <name>AppCategory</name>
@@ -171,7 +175,7 @@
     </message>
     <message>
         <source>Opened</source>
-        <translation type="unfinished"></translation>
+        <translation>已打开</translation>
     </message>
 </context>
 <context>

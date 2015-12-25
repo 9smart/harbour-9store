@@ -33,11 +33,11 @@ import "components"
 import "../js/setting.js" as Setting
 Page {
     id: aboutPage
+    property int egg: 0
     Item {
         id: aboutInfos
         property string version:window.version
        }
-
     SilicaFlickable {
         id: aboutFlick
         anchors.fill: parent
@@ -124,7 +124,18 @@ Page {
                 label: "欢迎加入"
                 text: "欢迎广大移动平台开发和爱好者加入我们，"+
                       "我们热爱技术是一个团结有爱，充满包容并积极向上的团体。"
-
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        if(egg == 9){
+                            Setting.reopenLoad()
+                            signalCenter.showMessage(qsTr("egg opened!"))
+                            return;
+                        }else{
+                            egg=egg+1;
+                        }
+                    }
+                }
             }
             Item {width: 1;height: 1}
             LabelText {

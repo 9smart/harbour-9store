@@ -15,6 +15,10 @@
         <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>egg opened!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppCategory</name>

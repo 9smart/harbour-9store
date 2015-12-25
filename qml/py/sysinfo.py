@@ -6,7 +6,7 @@ Created on 2015年12月16日
 @author: 0312birdzhang
 '''
 import platform
-
+import os
 propDict= {}
 #/etc/hw-release
 if os.path.exists("/etc/hw-release"):
@@ -24,7 +24,7 @@ if os.path.exists("/etc/hw-release"):
         propDict[name]= value
     propFile.close()
 else:
-    propDict["NAME"] = "Sailfish"
+    propDict["NAME"] = "SailfishEmul"
 
 def getSysinfo():
     #phoneName = platform.uname().node
