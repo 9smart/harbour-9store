@@ -259,11 +259,11 @@ function loadinfo(oritxt){
         infoPage.summary = obj.app.summary;
         infoPage.downloads = obj.app.download_num;
         infoPage.developer = obj.app.developer;
-        infoPage.comment_num = obj.app.comment_num;
+        infoPage.comment_num = obj.app.comment_num?obj.app.comment_num:0;
         infoPage.dateline = obj.app.dateline;
         infoPage.uploaderuid = obj.app.uploader.uid;
-        infoPage.scores = obj.app.scores;
-        infoPage.score_num = obj.app.score_num;
+        infoPage.scores = obj.app.scores?obj.app.scores:0;
+        infoPage.score_num = obj.app.score_num?obj.app.score_num:0;
         var size = obj.app.size?parseInt(obj.app.size):0;
         var x86size = obj.app.x86size?parseInt(obj.app.x86size):0;
         infoPage.size = getSize(size);
@@ -294,7 +294,6 @@ function loadDownloadUrl(oritxt){
 function getrelatedlist(system, category, page, pagesize){
     var url = apps(system, category, "", page, pagesize, "");
     url = url.replace("?&","?");
-    console.log("releatedUrl:"+url)
     sendWebRequest(url,loadrelatedlist,"GET","");
 }
 function loadrelatedlist(oritxt){

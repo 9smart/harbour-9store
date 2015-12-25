@@ -17,6 +17,7 @@ QtObject{
          signal commentSendSuccessful;
          signal commentSendFailed(string errorstring);
          signal currentAppmanaged(string result);
+         signal appisopened(string result);
          function showMessage(msg)
                  {
                   if (msg||false)

@@ -12,8 +12,12 @@
         <translation>感谢</translation>
     </message>
     <message>
-        <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
-        <translation>感谢warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder这些软件，感谢你！</translation>
+        <source>egg opened!</source>
+        <translation>已开启节日彩蛋！</translation>
+    </message>
+    <message>
+        <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!&lt;br/&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -171,7 +175,7 @@
     </message>
     <message>
         <source>Opened</source>
-        <translation type="unfinished"></translation>
+        <translation>已打开</translation>
     </message>
 </context>
 <context>
@@ -473,7 +477,7 @@
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished">通知</translation>
+        <translation>通知</translation>
     </message>
 </context>
 <context>

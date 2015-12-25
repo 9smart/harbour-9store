@@ -91,7 +91,6 @@ ApplicationWindow
                     firstopen.visible = true;
                 }else{
                     splash.visible = true;
-                    timerDisplay.interval = 2 * 1000;
                     timerDisplay.running = true;
                 }
             }
@@ -391,7 +390,13 @@ ApplicationWindow
             })
         }
 
+    function isopened(rpmname){
+        signalCenter.appisopened("")
+        call('mypy.isopened',[rpmname],function(result){
+                signalCenter.appisopened(result)
+        })
 
+    }
         //注册卸载软件方法
         function uninstallRpm(realName,version){
             console.log("starting remove...")

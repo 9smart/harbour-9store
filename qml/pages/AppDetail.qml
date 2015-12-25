@@ -84,6 +84,11 @@ Page{
 
     onVersionChanged:{
         py.versionCompare(rpmname,version)
+        py.isopened(rpmname)
+    }
+    //为了避免从banner点击进入有bug，后面需优化
+    onCategoryChanged: {
+        Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
     }
 
     SilicaFlickable{
@@ -111,11 +116,13 @@ Page{
             height: Screen.width>540 ? (window.width / 6):(window.width / 5)
             Image{
                 anchors.fill: parent;
+                fillMode: Image.PreserveAspectFit;
                 source: "../img/App_icon_Loading.svg";
                 visible: parent.status==Image.Loading;
             }
             Image{
                 anchors.fill: parent;
+                fillMode: Image.PreserveAspectFit;
                 source: "../img/App_icon_Error.svg";
                 visible: parent.status==Image.Error;
             }
@@ -344,7 +351,7 @@ Page{
         Script.getinfo(appid)
         Script.getDownloadUrl(appid,user.auth,sysinfo.cpuModel)
         Script.getComment(appid,comm_nextpage)
-        Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
+
         Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
 
     }

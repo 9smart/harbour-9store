@@ -12,7 +12,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!</source>
+        <source>egg opened!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!&lt;br/&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

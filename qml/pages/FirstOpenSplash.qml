@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../js/setting.js" as Setting
+import "../js/main.js" as Script
+import "../js/login.js" as UserData
 Rectangle {
     id: root;
     property real image_1_alpha: 0;
@@ -48,14 +50,16 @@ Rectangle {
     Image{
         id: image_3_1;
         anchors.left: parent.left;
-        width: sourceSize.width;
+        width: 624/1080*parent.width
+        fillMode: Image.PreserveAspectFit
         source: "../img/FirstOpen/031.png";
         opacity: image_31_alpha;
     }
     Image{
         id: image_3_2;
-        width: sourceSize.width;
+        width: 456/1080*parent.width
         anchors.right: parent.right;
+        fillMode: Image.PreserveAspectFit
         source: "../img/FirstOpen/032.jpg";
         opacity: image_32_alpha;
     }
@@ -367,9 +371,11 @@ Rectangle {
         running: false;
         onRunningChanged: {
             if(running === false){
-                 root.visible = false;
-                 timerDisplay.running = true;
-                 //Setting.upLoad()
+                Script.app = window;
+                Script.userData = UserData;
+                root.visible = false;
+                loadLoginData(UserData.getUserData());
+                Setting.upLoad()
             }
         }
     }
