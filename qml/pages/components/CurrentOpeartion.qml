@@ -7,6 +7,7 @@ Item{
     height: downprogress.height + statusName.height +
             + col.height + Theme.paddingMedium
     signal currentAppmanaged(string result)
+    signal appisopened(string result)
     property bool downbar: false
 
 
@@ -44,6 +45,7 @@ Item{
                openButton.text = qsTr("Opening")
                py.openapp(rpmname);
                openButton.text = qsTr("Opened")
+               openButton.enabled = false;
             }
 
         }
@@ -147,6 +149,16 @@ Item{
                 break;
             }
         }
+
+       onAppisopened:{
+           console.log("result:"+result)
+            if(result == "yes"){
+                openButton.text = qsTr("Opened")
+                openButton.enabled = false;
+            }else{
+                //openButton.visible = true;
+            }
+       }
     }
 
 

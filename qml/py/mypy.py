@@ -57,6 +57,13 @@ def openApp(rpmname):
     retval = p.wait()
     return p.returncode
 
+def isopened(rpmname):
+    p = subprocess.Popen(["ps -ef|grep "+rpmname+"|grep -v grep |wc -l"], shell=True, stdout=subprocess.PIPE).communicate()[0]
+    p = p.decode('utf-8').strip("\n")
+    if int(p) > 0:
+        return "yes"
+    else:
+        return "no"
 
 def newdownload(downurl,rpmname,version):
     downname=rpmname+"-"+version+"."+getSysinfo().get("cpuModel")+".rpm";

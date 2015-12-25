@@ -30,11 +30,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "components"
+import "../js/setting.js" as Setting
 Page {
     id: aboutPage
     Item {
         id: aboutInfos
-        property string version:'0.1'
+        property string version:window.version
        }
 
     SilicaFlickable {

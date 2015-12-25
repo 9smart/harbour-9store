@@ -294,7 +294,6 @@ function loadDownloadUrl(oritxt){
 function getrelatedlist(system, category, page, pagesize){
     var url = apps(system, category, "", page, pagesize, "");
     url = url.replace("?&","?");
-    console.log("releatedUrl:"+url)
     sendWebRequest(url,loadrelatedlist,"GET","");
 }
 function loadrelatedlist(oritxt){

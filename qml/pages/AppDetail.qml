@@ -86,6 +86,14 @@ Page{
         py.versionCompare(rpmname,version)
     }
 
+    onRpmnameChanged: {
+        py.isopened(rpmname)
+    }
+
+    onCategoryChanged: {
+        Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
+    }
+
     SilicaFlickable{
         id:sfl
         contentHeight: appicon.height * 2 + appicon.width/5 + detailComp.height + Theme.paddingLarge * 4
@@ -344,7 +352,7 @@ Page{
         Script.getinfo(appid)
         Script.getDownloadUrl(appid,user.auth,sysinfo.cpuModel)
         Script.getComment(appid,comm_nextpage)
-        Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
+
         Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
 
     }
