@@ -26,6 +26,7 @@ Item{
             }
         }
         model:coverModel
+        clip: true
         delegate: Item {
             implicitWidth: banner.width;
             implicitHeight: banner.height;
