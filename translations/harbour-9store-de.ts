@@ -267,11 +267,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter Username</source>
+        <source>Enter Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter Password</source>
+        <source>Enter Email</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -477,6 +477,10 @@
     </message>
     <message>
         <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

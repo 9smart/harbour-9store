@@ -42,11 +42,12 @@ import org.nemomobile.notifications 1.0
 import org.coderus.powermenu.desktopfilemodel 1.0
 import org.nemomobile.configuration 1.0
 import org.nemomobile.dbus 2.0
+import org.nemomobile.dbus 1.0
 
 ApplicationWindow
 {
     id:window
-    property string version:"0.2-3";
+    property string version:"0.2-4";
     property bool loading:false;
     property alias user: user;
     property alias sysinfo:sysinfo;
@@ -67,7 +68,13 @@ ApplicationWindow
     }
 
 
-
+    DBusInterface {
+            id: ssuDBus
+            busType: DBusInterface.SystemBus
+            destination: 'org.nemo.ssu'
+            path: '/org/nemo/ssu'
+            iface: 'org.nemo.ssu'
+        }
 
     BusyIndicator {
         id: busyIndicator
@@ -371,15 +378,13 @@ ApplicationWindow
         }
 
         function newdownload(downurl,rpmname,version){
-            currname = "downname"
-            console.log("starting download..."+rpmname)
+            currname = rpmname;
+            //console.log("starting download..."+rpmname)
             call('mypy.newdownload',[downurl,rpmname,version],function(result){
                 return result
             })
         }
 
-        //v1 < v2
-        //v1 本地，v2 服务器
         function versionCompare(rpmname,version){
             call('mypy.versionCompare',[rpmname,version],function(result){
                 signalCenter.currentAppmanaged(result);
@@ -390,12 +395,12 @@ ApplicationWindow
             call('sysinfo.getSysinfo',[],function(result){
                 var obj = result
                 sysinfo.cpuModel = obj.cpuModel;
-                sysinfo.phoneName = obj.phoneName;
+                //sysinfo.phoneName = obj.phoneName;
             })
         }
 
     function isopened(rpmname){
-        signalCenter.appisopened("")
+        //signalCenter.appisopened("")
         call('mypy.isopened',[rpmname],function(result){
                 signalCenter.appisopened(result)
         })
@@ -468,5 +473,12 @@ ApplicationWindow
         Script.signalcenter = signalCenter;
         UserData.initialize()
         Setting.initialize()
+        ssuDBus.typedCallWithReturn("displayName", [ {"type": "i", "value": "1"} ],
+                                                            function (type) {
+                                    sysinfo.phoneName = type
+                                })
+
+
     }
 }
+

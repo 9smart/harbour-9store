@@ -33,7 +33,7 @@ import "components"
 import "../js/setting.js" as Setting
 Page {
     id: aboutPage
-    property int egg: 0
+    property int egg: 1
     Item {
         id: aboutInfos
         property string version:window.version

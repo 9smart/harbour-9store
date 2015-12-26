@@ -44,6 +44,15 @@ Page{
                 text: qsTr("Setting")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
             }
+            MenuItem {
+                text: qsTr("Search")
+                onClicked: pageStack.push(Qt.resolvedUrl("AppList.qml"),
+                                          {
+                                              "showsearch":true,
+                                              "category":"",
+                                              "developer":""
+                                          })
+            }
         }
 
         PageHeader{
@@ -62,7 +71,7 @@ Page{
                 id:posterItem
                 anchors.top:parent.top
                 width: Screen.width
-                height: Screen.height/4
+                height: Screen.height/3.5
             }
             Item{
                 id:newappItem

@@ -91,6 +91,21 @@ Page{
         Script.getrelatedlist(sysinfo.osType,category,page,pagesize)
     }
 
+    //获取下载链接
+    function getDownloadUrl(){
+        Script.infoPage = showappdetail
+        Script.getDownloadUrl(appid,user.auth,sysinfo.cpuModel)
+    }
+
+    //下载
+    onDownloadurlChanged: {
+        if(!downloadurl){
+            return
+        }
+        var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
+        py.newdownload(downloadurl,rpmname,version);
+    }
+
     SilicaFlickable{
         id:sfl
         contentHeight: appicon.height * 2 + appicon.width/5 + detailComp.height + Theme.paddingLarge * 4
@@ -349,12 +364,13 @@ Page{
         Script.infoPage = showappdetail
         Script.commentmodel = commentsModel
         Script.getinfo(appid)
-        Script.getDownloadUrl(appid,user.auth,sysinfo.cpuModel)
         Script.getComment(appid,comm_nextpage)
 
         Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
 
     }
+
+
 
     Connections{
         target: signalCenter

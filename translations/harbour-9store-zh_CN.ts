@@ -63,7 +63,7 @@
     </message>
     <message>
         <source>No comments yet,pull down to comment</source>
-        <translation>暂无评论，下来菜单进行评论</translation>
+        <translation>暂无评论，下拉菜单进行评论</translation>
     </message>
     <message>
         <source>No comments yet,hold and click to comment</source>
@@ -267,12 +267,12 @@
         <translation>还没有账号？</translation>
     </message>
     <message>
-        <source>Enter Username</source>
-        <translation>输入用户名</translation>
-    </message>
-    <message>
         <source>Enter Password</source>
         <translation>输入密码</translation>
+    </message>
+    <message>
+        <source>Enter Email</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -478,6 +478,10 @@
     <message>
         <source>Notifications</source>
         <translation>通知</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">搜索</translation>
     </message>
 </context>
 <context>

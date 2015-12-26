@@ -55,6 +55,8 @@ Rectangle {
         }
         width: 624/1080*parent.width
         //fillMode: Image.PreserveAspectFit
+        fillMode: Image.TileHorizontally
+        verticalAlignment: Image.AlignLeft
         source: "../img/FirstOpen/031.png";
         opacity: image_31_alpha;
     }
@@ -66,6 +68,8 @@ Rectangle {
             right: parent.right;
         }
         //fillMode: Image.PreserveAspectFit
+        fillMode: Image.TileHorizontally
+        verticalAlignment: Image.AlignRight
         source: "../img/FirstOpen/032.jpg";
         opacity: image_32_alpha;
     }

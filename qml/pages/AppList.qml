@@ -179,6 +179,11 @@ Page{
 
     Component.onCompleted: {
         Script.mainPage = showlist;
+        if(showsearch){
+            searchfield.forceActiveFocus();
+            return;
+        }
+
         Script.getlist(sysinfo.osType, category, developer, nextpage, pagesize, sort)
     }
 

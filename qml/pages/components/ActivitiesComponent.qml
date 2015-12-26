@@ -14,7 +14,7 @@ Item{
         //            opacity: view.contentY/height > 1 ? 0 : 1-view.contentY/height;
         //            visible: opacity>0.0;
         width: parent.width;
-        height: Screen.height/4
+        height: Screen.height/3.5
         preferredHighlightBegin: 0.5;
         preferredHighlightEnd: 0.5;
         path: Path {
@@ -37,11 +37,13 @@ Item{
                 source: previewImg.status === Image.Ready
                         ? "" : "image://theme/icon-m-refresh";
             }
-            Image {
+            CacheImage {
                 id: previewImg;
                 anchors.fill: parent;
-                fillMode: Image.PreserveAspectCrop;
-                source: Script.getPostericon(uploader.uid,_id)
+                fillMode: Image.PreserveAspectCrop
+                width: parent.width
+                height: parent.height
+                cacheurl: Script.getPostericon(uploader.uid,_id)
             }
             Rectangle{
                 width: parent.width;
@@ -60,7 +62,7 @@ Item{
                     bottom: parent.bottom
                     margins: Theme.paddingMedium
                 }
-                text:appname
+                text:""/*appname*/
                 font.pixelSize: Theme.fontSizeSmall;
                 wrapMode: Text.WrapAnywhere;
                 font.letterSpacing: 2;

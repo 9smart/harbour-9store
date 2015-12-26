@@ -53,7 +53,7 @@ function sendWebRequest(url, callback, method, postdata) {
                             callback(xmlhttp.responseText);
                             signalcenter.loadFinished();
                         } catch(e) {
-                            console.log(e)
+                            //console.log(e)
                             signalcenter.loadFailed(qsTr("loading erro..."));
                         }
                     } else {
@@ -97,7 +97,7 @@ function loadUserInfo(oritxt){
         return;
     }
     var obj = JSON.parse(oritxt);
-    console.log(oritxt)
+    //console.log(oritxt)
     if(obj.error === 0){
         app.user.username = obj.user.username;
         app.user.nickName = obj.user.nickname;
@@ -180,7 +180,7 @@ function loadcategory(oritxt){
 
 function getlist(system, category, developer, page, pagesize, sort){
     var url = apps(system, category, developer, page, pagesize, sort);
-    console.log("url:"+url)
+    //console.log("url:"+url)
     sendWebRequest(url,loadlist,"GET","");
 }
 function loadlist(oritxt){
@@ -193,7 +193,7 @@ function loadlist(oritxt){
         for(var i in obj.apps){
             mainPage.listmodel.append(obj.apps[i]);
         }
-        console.log("next_url:"+ obj.pager.next_url)
+        //console.log("next_url:"+ obj.pager.next_url)
         mainPage.nextpage = obj.pager.next_url?obj.pager.next_url:"";
         mainPage.prepage = obj.pager.pre_url?obj.pager.pre_url:"";
 
@@ -311,7 +311,7 @@ function loadrelatedlist(oritxt){
 function getSpecifiedAuthorList(system, developer, page, pageSize){
     var url = apps(system, "", developer, page, pageSize);
     url = url.replace("?&","?");
-    console.log("SpecifiedUrl:"+url)
+    //console.log("SpecifiedUrl:"+url)
     sendWebRequest(url, loadSpecifiedAuthorList, "GET", "");
 }
 function loadSpecifiedAuthorList(oritxt){

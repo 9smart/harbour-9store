@@ -53,7 +53,7 @@ Item {
                         height:implicitHeight
                         inputMethodHints:Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
                         font.pixelSize: Theme.fontSizeMedium
-                        placeholderText: qsTr("Enter Username")
+                        placeholderText: qsTr("Enter Email")
                         label: qsTr("UserName")
                         EnterKey.enabled: text || inputMethodComposing
                         EnterKey.iconSource: "image://theme/icon-m-enter-next"
