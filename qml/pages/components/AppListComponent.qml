@@ -83,7 +83,7 @@ BackgroundItem{
 
 
     RatingBox {
-        score:score_num?(score_num == 0?0:(scores/score_num)):0
+        score_n:score_num?(score_num == 0?0:(scores/score_num)):0
         width:apppic.width
         height: apppic.width/5
         optional:false

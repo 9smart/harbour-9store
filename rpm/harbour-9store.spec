@@ -10,7 +10,7 @@ Name:       harbour-9store
 
 Summary:    9smart shop
 Version:    0.2
-Release:    4
+Release:    5
 Group:      Qt/Qt
 License:    LICENSE
 URL:        http://example.org/
@@ -24,7 +24,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
-
+BuildRequires:  ssu-devel
 %description
 Short description of my SailfishOS Application
 

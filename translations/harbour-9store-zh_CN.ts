@@ -399,6 +399,14 @@
         <source>Start logout</source>
         <translation>即将注销</translation>
     </message>
+    <message>
+        <source>Enable Receive Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Circle Avatar</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutsPage</name>
@@ -450,10 +458,6 @@
     <message>
         <source>About</source>
         <translation>关于</translation>
-    </message>
-    <message>
-        <source>Welcome,</source>
-        <translation>欢迎您,</translation>
     </message>
     <message>
         <source>NewApps</source>

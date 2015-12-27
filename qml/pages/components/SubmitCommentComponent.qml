@@ -9,7 +9,7 @@ Dialog {
     property string appid;
     property string foolreplay;
     property ListModel replaysTmpModel
-    canAccept: subcomments.text.length > 4 && subcomments.text.length < 81
+    canAccept: subcomments.text.length > 2 && subcomments.text.length < 81
     acceptDestination: parentpage
     acceptDestinationAction: PageStackAction.Pop
     acceptDestinationProperties:replaysTmpModel
@@ -39,7 +39,7 @@ Dialog {
 
         }else{
         //评论app
-           Script.sendComment(auth,appid,subcomments.text,ratingbox.score,sysinfo.phoneName);
+           Script.sendComment(auth,appid,subcomments.text,slope.value,sysinfo.phoneName);
         }
 
 
@@ -80,7 +80,7 @@ Dialog {
                     visible: !cid
                     width:parent.width/3
                     height: parent.width/3/6
-                    score:slope.value
+                    score_n:slope.value
                     anchors{
                         top:parent.top
                         horizontalCenter: parent.horizontalCenter

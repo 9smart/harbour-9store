@@ -57,7 +57,7 @@ Page{
 
         PageHeader{
             id:header
-            title:qsTr("Welcome,")+user.nickName
+            title:user.nickName
         }
         anchors.fill: parent
         contentHeight: content.height + header.height + Theme.paddingLarge

@@ -47,7 +47,7 @@ import org.nemomobile.dbus 1.0
 ApplicationWindow
 {
     id:window
-    property string version:"0.2-4";
+    property string version:"0.2-5";
     property bool loading:false;
     property alias user: user;
     property alias sysinfo:sysinfo;
@@ -55,6 +55,7 @@ ApplicationWindow
     property real currper: 0.0
     property bool opencache: true
     property string currname;
+    property bool opencircle :true
 
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
@@ -76,6 +77,143 @@ ApplicationWindow
             iface: 'org.nemo.ssu'
         }
 
+    DBusInterface {
+            id: systemdManager
+
+            service: 'org.freedesktop.systemd1'
+            path: '/org/freedesktop/systemd1'
+            iface: 'org.freedesktop.systemd1.Manager'
+
+            bus: DBusInterface.SessionBus
+
+            signalsEnabled: true
+
+            property var jobRemovedCallbacks: ({})
+
+            function jobRemoved(jobId, objectPath, unit, result)
+            {
+                console.log('jobId: ' + jobId + ', unit: ' + unit);
+
+                if (unit == 'harbour-9store.service')
+                    systemdUnit.updateState();
+            }
+
+            function jobNew(id, job, unit)
+            {
+                console.log('id: ' + id + ', job: ' + job + ', unit: ' + unit);
+            }
+
+            function setJobRemovedCallback(jobId, callback)
+            {
+                jobRemovedCallbacks[jobId] = callback;
+            }
+
+            Component.onCompleted: {
+                var args = [{
+                    type: 's',
+                    value: 'harbour-9store.service'
+                }];
+
+                systemdManager.typedCall('Subscribe', [], function(result) {
+                    console.log('Subscribe result: ' + result);
+
+                    systemdManager.typedCall('LoadUnit', args, function(result) {
+                        console.log('Retrieved unit path: ' + result)
+                        systemdUnit.path = result
+                    });
+                });
+
+            }
+        }
+
+        DBusInterface {
+            id: systemdUnit
+
+            service: 'org.freedesktop.systemd1'
+            iface: 'org.freedesktop.systemd1.Unit'
+
+            bus: DBusInterface.SessionBus
+
+            property bool isActive: false
+            property bool isEnabled: false
+
+            onPathChanged: {
+                updateState();
+            }
+
+            function disable()
+            {
+                console.log('');
+
+                var params = [{
+                                  type: 'as',
+                                  value: [ 'harbour-9store.service' ] // unit to disable
+                              }, {
+                                  type: 'b',                                 // 'disable temporarily' flag
+                                  value: false                               // we disable persistently
+                              }];
+
+                systemdManager.typedCall('DisableUnitFiles', params, function(result) {
+                    console.log(result);
+
+                    systemdManager.typedCall('Reload', [], function() {
+                        systemdUnit.updateState();
+                    });
+                });
+
+            }
+
+            function enable()
+            {
+                console.log('');
+
+                var params = [{
+                                  type: 'as',
+                                  value: [ 'harbour-9store.service' ]   // unit to enable
+                              }, {
+                                  type: 'b',                                   // 'enable temporarily' flag
+                                  value: false                                 // we enable persistently
+                              }, {
+                                  type: 'b',                                   // 'overwrite symlinks' flag
+                                  value: false                                 // we don't
+                              }];
+
+                systemdManager.typedCall('EnableUnitFiles', params, function(result) {
+                    console.log(result);
+
+                    systemdManager.typedCall('Reload', [], function() {
+                        systemdUnit.updateState();
+                    });
+                });
+            }
+
+            function restart()
+            {
+                console.log('');
+
+                systemdUnit.typedCall('Restart', [{ type: 's', value: 'replace' }]);
+            }
+
+            function start()
+            {
+                console.log('');
+
+                systemdUnit.typedCall('Start', [{type:'s',value:'replace'}]);
+            }
+
+            function stop(callback) {
+                console.log('');
+
+                systemdUnit.typedCall('Stop', [{type:'s',value:'replace'}]);
+            }
+
+            function updateState()
+            {
+                isActive = (getProperty('ActiveState') === 'active' &&
+                            getProperty('SubState') === 'running');
+                isEnabled = (getProperty('UnitFileState') === 'enabled');
+            }
+        }
     BusyIndicator {
         id: busyIndicator
         anchors.centerIn: parent
@@ -461,11 +599,10 @@ ApplicationWindow
 
     }
 
-    DesktopFileSortModel {
-        id: desktopModel
-        showHidden: false
-
-    }
+//    DesktopFileSortModel {
+//        id: desktopModel
+//        showHidden: false
+//    }
 
 
 
@@ -473,6 +610,7 @@ ApplicationWindow
         Script.signalcenter = signalCenter;
         UserData.initialize()
         Setting.initialize()
+        opencircle = Setting.getCircle();
         ssuDBus.typedCallWithReturn("displayName", [ {"type": "i", "value": "1"} ],
                                                             function (type) {
                                     sysinfo.phoneName = type

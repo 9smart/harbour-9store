@@ -399,6 +399,14 @@
         <source>Start logout</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable Receive Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Circle Avatar</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutsPage</name>
@@ -449,10 +457,6 @@
     <name>WelcomePage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Welcome,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

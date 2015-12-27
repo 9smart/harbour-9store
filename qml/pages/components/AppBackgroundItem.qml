@@ -50,7 +50,7 @@ BackgroundItem {
 
         RatingBox{
             id:ratingbox
-            score:score_num == 0?0:(scores/score_num)
+            score_n:score_num == 0?0:(scores/score_num)
             width:rectangle.width/2
             height: ratingbox.width/5
             optional:false

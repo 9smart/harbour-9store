@@ -14,6 +14,10 @@ function initialize() {
                 function(tx) {
                     tx.executeSql('CREATE TABLE IF NOT EXISTS Christmas(id integer PRIMARY KEY);');
                 });
+    db.transaction(
+                function(tx) {
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS CircleImg(id integer);');
+                });
 }
 
 var notifyModel;
@@ -21,7 +25,7 @@ function getNotifyData(status) {
     var db = getDatabase();
     notifyModel.clear()
     db.transaction(function(tx) {
-        var rs = tx.executeSql('SELECT * FROM NotificationData where status = ?;',[status]);
+        var rs = tx.executeSql('SELECT * FROM NotificationData where status = ? order by id desc;',[status]);
         for(var i =0;i<rs.rows.length;i++){
           notifyModel.append(JSON.parse(rs.rows.item(i).json))
         }
@@ -67,3 +71,33 @@ function reopenLoad(){
         var rs = tx.executeSql('delete from Christmas;');
     });
 }
+
+//圆形头像
+// 1开启，-1 关闭
+var circle_flag = false;
+
+function getCircle(){
+    var db = getDatabase();
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('SELECT * from CircleImg;');
+        if(rs.rows.length > 0){
+            if(rs.rows.item(0).id > 0){
+                circle_flag = true;
+            }else{
+                circle_flag = false;
+            }
+        }else{
+            circle_flag = true;
+        }
+    });
+   return circle_flag;
+}
+
+function upCircle(c){
+    var db = getDatabase();
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('INSERT OR REPLACE INTO CircleImg(id) VALUES (?);',[c]);
+    });
+}
+
+

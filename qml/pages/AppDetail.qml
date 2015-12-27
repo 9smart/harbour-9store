@@ -158,7 +158,7 @@ Page{
                 right:avgsocre.left
                 rightMargin: Theme.paddingSmall
             }
-            score:score_num == 0?0:(scores/score_num)
+            score_n:score_num == 0?0:(scores/score_num)
             optional:false
             width: appicon.width * 1.5
             height: appicon.width * 1.5/5

@@ -44,22 +44,38 @@ Page{
                     rightMargin: Theme.paddingMedium
                 }
             }
-
-            CircleCacheImage{
-               id:userPic
-               width:Screen.width/6 - Theme.paddingMedium
-               height:width
-               cacheurl: author.avatar+"/hd"
-               smooth: true;
-               cache: true
-               anchors {
-                   left: parent.left
-                   top:parent.top
-                   leftMargin: Theme.paddingSmall
-                   topMargin: Theme.paddingMedium
+            Image{
+                id:userPic
+                anchors {
+                    left: parent.left
+                    top:parent.top
+                    leftMargin: Theme.paddingSmall
+                    topMargin: Theme.paddingMedium
+                }
+                width:Screen.width/6 - Theme.paddingMedium
+                height:width
+                fillMode: Image.PreserveAspectFit;
+                CircleCacheImage{
+                   id:circulcache
+                   visible: opencircle
+                   cacheurl: author.avatar+"/hd"
+                   anchors.fill: parent
+                   smooth: true;
+                   cache: true
+                   maskSource: "../../img/mask.bmp"
+                   width: parent.width
+                   height: parent.height
                }
-               maskSource: "../../img/mask.bmp"
-           }
+                CacheImage{
+                    id:cacheimg
+                    visible: !opencircle
+                    cacheurl: author.avatar+"/hd"
+                    anchors.fill: parent
+                    width: parent.width
+                    height: parent.height
+                }
+
+            }
              Label{
                  id:nick
                  text:author.nickname

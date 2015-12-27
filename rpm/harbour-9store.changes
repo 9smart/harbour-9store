@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Dec 27 2015 BirdZhang <0312birdzhang@gmail.com> 0.2-5
+- 一些bug修复与更改
+- 添加启用烧饼头像开关
+
 * Fri Dec 25 2015 BirdZhang <0312birdzhang@gmail.com> 0.2-4
 - beta1 version
 

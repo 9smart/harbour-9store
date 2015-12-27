@@ -212,16 +212,16 @@ Item{
             }
 
         }
-        RatingBox {
-            score:score_num?(score_num == 0?0:(scores/score_num)):0
-            optional:false
-            //width:parent.width
-            anchors {
-                left: rate.right
-                leftMargin: Theme.paddingMedium
-                verticalCenter:parent.verticalCenter
-            }
-        }
+//        RatingBox {
+//            score_n:score_num?(score_num == 0?0:(scores/score_num)):0
+//            optional:false
+//            //width:parent.width
+//            anchors {
+//                left: rate.right
+//                leftMargin: Theme.paddingMedium
+//                verticalCenter:parent.verticalCenter
+//            }
+//        }
         IconButton {
             icon.source: "image://theme/icon-m-right"
             anchors{

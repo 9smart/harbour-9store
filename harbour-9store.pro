@@ -110,6 +110,7 @@ OTHER_FILES += \
     qml/pages/model/SysInfo.qml \
     qml/pages/model/User.qml \
     qml/cover/CoverPage.qml \
+    qml/js/*.js \
     qml/py/__init__.py \
     qml/py/basedir.py \
     qml/py/image.py \

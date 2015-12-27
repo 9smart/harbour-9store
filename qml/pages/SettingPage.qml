@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "components"
 import "../js/login.js" as Login
+import "../js/setting.js" as Setting
 Page{
 
     SilicaFlickable{
@@ -50,24 +51,51 @@ Page{
             }
 
             Item{width:1;height:1}
-//            Item{
-//                id:clearcache
-//                width: parent.width
-//                height:cacheSwitch.height
-//                anchors.top: user_nickname.bottom
-//                TextSwitch {
-//                    id: cacheSwitch
-//                    checked: false
-//                    text: qsTr("Cache Img")
-//                }
+            Item{
+                id:clearcache
+                width: parent.width
+                height:cacheSwitch.height
+                anchors.top: user_nickname.bottom
+                TextSwitch {
+                    id: cacheSwitch
+                    checked: systemdUnit.isEnabled
+                    text: qsTr("Enable Receive Notifications")
+                    onClicked: {
+                        if(systemdUnit.isEnabled){
+                            systemdUnit.stop();
+                            systemdUnit.disable();
+                        }else{
+                            systemdUnit.enable();
+                            systemdUnit.start()
+                        }
+                        checked = !systemdUnit.isEnabled
+                    }
+                }
 
-//            }
+            }
+            Item{width:1;height:1}
+            Item{
+                id:circles
+                width: parent.width
+                height:circleSwitch.height
+                anchors.top: clearcache.bottom
+                TextSwitch {
+                    id: circleSwitch
+                    checked: opencircle
+                    text: qsTr("Enable Circle Avatar")
+                    onClicked: {
+                        Setting.upCircle(opencircle?-1:1)
+                        opencircle = !opencircle
+                    }
+                }
+
+            }
             Item{width:1;height:1}
             Button{
                 id:logout
                 text:qsTr("Logout")
                 anchors{
-                    top:user_nickname.bottom
+                    top:circles.bottom
                     topMargin: Theme.paddingLarge
                     horizontalCenter: parent.horizontalCenter
                 }
