@@ -487,6 +487,10 @@
         <source>Search</source>
         <translation type="unfinished">搜索</translation>
     </message>
+    <message>
+        <source>featuredApps</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>harbour-9store</name>
@@ -497,10 +501,6 @@
     <message>
         <source>Downloaded,Installing</source>
         <translation>安装中</translation>
-    </message>
-    <message>
-        <source>Installed</source>
-        <translation>已安装</translation>
     </message>
     <message>
         <source>Updated</source>
@@ -533,6 +533,10 @@
     <message>
         <source>9Smart</source>
         <translation>9Smart</translation>
+    </message>
+    <message>
+        <source>Installing</source>
+        <translation type="unfinished">安装中</translation>
     </message>
 </context>
 <context>

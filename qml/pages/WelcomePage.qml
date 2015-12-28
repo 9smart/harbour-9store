@@ -80,7 +80,7 @@ Page{
                 anchors.top:posterItem.bottom
                 //height: childrenRect.height
                 //contentHeight:childrenRect.height
-                height: newgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
+                height: featgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
                 width: parent.width
                 MoreButton{
                     id:newapps
@@ -102,7 +102,7 @@ Page{
                     }
                 }
                 Grid{
-                    id:newgrid
+                    id:featgrid
                     width:parent.width
                     anchors{
                         top:newapps.bottom

@@ -487,6 +487,10 @@
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>featuredApps</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>harbour-9store</name>
@@ -500,10 +504,6 @@
     </message>
     <message>
         <source>Downloaded,Installing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -532,6 +532,10 @@
     </message>
     <message>
         <source>9Smart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Installing</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
