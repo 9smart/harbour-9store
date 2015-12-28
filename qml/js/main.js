@@ -101,8 +101,15 @@ function loadUserInfo(oritxt){
     if(obj.error === 0){
         app.user.username = obj.user.username;
         app.user.nickName = obj.user.nickname;
-        app.user.avatar = obj.user.avatar;
-        app.user.avatar_hd = obj.user.avatar_hd;
+        if(obj.user.avatar){
+            app.user.avatar = obj.user.avatar;
+            app.user.avatar_hd = obj.user.avatar_hd;
+
+        }else{
+            app.user.avatar = "/usr/share/harbour-9store/qml/img/default_avatar.png";
+            app.user.avatar_hd = "/usr/share/harbour-9store/qml/img/default_avatar.png";
+        }
+
         //app.user.noticeNumber = obj.user.notice_num;
         app.user.userState = true;
         if(obj.user.auth){

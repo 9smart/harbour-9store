@@ -57,7 +57,7 @@ def downloadImg(downname,downurl):
     except urllib.error.HTTPError:
         return "default"
     except urllib.error.ContentTooShortError:
-        return ""
+        return "default"
     return ""
 
 def clearImg():

@@ -4,7 +4,7 @@ import sys,os
 import subprocess
 import urllib
 import urllib.request
-import requests
+#import requests
 import pyotherside
 from basedir import *
 import logging
@@ -29,7 +29,7 @@ def install(rpmpath,rpmname,version):
     #0则安装成功
     logging.debug(p)
     print("installed,",rpmpath)
-    if "0" in p:
+    if 0 == p:
         pyotherside.send("status","2",rpmname,version)
         return True
     else:
@@ -59,7 +59,6 @@ def openApp(rpmname):
 
 def isopened(rpmname):
     p = subprocess.Popen(["ps -ef|grep "+rpmname+"|grep -v grep |wc -l"], shell=True, stdout=subprocess.PIPE).communicate()[0]
-    p.wait()
     p = p.decode('utf-8').strip("\n")
     if int(p) > 0:
         return "yes"
@@ -72,19 +71,19 @@ def newdownload(downurl,rpmname,version):
         #暂时重新下载
         urllib.request.urlretrieve(downurl,target+downname, schedule)
         #判断是否下载完
-        headers = {
-           	'Range': 'bytes=0-20'
-           }
-        r = requests.head(downurl,headers = headers)
-        content_length = r.headers.get("Content-Range").split("/")[-1]
-        localfile_length = os.path.getsize(downname)
-        if int(content_length) == (localfile_length):
-            #给一种下载的感觉
-            pyotherside.send("progress",20)
-            pyotherside.send("progress",50)
-            pyotherside.send("progress",100)
-        else:
-            urllib.request.urlretrieve(downurl,target+downname, schedule)
+#        headers = {
+#           	'Range': 'bytes=0-20'
+#           }
+#        r = requests.head(downurl,headers = headers)
+#        content_length = r.headers.get("Content-Range").split("/")[-1]
+#        localfile_length = os.path.getsize(downname)
+#        if int(content_length) == (localfile_length):
+#            #给一种下载的感觉
+#            pyotherside.send("progress",20)
+#            pyotherside.send("progress",50)
+#            pyotherside.send("progress",100)
+#        else:
+#            urllib.request.urlretrieve(downurl,target+downname, schedule)
     else:
         urllib.request.urlretrieve(downurl,target+downname, schedule)
     install(target+downname,rpmname,version)

@@ -42,10 +42,10 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
-               openButton.text = qsTr("Opening")
-               py.openapp(rpmname);
-               openButton.text = qsTr("Opened")
-               openButton.enabled = false;
+                openButton.text = qsTr("Opening")
+                py.openapp(rpmname);
+                openButton.text = qsTr("Opened")
+                openButton.enabled = false;
             }
 
         }
@@ -57,11 +57,11 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
-               installButton.text = qsTr("Installing")
-               installButton.enabled = false
-               var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
-               getDownloadUrl()
-               downbar = true;
+                installButton.text = qsTr("Installing")
+                installButton.enabled = false
+                var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
+                getDownloadUrl()
+                downbar = true;
             }
 
         }
@@ -74,10 +74,10 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
-               upgradeButton.text = qsTr("Upgrading")
-               upgradeButton.enabled = false
-               getDownloadUrl()
-               downbar = true;
+                upgradeButton.text = qsTr("Upgrading")
+                upgradeButton.enabled = false
+                getDownloadUrl()
+                downbar = true;
             }
 
         }
@@ -150,14 +150,17 @@ Item{
             }
         }
 
-       onAppisopened:{
-           console.log("result:"+result)
+        onAppisopened:{
+            console.log("result:"+result)
             if(result.toString() == "yes"){
                 openButton.text = qsTr("Opened")
                 openButton.enabled = false;
             }else{
                 //openButton.visible = true;
             }
-       }
+        }
     }
+
+
+
 }

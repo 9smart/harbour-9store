@@ -87,7 +87,7 @@ Page{
                     width:parent.width
                     anchors.top: parent.top
                     height: Theme.itemSizeMedium
-                    text: qsTr("NewApps")
+                    text: qsTr("featuredApps")
                     onClicked: {
                         if(loading){
                             return;
@@ -122,7 +122,7 @@ Page{
 
             Item{
                 id:featuredappItem
-                anchors.top:posterItem.bottom
+                anchors.top:newappItem.bottom
                 //height: childrenRect.height
                 //contentHeight:childrenRect.height
                 height: newgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
@@ -132,7 +132,7 @@ Page{
                     width:parent.width
                     anchors.top: parent.top
                     height: Theme.itemSizeMedium
-                    text: qsTr("featuredApps")
+                    text: qsTr("NewApps")
                     onClicked: {
                         if(loading){
                             return;

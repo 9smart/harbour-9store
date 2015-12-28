@@ -369,7 +369,12 @@ Page{
         Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
 
     }
-
+    onStatusChanged: {
+        if (status == PageStatus.Active ) {
+            py.versionCompare(rpmname,version)
+            py.isopened(rpmname)
+        }
+    }
 
 
     Connections{

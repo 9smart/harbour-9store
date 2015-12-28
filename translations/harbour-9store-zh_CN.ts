@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!&lt;br/&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>感谢warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder，感谢你！&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -272,7 +272,7 @@
     </message>
     <message>
         <source>Enter Email</source>
-        <translation type="unfinished"></translation>
+        <translation>输入邮箱</translation>
     </message>
 </context>
 <context>
@@ -401,11 +401,11 @@
     </message>
     <message>
         <source>Enable Receive Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>启用后台消息接收</translation>
     </message>
     <message>
         <source>Enable Circle Avatar</source>
-        <translation type="unfinished"></translation>
+        <translation>开启烧饼头像</translation>
     </message>
 </context>
 <context>
@@ -485,11 +485,11 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <source>featuredApps</source>
-        <translation type="unfinished"></translation>
+        <translation>推荐应用</translation>
     </message>
 </context>
 <context>
@@ -536,7 +536,7 @@
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished">安装中</translation>
+        <translation>安装中</translation>
     </message>
 </context>
 <context>
