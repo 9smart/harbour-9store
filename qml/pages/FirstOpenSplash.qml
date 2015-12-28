@@ -51,6 +51,7 @@ Rectangle {
         id: image_3_1;
         anchors{
             top:parent.top
+            bottom: parent.bottom
             left: parent.left;
         }
         width: 624/1080*parent.width
@@ -64,6 +65,7 @@ Rectangle {
         width: 456/1080*parent.width
         anchors{
             top:parent.top
+            bottom: parent.bottom
             right: parent.right;
         }
         //fillMode: Image.PreserveAspectFit

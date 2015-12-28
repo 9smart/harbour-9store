@@ -85,7 +85,7 @@ Item{
         Button{
             id:uninstallButton
             text:qsTr("Uninstall")
-            visible: !installButton.visible
+            visible: false//!installButton.visible
             anchors{
                 horizontalCenter: parent.horizontalCenter
             }
@@ -124,7 +124,7 @@ Item{
             downbar = false;
             installButton.visible = false
             upgradeButton.visible = false
-            uninstallButton.visible =  false
+            //uninstallButton.visible =  false
             switch(result){
             case ("Install"):
                 installButton.text = qsTr("Install")
@@ -139,9 +139,9 @@ Item{
                 openButton.enabled = true;
                 break;
             case("Uninstall"):
-                uninstallButton.text = qsTr("Uninstall")
-                uninstallButton.visible = true;
-                uninstallButton.enabled = true;
+                // uninstallButton.text = qsTr("Uninstall")
+                // uninstallButton.visible = true;
+                // uninstallButton.enabled = true;
                 openButton.visible = true;
                 openButton.enabled = true;
                 break;

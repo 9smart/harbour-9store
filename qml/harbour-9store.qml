@@ -574,7 +574,7 @@ ApplicationWindow
                 sendMsg=qsTr("Downloaded,Installing")
                 break;
             case "2":
-                sendMsg=qsTr("Installed")
+                sendMsg=qsTr("Installing")
                 break;
             case "3":
                 sendMsg=qsTr("Updated")
