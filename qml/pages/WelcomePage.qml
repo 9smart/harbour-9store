@@ -8,6 +8,8 @@ Page{
     property alias covermodel: coverModel;
     property alias featuredModel: featuredmodel;
     property alias listmodel: listmodel;
+    property string nextpage;
+    property string prepage;
    ListModel{
        id:coverModel;
    }
@@ -64,7 +66,7 @@ Page{
         Item{
             id: content
             width: parent.width
-            height: posterItem.height+ newappItem.height + category.height
+            height: posterItem.height+ featuredappItem.height + newappItem.height + category.height
             anchors.top: header.bottom
             //banner
             ActivitiesComponent{
@@ -91,7 +93,7 @@ Page{
                             return;
                         }
                         pageStack.push(Qt.resolvedUrl("AppList.qml"),
-                                       {"query_type":""
+                                       {"sort":""
                                        });
                     }
                     WelcomeBoxBackground {
@@ -119,8 +121,53 @@ Page{
             }
 
             Item{
+                id:featuredappItem
+                anchors.top:posterItem.bottom
+                //height: childrenRect.height
+                //contentHeight:childrenRect.height
+                height: newgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
+                width: parent.width
+                MoreButton{
+                    id:featuredapps
+                    width:parent.width
+                    anchors.top: parent.top
+                    height: Theme.itemSizeMedium
+                    text: qsTr("featuredApps")
+                    onClicked: {
+                        if(loading){
+                            return;
+                        }
+                        pageStack.push(Qt.resolvedUrl("AppList.qml"),
+                                       {"sort":"comment_num"
+                                       });
+                    }
+                    WelcomeBoxBackground {
+                        anchors.fill: parent
+                        z: -1
+                    }
+                }
+                Grid{
+                    id:newgrid
+                    width:parent.width
+                    anchors{
+                        top:featuredapps.bottom
+                        left:parent.left
+                        right:parent.right
+                    }
+
+                    columns: 3
+                    Repeater {
+                        model: listmodel
+                        AppBackgroundItem {
+                        }
+                    }
+                }
+
+            }
+
+            Item{
                 id:category
-                anchors.top:newappItem.bottom
+                anchors.top:featuredappItem.bottom
                 height: allclass.height + gameclass.height+ appclass.height
                 width: parent.width
                 MoreButton{
@@ -181,5 +228,6 @@ Page{
         Script.mainPage = welcome;
         Script.getfeatured(sysinfo.osType);
         Script.getcover(sysinfo.osType);
+        Script.getlist(sysinfo.osType, "", "", "", 9, "")
     }
 }
