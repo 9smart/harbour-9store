@@ -112,9 +112,17 @@ def versionCompare(rpmname,versioncode):
     installedName = "-".join(tmpname)
     logging.debug("installed:"+installedName)
     serverName = rpmname+"-"+versioncode
-    if LooseVersion(installedName) == LooseVersion(serverName):
-        return "Uninstall"
-    elif LooseVersion(installedName) < LooseVersion(serverName):
-        return "Upgrade"
-    else:
-        return "Uninstall"
+    try:
+        if LooseVersion(installedName) == LooseVersion(serverName):
+            return "Uninstall"
+        elif LooseVersion(installedName) < LooseVersion(serverName):
+            return "Upgrade"
+        else:
+            return "Uninstall"
+    except:
+        if installedName == serverName:
+            return "Uninstall"
+        elif installedName < serverName:
+            return "Upgrade"
+        else:
+            return "Uninstall"
