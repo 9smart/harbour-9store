@@ -412,9 +412,9 @@ ApplicationWindow
                 "name": "9Store",
                 "displayName": qsTr("9Store"),
                 "icon": "icon-s-do-it",
-                "service": "org.nemomobile.example",
                 "path": "/example",
-                "iface": "org.nemomobile.example",
+                "service": 'org.freedesktop.systemd1'
+                "iface": 'org.freedesktop.systemd1.Unit'
                 "method": "doSomething",
                 "arguments": [ "argument", 1 ]
             } ]
@@ -459,7 +459,7 @@ ApplicationWindow
 
     Python {
         id: py
-        signal progress(string per)
+        signal progress(string rpmname,string per)
         signal status(string str,string rpmname,string version)
         Component.onCompleted: {
             addImportPath('/usr/share/harbour-9store/qml/py');
@@ -477,6 +477,7 @@ ApplicationWindow
         }
         onProgress: {
             currper = per;
+            currname = rpmname;
         }
 
 
@@ -516,7 +517,7 @@ ApplicationWindow
         }
 
         function newdownload(downurl,rpmname,version){
-            currname = rpmname;
+            //currname = rpmname;
             //console.log("starting download..."+rpmname)
             call('mypy.newdownload',[downurl,rpmname,version],function(result){
                 return result
@@ -619,4 +620,3 @@ ApplicationWindow
 
     }
 }
-

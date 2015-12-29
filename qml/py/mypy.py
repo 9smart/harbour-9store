@@ -68,25 +68,24 @@ def isopened(rpmname):
 def newdownload(downurl,rpmname,version):
     downname=rpmname+"-"+version+"."+getSysinfo().get("cpuModel")+".rpm";
     if os.path.exists(downname):
-        #暂时重新下载
-        urllib.request.urlretrieve(downurl,target+downname, schedule)
         #判断是否下载完
-#        headers = {
-#           	'Range': 'bytes=0-20'
-#           }
-#        r = requests.head(downurl,headers = headers)
-#        content_length = r.headers.get("Content-Range").split("/")[-1]
-#        localfile_length = os.path.getsize(downname)
-#        if int(content_length) == (localfile_length):
-#            #给一种下载的感觉
-#            pyotherside.send("progress",20)
-#            pyotherside.send("progress",50)
-#            pyotherside.send("progress",100)
-#        else:
-#            urllib.request.urlretrieve(downurl,target+downname, schedule)
+        content_length = GetUrlFileSize(downurl)
+        localfile_length = os.path.getsize(downname)
+        if content_length != 0 and int(content_length) == (localfile_length):
+            #给一种下载的感觉
+            pyotherside.send("progress",rpmname,20)
+            pyotherside.send("progress",rpmname,50)
+            pyotherside.send("progress",rpmname,100)
+        else:
+            #urllib.request.urlretrieve(downurl,target+downname, schedule)
+            multidownload(downurl,downname,target+downname)
     else:
-        urllib.request.urlretrieve(downurl,target+downname, schedule)
+        #urllib.request.urlretrieve(downurl,target+downname, schedule)
+        multidownload(downurl,downname,target+downname)
     install(target+downname,rpmname,version)
+
+def multidownload(url,name,output):
+    paxel( url, name,output, blocks=4 )
 
 #显示下载进度
 def schedule(a,b,c):
@@ -99,7 +98,7 @@ def schedule(a,b,c):
     if per > 100 :
         per = 100
     #print('%.2f%%' % per)
-    pyotherside.send("progress",per)
+    pyotherside.send("progress",rpmname,per)
 
 
 def versionCompare(rpmname,versioncode):
@@ -125,3 +124,13 @@ def versionCompare(rpmname,versioncode):
             return "Upgrade"
         else:
             return "Uninstall"
+
+def GetUrlFileSize(url):
+    urlHandler = urllib.request.urlopen(url)
+    headers = urlHandler.headers
+    length = 0
+    for header in headers:
+        if header.find('Length') != -1:
+            length = headers["content-length"]
+            length = int(length)
+    return length

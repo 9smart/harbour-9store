@@ -17,6 +17,7 @@ Item{
         color: Theme.primaryColor
         font.pixelSize: Theme.fontSizeSmall
         wrapMode: Text.Wrap
+        text:currname
         anchors{
             top:parent.top
             topMargin: Theme.paddingMedium
