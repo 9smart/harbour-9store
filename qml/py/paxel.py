@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'It is a multi-thread downloading tool
+'''It is a multi-thread downloading tool
 
     It was developed follow axel.
         Author: volans
@@ -12,7 +12,7 @@ import os
 import time
 import urllib.request
 from threading import Thread
-
+import pyotherside
 #local_proxies = {'http': 'http://131.139.58.200:8080'}
 
 class AxelPython(Thread, urllib.request.FancyURLopener):
@@ -88,9 +88,7 @@ def islive(tasks):
             return True
     return False
 
-def paxel(url, name,output, blocks=6,pyotherside):
-    ''' paxel
-    '''
+def paxel(url, name,output, blocks=6):
     size = GetUrlFileSize( url )
     ranges = SpliteBlocks( size, blocks )
 

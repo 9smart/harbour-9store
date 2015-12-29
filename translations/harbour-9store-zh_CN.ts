@@ -495,48 +495,48 @@
 <context>
     <name>harbour-9store</name>
     <message>
-        <source>Begin download</source>
-        <translation>开始下载</translation>
-    </message>
-    <message>
-        <source>Downloaded,Installing</source>
-        <translation>安装中</translation>
-    </message>
-    <message>
-        <source>Updated</source>
-        <translation>升级成功</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>未知操作</translation>
-    </message>
-    <message>
-        <source>Removed</source>
-        <translation>删除成功</translation>
-    </message>
-    <message>
-        <source>error</source>
-        <translation>错误</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>安装出错</translation>
+        <source>Welcome to</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>9Store</source>
-        <translation>9Store</translation>
-    </message>
-    <message>
-        <source>Welcome to</source>
-        <translation>Welcome to</translation>
+        <translation type="unfinished">久店</translation>
     </message>
     <message>
         <source>9Smart</source>
-        <translation>9Smart</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Begin download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded,Installing</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>安装中</translation>
+        <translation type="unfinished">安装中</translation>
+    </message>
+    <message>
+        <source>Updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Removed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

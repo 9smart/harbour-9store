@@ -495,6 +495,22 @@
 <context>
     <name>harbour-9store</name>
     <message>
+        <source>Welcome to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9Store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9Smart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Begin download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -503,11 +519,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Updated</source>
+        <source>Installing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unknown</source>
+        <source>Updated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -515,27 +531,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>9Store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Welcome to</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>9Smart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Installing</source>
+        <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -11,6 +11,7 @@ import logging
 from distutils.version import LooseVersion, StrictVersion
 from rpms import *
 from sysinfo import *
+from paxel import *
 """
 //定义发送消息规则
 //0,开始下载
@@ -85,7 +86,7 @@ def newdownload(downurl,rpmname,version):
     install(target+downname,rpmname,version)
 
 def multidownload(url,name,output):
-    paxel( url, name,output, blocks=4 )
+    paxel( url, name,output, blocks=4)
 
 #显示下载进度
 def schedule(a,b,c):

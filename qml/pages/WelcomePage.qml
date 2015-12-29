@@ -93,7 +93,7 @@ Page{
                             return;
                         }
                         pageStack.push(Qt.resolvedUrl("AppList.qml"),
-                                       {"sort":""
+                                       {"sort":"comment_num"
                                        });
                     }
                     WelcomeBoxBackground {
@@ -138,7 +138,7 @@ Page{
                             return;
                         }
                         pageStack.push(Qt.resolvedUrl("AppList.qml"),
-                                       {"sort":"comment_num"
+                                       {"sort":""
                                        });
                     }
                     WelcomeBoxBackground {

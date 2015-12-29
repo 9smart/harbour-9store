@@ -11,19 +11,7 @@ Item{
     property bool downbar: false
 
 
-    Label{
-        id:statusName
-        width: parent.width
-        color: Theme.primaryColor
-        font.pixelSize: Theme.fontSizeSmall
-        wrapMode: Text.Wrap
-        text:currname
-        anchors{
-            top:parent.top
-            topMargin: Theme.paddingMedium
-            horizontalCenter: parent.horizontalCenter
-        }
-    }
+
 
 
 
@@ -35,6 +23,19 @@ Item{
             right:parent.right
         }
         spacing: Theme.paddingMedium
+        Label{
+            id:statusName
+            width: parent.width
+            color: Theme.primaryColor
+            font.pixelSize: Theme.fontSizeSmall
+            wrapMode: Text.Wrap
+            text:currname
+            anchors{
+                top:parent.top
+                topMargin: Theme.paddingMedium
+                horizontalCenter: parent.horizontalCenter
+            }
+        }
         Button{
             id:openButton
             text:qsTr("Open")

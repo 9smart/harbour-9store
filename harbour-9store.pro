@@ -117,6 +117,7 @@ OTHER_FILES += \
     qml/py/mypy.py \
     qml/py/rpms.py \
     qml/py/sysinfo.py \
+    qml/py/paxel.py \
     harbour-9store.service \
     harbour-9store.timer
 

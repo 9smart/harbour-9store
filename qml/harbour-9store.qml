@@ -413,8 +413,8 @@ ApplicationWindow
                 "displayName": qsTr("9Store"),
                 "icon": "icon-s-do-it",
                 "path": "/example",
-                "service": 'org.freedesktop.systemd1'
-                "iface": 'org.freedesktop.systemd1.Unit'
+                "service": 'org.freedesktop.systemd1',
+                "iface": 'org.freedesktop.systemd1.Unit',
                 "method": "doSomething",
                 "arguments": [ "argument", 1 ]
             } ]
