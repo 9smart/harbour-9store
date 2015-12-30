@@ -58,6 +58,21 @@ Page {
                 top:header.bottom
             }
             spacing: Theme.paddingMedium
+            Image{
+                id:logo
+                fillMode: Image.Stretch;
+                source:"../img/harbour-9smart.png"
+                anchors.horizontalCenter: parent.horizontalCenter;
+            }
+            Item { width: 1; height: 1 }
+            Label{
+                id:version
+                width:parent.width
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                text:qsTr("Version")+" 0.2-5"
+
+            }
             Item {width: 1;height: 1}
             LabelText {
                 anchors {
