@@ -88,7 +88,7 @@ def islive(tasks):
             return True
     return False
 
-def paxel(url, name,output, blocks=6):
+def paxel(url, name,output, blocks=4):
     size = GetUrlFileSize( url )
     ranges = SpliteBlocks( size, blocks )
 
@@ -102,12 +102,12 @@ def paxel(url, name,output, blocks=6):
         task.start()
         tasks.append( task )
 
-    time.sleep( 2 )
+    time.sleep(1.5)
     while islive(tasks):
         downloaded = sum( [task.downloaded for task in tasks] )
         process = downloaded/float(size)*100
         pyotherside.send("progress",name,process)
-        time.sleep( 0.5 )
+        time.sleep( 0.3 )
 
     filehandle = open( output, 'wb+' )
     for i in filename:

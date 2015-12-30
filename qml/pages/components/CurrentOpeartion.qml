@@ -10,11 +10,6 @@ Item{
     signal appisopened(string result)
     property bool downbar: false
 
-
-
-
-
-
     Column{
         id:col
         anchors{
@@ -54,7 +49,7 @@ Item{
         Button{
             id:installButton
             text:qsTr("Install")
-            visible: false
+            visible: !downprogress.visible
             anchors{
                 horizontalCenter: parent.horizontalCenter
             }
@@ -63,7 +58,6 @@ Item{
                 installButton.enabled = false
                 var rpm = rpmname+"-"+version+"."+sysinfo.cpuModel+".rpm";
                 getDownloadUrl()
-                downbar = true;
             }
 
         }
@@ -79,7 +73,6 @@ Item{
                 upgradeButton.text = qsTr("Upgrading")
                 upgradeButton.enabled = false
                 getDownloadUrl()
-                downbar = true;
             }
 
         }
@@ -106,7 +99,7 @@ Item{
 
     ProgressBar {
         id:downprogress
-        visible: downbar
+        visible: currper > 0 && currper < 100
         width: parent.width
         anchors{
             top: col.bottom
@@ -123,14 +116,13 @@ Item{
     Connections{
         target: signalCenter
         onCurrentAppmanaged:{
-            downbar = false;
-            installButton.visible = false
+            //installButton.visible = false
             upgradeButton.visible = false
             //uninstallButton.visible =  false
             switch(result){
             case ("Install"):
                 installButton.text = qsTr("Install")
-                installButton.visible = true;
+                //installButton.visible = true;
                 installButton.enabled = true;
                 break;
             case("Upgrade"):

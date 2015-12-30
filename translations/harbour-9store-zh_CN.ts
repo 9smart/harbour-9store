@@ -504,39 +504,39 @@
     </message>
     <message>
         <source>9Smart</source>
-        <translation type="unfinished"></translation>
+        <translation>9Smart</translation>
     </message>
     <message>
         <source>error</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <source>Begin download</source>
-        <translation type="unfinished"></translation>
+        <translation>开始下载</translation>
     </message>
     <message>
         <source>Downloaded,Installing</source>
-        <translation type="unfinished"></translation>
+        <translation>已下载，安装中</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished">安装中</translation>
+        <translation>安装中</translation>
     </message>
     <message>
         <source>Updated</source>
-        <translation type="unfinished"></translation>
+        <translation>已更新</translation>
     </message>
     <message>
         <source>Removed</source>
-        <translation type="unfinished"></translation>
+        <translation>已删除</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>未知错误</translation>
     </message>
 </context>
 <context>

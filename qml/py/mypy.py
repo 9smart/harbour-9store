@@ -4,7 +4,6 @@ import sys,os
 import subprocess
 import urllib
 import urllib.request
-#import requests
 import pyotherside
 from basedir import *
 import logging
@@ -12,6 +11,7 @@ from distutils.version import LooseVersion, StrictVersion
 from rpms import *
 from sysinfo import *
 from paxel import *
+import time
 """
 //定义发送消息规则
 //0,开始下载
@@ -31,12 +31,11 @@ def install(rpmpath,rpmname,version):
     logging.debug(p)
     print("installed,",rpmpath)
     if 0 == p:
-        pyotherside.send("status","2",rpmname,version)
-        return True
+        #pyotherside.send("status","1",rpmname,version)
+        pass
     else:
         pyotherside.send("status","-1",rpmname,version)
-        return False
-
+    
 
 def unistall(rpmname,version):
     p = subprocess.Popen("pkcon remove "+rpmname,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -53,18 +52,33 @@ def unistallpkg(rpmname):
     return p.returncode
 
 def openApp(rpmname):
-    p = subprocess.Popen("dbus-launch --exit-with-session "+rpmname,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    #避免反复按打开按钮
+    pre = subprocess.Popen(["ps -ef|grep ",rpmname,"|grep -v grep |wc -l"], shell=True, stdout=subprocess.PIPE).communicate()[0]
+    pre = pre.decode('utf-8').strip("\n")
+    if int(pre) > 0:
+        return
+    p = subprocess.call(["dbus-launch --exit-with-session "+rpmname], shell=True)
     #0则安装成功
-    retval = p.wait()
-    return p.returncode
+    if 0 == p:
+        pyotherside.send("openhandler","opening")
+        isopened(rpmname)
+    else:
+        pyotherside.send("openhandler","error")
 
 def isopened(rpmname):
-    p = subprocess.Popen(["ps -ef|grep "+rpmname+"|grep -v grep |wc -l"], shell=True, stdout=subprocess.PIPE).communicate()[0]
-    p = p.decode('utf-8').strip("\n")
-    if int(p) > 0:
-        return "yes"
+    retry = 3
+    row_count = 0
+    while retry >0:
+        p = subprocess.Popen(["ps -ef|grep ",rpmname,"|grep -v grep |wc -l"], shell=True, stdout=subprocess.PIPE).communicate()[0]
+        p = p.decode('utf-8').strip("\n")
+        row_count = row_count + int(p)
+        retry = retry - 1
+        time.sleep(0.3)
+    if row_count > 0:
+        pyotherside.send("openhandler","opened")
     else:
-        return "no"
+        pyotherside.send("openhandler","open")
+    
 
 def newdownload(downurl,rpmname,version):
     downname=rpmname+"-"+version+"."+getSysinfo().get("cpuModel")+".rpm";
@@ -72,17 +86,18 @@ def newdownload(downurl,rpmname,version):
         #判断是否下载完
         content_length = GetUrlFileSize(downurl)
         localfile_length = os.path.getsize(downname)
-        if content_length != 0 and int(content_length) == (localfile_length):
+        if content_length != 0 and int(content_length) == localfile_length:
             #给一种下载的感觉
             pyotherside.send("progress",rpmname,20)
             pyotherside.send("progress",rpmname,50)
             pyotherside.send("progress",rpmname,100)
         else:
-            #urllib.request.urlretrieve(downurl,target+downname, schedule)
             multidownload(downurl,downname,target+downname)
     else:
-        #urllib.request.urlretrieve(downurl,target+downname, schedule)
         multidownload(downurl,downname,target+downname)
+    #避免一些蛋疼的事情发生
+    pyotherside.send("progress",rpmname,100)
+    pyotherside.send("status","1",rpmname,version)
     install(target+downname,rpmname,version)
 
 def multidownload(url,name,output):
@@ -126,12 +141,3 @@ def versionCompare(rpmname,versioncode):
         else:
             return "Uninstall"
 
-def GetUrlFileSize(url):
-    urlHandler = urllib.request.urlopen(url)
-    headers = urlHandler.headers
-    length = 0
-    for header in headers:
-        if header.find('Length') != -1:
-            length = headers["content-length"]
-            length = int(length)
-    return length
