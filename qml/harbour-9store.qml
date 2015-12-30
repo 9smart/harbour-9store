@@ -69,13 +69,13 @@ ApplicationWindow
     }
 
 
-    DBusInterface {
-            id: ssuDBus
-            busType: DBusInterface.SystemBus
-            destination: 'org.nemo.ssu'
-            path: '/org/nemo/ssu'
-            iface: 'org.nemo.ssu'
-        }
+    // DBusInterface {
+    //         id: ssuDBus
+    //         busType: DBusInterface.SystemBus
+    //         destination: 'org.nemo.ssu'
+    //         path: '/org/nemo/ssu'
+    //         iface: 'org.nemo.ssu'
+    //     }
 
     DBusInterface {
             id: systemdManager
@@ -537,7 +537,7 @@ ApplicationWindow
             call('sysinfo.getSysinfo',[],function(result){
                 var obj = result
                 sysinfo.cpuModel = obj.cpuModel;
-                //sysinfo.phoneName = obj.phoneName;
+                sysinfo.phoneName = obj.phoneName;
             })
         }
 
@@ -615,10 +615,10 @@ ApplicationWindow
         UserData.initialize()
         Setting.initialize()
         opencircle = Setting.getCircle();
-        ssuDBus.typedCallWithReturn("displayName", [ {"type": "i", "value": "1"} ],
-                                                            function (type) {
-                                    sysinfo.phoneName = type
-                                })
+        // ssuDBus.typedCallWithReturn("displayName", [ {"type": "i", "value": "1"} ],
+        //                                                     function (type) {
+        //                             sysinfo.phoneName = type
+        //                         })
 
 
     }
