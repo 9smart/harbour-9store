@@ -13,7 +13,7 @@ Item{
     Column{
         id:col
         anchors{
-            top:statusName.bottom
+            top:parent.top
             left:parent.left
             right:parent.right
         }

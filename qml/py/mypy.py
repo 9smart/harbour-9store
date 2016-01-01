@@ -69,7 +69,7 @@ def isopened(rpmname):
     retry = 3
     row_count = 0
     while retry >0:
-        p = subprocess.Popen(["ps -ef|grep ",rpmname,"|grep -v grep |wc -l"], shell=True, stdout=subprocess.PIPE).communicate()[0]
+        p = subprocess.Popen(["ps -ef|grep "+rpmname+"|grep -v grep |wc -l"], shell=True, stdout=subprocess.PIPE).communicate()[0]
         p = p.decode('utf-8').strip("\n")
         row_count = row_count + int(p)
         retry = retry - 1
