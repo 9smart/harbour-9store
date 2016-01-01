@@ -58,13 +58,35 @@ Page {
                 top:header.bottom
             }
             spacing: Theme.paddingMedium
+            Image{
+                id:logo
+                fillMode: Image.Stretch;
+                source:"../img/harbour-9smart.png"
+                anchors.horizontalCenter: parent.horizontalCenter;
+            }
+            Item { width: 1; height: 1 }
+            Label{
+                id:version
+                width:parent.width
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                text:qsTr("Version")+" 0.2-5"
+
+            }
             Item {width: 1;height: 1}
             LabelText {
                 anchors {
                     margins: Theme.paddingLarge
                 }
                 label: qsTr("Thanks")
-                text: qsTr("Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!<br/>")
+                text: qsTr("Thanks")+
+                          '<style>a:link { color: ' + Theme.highlightColor + '; }</style><a href="https://github.com/custodian/orn-warehouse">warehouse</a>,jolla-store,'+
+                          '<a href="https://github.com/CODeRUS/powermenu2">powermenu2</a>,'+
+                          '<a href="https://github.com/thp/pyotherside">pyotherside</a>,'+
+                          '<a href="https://github.com/fravaccaro/harbour-dyncal">harbour-dyncal</a>,'+
+                          '<a href="https://github.com/tworaz/sailfish-ytplayer">sailfish-ytplayer</a>,'+
+                          '<a href="https://github.com/dpurgin/harbour-callrecorder">harbour-callrecorder</a>'+
+                          + qsTr("and You!<br/>")
 
             }
             Item {width: 1;height: 1}

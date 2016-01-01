@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''It is a multi-thread downloading tool
-
+'''
+    It is a multi-thread downloading tool
     It was developed follow axel.
-        Author: volans
-        E-mail: volansw [at] gmail.com
+    Author: volans
+    E-mail: volansw [at] gmail.com
 '''
 
 import sys
@@ -34,7 +34,7 @@ class AxelPython(Thread, urllib.request.FancyURLopener):
         try:
             self.downloaded = os.path.getsize( self.filename )
         except OSError:
-            #print 'never downloaded'
+            print('newer downloaded')
             self.downloaded = 0
 
         # rebuild start poind
@@ -88,7 +88,7 @@ def islive(tasks):
             return True
     return False
 
-def paxel(url, name,output, blocks=4):
+def paxel(url, name,output, blocks=8):
     size = GetUrlFileSize( url )
     ranges = SpliteBlocks( size, blocks )
 
@@ -102,7 +102,7 @@ def paxel(url, name,output, blocks=4):
         task.start()
         tasks.append( task )
 
-    time.sleep(1.5)
+    time.sleep(1)
     while islive(tasks):
         downloaded = sum( [task.downloaded for task in tasks] )
         process = downloaded/float(size)*100
@@ -125,4 +125,4 @@ def paxel(url, name,output, blocks=4):
 if __name__ == '__main__':
     url = "http://www.pygtk.org/dist/pygtk2-tut.pdf"
     output = 'pygtk2.pdf'
-    paxel( url, name,output, blocks=4 )
+    paxel( url, name,output, blocks=8 )
