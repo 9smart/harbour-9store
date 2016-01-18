@@ -166,7 +166,7 @@ Page{
 
         Label{
             id:avgsocre
-            text:score_num == 0?0:(scores/score_num)
+            text:score_num == 0?0:(scores/score_num).toFixed(2)
             font.bold: true
             font.pixelSize: Theme.fontSizeMedium
             font.italic: true
