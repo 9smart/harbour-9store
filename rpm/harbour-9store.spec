@@ -10,10 +10,10 @@ Name:       harbour-9store
 
 Summary:    9smart shop
 Version:    0.2
-Release:    5
+Release:    6
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        http://www.9smart.cn/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-9store.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -67,10 +67,10 @@ desktop-file-install --delete-original       \
 
 %post
 chmod a+x /usr/share/harbour-9store/qml/py/jobs.py
-systemctl start harbour-9store.timer
-systemctl enable harbour-9store.timer
-systemctl start harbour-9store.service
-systemctl enable harbour-9store.service
+#systemctl start harbour-9store.timer
+#systemctl enable harbour-9store.timer
+#systemctl start harbour-9store.service
+#systemctl enable harbour-9store.service
 
 %preun
 

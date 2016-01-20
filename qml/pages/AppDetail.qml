@@ -110,6 +110,7 @@ Page{
         id:sfl
         contentHeight: appicon.height * 2 + appicon.width/5 + detailComp.height + Theme.paddingLarge * 4
         anchors.fill: parent
+        anchors.margins:Theme.paddingMedium
         VerticalScrollDecorator {flickable:sfl}
         clip:true
 

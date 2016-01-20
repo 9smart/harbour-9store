@@ -8,6 +8,11 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Jan 20 2016 BirdZhang <0312birdzhang@gmail.com> 0.2-6
+- 详细页面评分优化显示
+- 去掉后台评论
+- 其他功能优化
+
 * Sun Dec 27 2015 BirdZhang <0312birdzhang@gmail.com> 0.2-5
 - 一些bug修复与更改
 - 添加启用烧饼头像开关
