@@ -34,7 +34,8 @@ Item{
         Button{
             id:openButton
             text:qsTr("Open")
-            visible: uninstallButton.visible && !installButton.visible
+            //visible: uninstallButton.visible && !installButton.visible
+            visible: false
             anchors{
                 horizontalCenter: parent.horizontalCenter
             }
@@ -88,7 +89,7 @@ Item{
                 remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
                     uninstallButton.text = qsTr("Uninstalling")
                     uninstallButton.enabled = false
-                    openButton.enabled = false;
+                    //openButton.enabled = false;
                     py.uninstallRpm(rpmname,version);
                 },3000);
             }
@@ -129,15 +130,15 @@ Item{
                 upgradeButton.text = qsTr("Upgrade")
                 upgradeButton.visible = true;
                 upgradeButton.enabled = true;
-                openButton.visible = true;
-                openButton.enabled = true;
+                //openButton.visible = true;
+                //openButton.enabled = true;
                 break;
             case("Uninstall"):
                 // uninstallButton.text = qsTr("Uninstall")
                 // uninstallButton.visible = true;
                 // uninstallButton.enabled = true;
-                openButton.visible = true;
-                openButton.enabled = true;
+                //openButton.visible = true;
+                //openButton.enabled = true;
                 break;
             default:
                 break;
@@ -147,10 +148,10 @@ Item{
         onAppisopened:{
             console.log("result:"+result)
             if(result.toString() == "yes"){
-                openButton.text = qsTr("Opened")
-                openButton.enabled = false;
+                //openButton.text = qsTr("Opened")
+                //openButton.enabled = false;
             }else{
-                //openButton.visible = true;
+                ////openButton.visible = true;
             }
         }
     }

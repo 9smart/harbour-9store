@@ -16,8 +16,12 @@
         <translation>已开启节日彩蛋！</translation>
     </message>
     <message>
-        <source>Thanks warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder and You!&lt;br/&gt;</source>
-        <translation>感谢warehouse,jolla-store,powermenu2,pyotherside,harbour-dyncal,sailfish-ytplayer,harbour-callrecorder，感谢你！&lt;br/&gt;</translation>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>and You!&lt;br/&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
