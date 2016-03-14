@@ -18,7 +18,7 @@ Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-9store.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5 >= 1.3.0
-Requires:   dbus-python3
+#Requires:   dbus-python3
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -66,21 +66,21 @@ desktop-file-install --delete-original       \
 
 
 %post
-chmod a+x /usr/share/harbour-9store/qml/py/jobs.py
-systemctl start harbour-9store.timer
-systemctl enable harbour-9store.timer
-systemctl start harbour-9store.service
-systemctl enable harbour-9store.service
+#chmod a+x /usr/share/harbour-9store/qml/py/jobs.py
+#systemctl start harbour-9store.timer
+#systemctl enable harbour-9store.timer
+#systemctl start harbour-9store.service
+#systemctl enable harbour-9store.service
 
 %preun
 
 %postun
 if [ $1 = 0 ]; then
     // Do stuff specific to uninstalls
-systemctl stop harbour-9store.timer
-systemctl disable harbour-9store.timer
-systemctl stop harbour-9store.service
-systemctl disable harbour-9store.service
+#systemctl stop harbour-9store.timer
+#systemctl disable harbour-9store.timer
+#systemctl stop harbour-9store.service
+#systemctl disable harbour-9store.service
 rm /etc/systemd/system/harbour-9store.timer
 rm /etc/systemd/system/harbour-9store.service
 rm -rf /usr/share/harbour-9store
@@ -98,6 +98,6 @@ fi
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
-/etc/systemd/system/
+#/etc/systemd/system/
 # >> files
 # << files

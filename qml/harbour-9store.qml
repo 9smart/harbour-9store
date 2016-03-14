@@ -41,8 +41,8 @@ import "js/setting.js" as Setting
 import org.nemomobile.notifications 1.0
 import org.coderus.powermenu.desktopfilemodel 1.0
 import org.nemomobile.configuration 1.0
-import org.nemomobile.dbus 2.0
-import org.nemomobile.dbus 1.0
+//import org.nemomobile.dbus 2.0
+//import org.nemomobile.dbus 1.0
 
 ApplicationWindow
 {
@@ -77,143 +77,143 @@ ApplicationWindow
     //         iface: 'org.nemo.ssu'
     //     }
 
-    DBusInterface {
-            id: systemdManager
+//    DBusInterface {
+//            id: systemdManager
 
-            service: 'org.freedesktop.systemd1'
-            path: '/org/freedesktop/systemd1'
-            iface: 'org.freedesktop.systemd1.Manager'
+//            service: 'org.freedesktop.systemd1'
+//            path: '/org/freedesktop/systemd1'
+//            iface: 'org.freedesktop.systemd1.Manager'
 
-            bus: DBusInterface.SessionBus
+//            bus: DBusInterface.SessionBus
 
-            signalsEnabled: true
+//            signalsEnabled: true
 
-            property var jobRemovedCallbacks: ({})
+//            property var jobRemovedCallbacks: ({})
 
-            function jobRemoved(jobId, objectPath, unit, result)
-            {
-                console.log('jobId: ' + jobId + ', unit: ' + unit);
+//            function jobRemoved(jobId, objectPath, unit, result)
+//            {
+//                console.log('jobId: ' + jobId + ', unit: ' + unit);
 
-                if (unit == 'harbour-9store.service')
-                    systemdUnit.updateState();
-            }
+//                if (unit == 'harbour-9store.service')
+//                    systemdUnit.updateState();
+//            }
 
-            function jobNew(id, job, unit)
-            {
-                console.log('id: ' + id + ', job: ' + job + ', unit: ' + unit);
-            }
+//            function jobNew(id, job, unit)
+//            {
+//                console.log('id: ' + id + ', job: ' + job + ', unit: ' + unit);
+//            }
 
-            function setJobRemovedCallback(jobId, callback)
-            {
-                jobRemovedCallbacks[jobId] = callback;
-            }
+//            function setJobRemovedCallback(jobId, callback)
+//            {
+//                jobRemovedCallbacks[jobId] = callback;
+//            }
 
-            Component.onCompleted: {
-                var args = [{
-                    type: 's',
-                    value: 'harbour-9store.service'
-                }];
+//            Component.onCompleted: {
+//                var args = [{
+//                    type: 's',
+//                    value: 'harbour-9store.service'
+//                }];
 
-                systemdManager.typedCall('Subscribe', [], function(result) {
-                    console.log('Subscribe result: ' + result);
+//                systemdManager.typedCall('Subscribe', [], function(result) {
+//                    console.log('Subscribe result: ' + result);
 
-                    systemdManager.typedCall('LoadUnit', args, function(result) {
-                        console.log('Retrieved unit path: ' + result)
-                        systemdUnit.path = result
-                    });
-                });
+//                    systemdManager.typedCall('LoadUnit', args, function(result) {
+//                        console.log('Retrieved unit path: ' + result)
+//                        systemdUnit.path = result
+//                    });
+//                });
 
-            }
-        }
+//            }
+//        }
 
-        DBusInterface {
-            id: systemdUnit
+//        DBusInterface {
+//            id: systemdUnit
 
-            service: 'org.freedesktop.systemd1'
-            iface: 'org.freedesktop.systemd1.Unit'
+//            service: 'org.freedesktop.systemd1'
+//            iface: 'org.freedesktop.systemd1.Unit'
 
-            bus: DBusInterface.SessionBus
+//            bus: DBusInterface.SessionBus
 
-            property bool isActive: false
-            property bool isEnabled: false
+//            property bool isActive: false
+//            property bool isEnabled: false
 
-            onPathChanged: {
-                updateState();
-            }
+//            onPathChanged: {
+//                updateState();
+//            }
 
-            function disable()
-            {
-                console.log('');
+//            function disable()
+//            {
+//                console.log('');
 
-                var params = [{
-                                  type: 'as',
-                                  value: [ 'harbour-9store.service' ] // unit to disable
-                              }, {
-                                  type: 'b',                                 // 'disable temporarily' flag
-                                  value: false                               // we disable persistently
-                              }];
+//                var params = [{
+//                                  type: 'as',
+//                                  value: [ 'harbour-9store.service' ] // unit to disable
+//                              }, {
+//                                  type: 'b',                                 // 'disable temporarily' flag
+//                                  value: false                               // we disable persistently
+//                              }];
 
-                systemdManager.typedCall('DisableUnitFiles', params, function(result) {
-                    console.log(result);
+//                systemdManager.typedCall('DisableUnitFiles', params, function(result) {
+//                    console.log(result);
 
-                    systemdManager.typedCall('Reload', [], function() {
-                        systemdUnit.updateState();
-                    });
-                });
+//                    systemdManager.typedCall('Reload', [], function() {
+//                        systemdUnit.updateState();
+//                    });
+//                });
 
-            }
+//            }
 
-            function enable()
-            {
-                console.log('');
+//            function enable()
+//            {
+//                console.log('');
 
-                var params = [{
-                                  type: 'as',
-                                  value: [ 'harbour-9store.service' ]   // unit to enable
-                              }, {
-                                  type: 'b',                                   // 'enable temporarily' flag
-                                  value: false                                 // we enable persistently
-                              }, {
-                                  type: 'b',                                   // 'overwrite symlinks' flag
-                                  value: false                                 // we don't
-                              }];
+//                var params = [{
+//                                  type: 'as',
+//                                  value: [ 'harbour-9store.service' ]   // unit to enable
+//                              }, {
+//                                  type: 'b',                                   // 'enable temporarily' flag
+//                                  value: false                                 // we enable persistently
+//                              }, {
+//                                  type: 'b',                                   // 'overwrite symlinks' flag
+//                                  value: false                                 // we don't
+//                              }];
 
-                systemdManager.typedCall('EnableUnitFiles', params, function(result) {
-                    console.log(result);
+//                systemdManager.typedCall('EnableUnitFiles', params, function(result) {
+//                    console.log(result);
 
-                    systemdManager.typedCall('Reload', [], function() {
-                        systemdUnit.updateState();
-                    });
-                });
-            }
+//                    systemdManager.typedCall('Reload', [], function() {
+//                        systemdUnit.updateState();
+//                    });
+//                });
+//            }
 
-            function restart()
-            {
-                console.log('');
+//            function restart()
+//            {
+//                console.log('');
 
-                systemdUnit.typedCall('Restart', [{ type: 's', value: 'replace' }]);
-            }
+//                systemdUnit.typedCall('Restart', [{ type: 's', value: 'replace' }]);
+//            }
 
-            function start()
-            {
-                console.log('');
+//            function start()
+//            {
+//                console.log('');
 
-                systemdUnit.typedCall('Start', [{type:'s',value:'replace'}]);
-            }
+//                systemdUnit.typedCall('Start', [{type:'s',value:'replace'}]);
+//            }
 
-            function stop(callback) {
-                console.log('');
+//            function stop(callback) {
+//                console.log('');
 
-                systemdUnit.typedCall('Stop', [{type:'s',value:'replace'}]);
-            }
+//                systemdUnit.typedCall('Stop', [{type:'s',value:'replace'}]);
+//            }
 
-            function updateState()
-            {
-                isActive = (getProperty('ActiveState') === 'active' &&
-                            getProperty('SubState') === 'running');
-                isEnabled = (getProperty('UnitFileState') === 'enabled');
-            }
-        }
+//            function updateState()
+//            {
+//                isActive = (getProperty('ActiveState') === 'active' &&
+//                            getProperty('SubState') === 'running');
+//                isEnabled = (getProperty('UnitFileState') === 'enabled');
+//            }
+//        }
     BusyIndicator {
         id: busyIndicator
         anchors.centerIn: parent

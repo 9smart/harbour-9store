@@ -18,17 +18,17 @@ CONFIG += sailfishapp sailfishapp_no_deploy_qml
 
 PKGCONFIG += mlite5
 
-service.path = /etc/systemd/system/
-service.files += harbour-9store.service \
-                harbour-9store.timer
+#service.path = /etc/systemd/system/
+#service.files += harbour-9store.service \
+#                harbour-9store.timer
 
-INSTALLS += service
+#INSTALLS += service
 
 
 pyo.path = /usr/share/harbour-9store/qml/py
-pyo.files += qml/py/*.py
+#pyo.files += qml/py/*.py
 
-INSTALLS += pyo
+#INSTALLS += pyo
 
 
 ava.path = /usr/share/harbour-9store/qml/img
@@ -43,7 +43,7 @@ SOURCES += src/harbour-9store.cpp \
     src/shortcutshelper.cpp \
     src/MyImage.cpp
 
-QT += network quick qml dbus
+QT += network quick qml #dbus
 
 
 
@@ -140,5 +140,5 @@ INSTALL += target
 RESOURCES += \
      harbour-9store.qrc
 
-DISTFILES += \
-    qml/py/jobs.py
+#DISTFILES += \
+#    qml/py/jobs.py

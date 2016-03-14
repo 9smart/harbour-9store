@@ -34,7 +34,7 @@ PkgConfigBR:
 Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - pyotherside-qml-plugin-python3-qt5 >= 1.3.0
-  - dbus-python3
+  #- dbus-python3
 # All installed files
 Files:
   - '%{_bindir}'
