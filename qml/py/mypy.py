@@ -24,6 +24,7 @@ import time
 """
 target=HOME+"/Downloads/"
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+processMap = {}
 
 def install(rpmpath,rpmname,version):
     p = subprocess.call(["xdg-open "+rpmpath], shell=True)
@@ -35,7 +36,7 @@ def install(rpmpath,rpmname,version):
         pass
     else:
         pyotherside.send("status","-1",rpmname,version)
-    
+
 
 def unistall(rpmname,version):
     p = subprocess.Popen("pkcon remove "+rpmname,shell=True,stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -78,7 +79,7 @@ def isopened(rpmname):
         pyotherside.send("openhandler","opened")
     else:
         pyotherside.send("openhandler","open")
-    
+
 
 def newdownload(downurl,rpmname,version):
     downname=rpmname+"-"+version+"."+getSysinfo().get("cpuModel")+".rpm";
@@ -91,6 +92,7 @@ def newdownload(downurl,rpmname,version):
             pyotherside.send("progress",rpmname,20)
             pyotherside.send("progress",rpmname,50)
             pyotherside.send("progress",rpmname,100)
+            setProcess(rpmname,100)
         else:
             multidownload(downurl,downname,target+downname)
     else:
@@ -140,4 +142,3 @@ def versionCompare(rpmname,versioncode):
             return "Upgrade"
         else:
             return "Uninstall"
-

@@ -110,6 +110,7 @@ Page{
         id:sfl
         contentHeight: appicon.height * 2 + appicon.width/5 + detailComp.height + Theme.paddingLarge * 4
         anchors.fill: parent
+        anchors.margins:Theme.paddingMedium
         VerticalScrollDecorator {flickable:sfl}
         clip:true
 
@@ -166,7 +167,7 @@ Page{
 
         Label{
             id:avgsocre
-            text:score_num == 0?0:(scores/score_num)
+            text:score_num == 0?0:(scores/score_num).toFixed(2)
             font.bold: true
             font.pixelSize: Theme.fontSizeMedium
             font.italic: true

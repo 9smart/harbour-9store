@@ -46,7 +46,7 @@ def notify(title):
                                      "x-nemo-preview-body": "9Store notification",
                                      "x-nemo-preview-summary":str(title) },
                                       signature='sv'),
-                                      3600)
+                                      -1)
 
 def getAuth():
     try:

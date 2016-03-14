@@ -149,7 +149,30 @@ function loadfeatured(oritxt){
     if(obj.error === 0){
         mainPage.featuredModel.clear();
         for(var i in obj.apps){
-            mainPage.featuredModel.append(obj.apps[i]);
+                mainPage.featuredModel.append(
+                            {
+                                "_id":obj.apps[i]._id,
+                                "appname":obj.apps[i].appname,
+                                "category":obj.apps[i].category,
+                                "changelog":obj.apps[i].changelog,
+                                "comment_num":obj.apps[i].comment_num,
+                                "dateline":obj.apps[i].dateline,
+                                "developer":obj.apps[i].developer,
+                                "download_num":obj.apps[i].download_num,
+                                "id":obj.apps[i].id,
+                                "poster":obj.apps[i].poster,
+                                "recommendation":obj.apps[i].recommendation,
+                                "score_num":typeof obj.apps[i].score_num == "undefined"?0:obj.apps[i].score_num,
+                                "scores":obj.apps[i].scores?obj.apps[i].scores:0,
+                                "size":obj.apps[i].size,
+                                "summary":obj.apps[i].summary,
+                                 "system":obj.apps[i].system,
+                                 "type":obj.apps[i].type,
+                                 "version":obj.apps[i].version,
+                                 "x86size":obj.apps[i].x86size,
+                                 "uploader":obj.apps[i].uploader
+                            }
+                            )
         }
     }
     else signalcenter.showMessage(obj.error);
@@ -198,7 +221,29 @@ function loadlist(oritxt){
 //        }
         mainPage.listmodel.clear();
         for(var i in obj.apps){
-            mainPage.listmodel.append(obj.apps[i]);
+            mainPage.listmodel.append(
+                        {
+                            "_id":obj.apps[i]._id,
+                            "appname":obj.apps[i].appname,
+                            "category":obj.apps[i].category,
+                            "changelog":obj.apps[i].changelog,
+                            "comment_num":obj.apps[i].comment_num,
+                            "dateline":obj.apps[i].dateline,
+                            "developer":obj.apps[i].developer,
+                            "download_num":obj.apps[i].download_num,
+                            "id":obj.apps[i].id,
+                            "poster":obj.apps[i].poster,
+                            "recommendation":obj.apps[i].recommendation,
+                            "score_num":typeof obj.apps[i].score_num == "undefined"?0:obj.apps[i].score_num,
+                            "scores":obj.apps[i].scores?obj.apps[i].scores:0,
+                            "size":obj.apps[i].size,
+                            "summary":obj.apps[i].summary,
+                             "system":obj.apps[i].system,
+                             "type":obj.apps[i].type,
+                             "version":obj.apps[i].version,
+                             "x86size":obj.apps[i].x86size,
+                             "uploader":obj.apps[i].uploader
+                        });
         }
         //console.log("next_url:"+ obj.pager.next_url)
         mainPage.nextpage = obj.pager.next_url?obj.pager.next_url:"";
