@@ -74,7 +74,7 @@ def isopened(rpmname):
         p = p.decode('utf-8').strip("\n")
         row_count = row_count + int(p)
         retry = retry - 1
-        time.sleep(0.3)
+        time.sleep(0.5)
     if row_count > 0:
         pyotherside.send("openhandler","opened")
     else:
@@ -123,6 +123,7 @@ def versionCompare(rpmname,versioncode):
     dic = getAppinfo(rpmname)
     print("dic:",dic)
     if not dic.get("Name"):
+        pyotherside.send("pkgm","Install")
         return "Install"
     tmpname = (dic.get("Name"),dic.get("Version"),dic.get("Release"))
     installedName = "-".join(tmpname)
@@ -130,15 +131,21 @@ def versionCompare(rpmname,versioncode):
     serverName = rpmname+"-"+versioncode
     try:
         if LooseVersion(installedName) == LooseVersion(serverName):
+            pyotherside.send("pkgm","Uninstall")
             return "Uninstall"
         elif LooseVersion(installedName) < LooseVersion(serverName):
+            pyotherside.send("pkgm","Upgrade")
             return "Upgrade"
         else:
+            pyotherside.send("pkgm","Uninstall")
             return "Uninstall"
     except:
         if installedName == serverName:
+            pyotherside.send("pkgm","Uninstall")
             return "Uninstall"
         elif installedName < serverName:
+            pyotherside.send("pkgm","Upgrade")
             return "Upgrade"
         else:
+            pyotherside.send("pkgm","Uninstall")
             return "Uninstall"

@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Mar 15 2016 BirdZhang <0312birdzhang@gmail.com> 0.2-7
+- 去掉后台提醒，更改通知页查看方式
+- 优先显示最新应用
+
 * Wed Jan 20 2016 BirdZhang <0312birdzhang@gmail.com> 0.2-6
 - 详细页面评分优化显示
 - 去掉后台评论

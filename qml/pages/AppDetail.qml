@@ -83,8 +83,8 @@ Page{
 
 
     onVersionChanged:{
+        //py.isopened(rpmname)
         py.versionCompare(rpmname,version)
-        py.isopened(rpmname)
     }
     //为了避免从banner点击进入有bug，后面需优化
     onCategoryChanged: {
@@ -370,6 +370,7 @@ Page{
         Script.getSpecifiedAuthorList(sysinfo.osType,developer,page,pagesize)
 
     }
+
     onStatusChanged: {
         if (status == PageStatus.Active ) {
             py.versionCompare(rpmname,version)

@@ -80,55 +80,10 @@ Page{
                 anchors.top:posterItem.bottom
                 //height: childrenRect.height
                 //contentHeight:childrenRect.height
-                height: featgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
-                width: parent.width
-                MoreButton{
-                    id:newapps
-                    width:parent.width
-                    anchors.top: parent.top
-                    height: Theme.itemSizeMedium
-                    text: qsTr("featuredApps")
-                    onClicked: {
-                        if(loading){
-                            return;
-                        }
-                        pageStack.push(Qt.resolvedUrl("AppList.qml"),
-                                       {"sort":"comment_num"
-                                       });
-                    }
-                    WelcomeBoxBackground {
-                        anchors.fill: parent
-                        z: -1
-                    }
-                }
-                Grid{
-                    id:featgrid
-                    width:parent.width
-                    anchors{
-                        top:newapps.bottom
-                        left:parent.left
-                        right:parent.right
-                    }
-
-                    columns: 3
-                    Repeater {
-                        model: featuredmodel
-                        AppBackgroundItem {
-                        }
-                    }
-                }
-
-            }
-
-            Item{
-                id:featuredappItem
-                anchors.top:newappItem.bottom
-                //height: childrenRect.height
-                //contentHeight:childrenRect.height
                 height: newgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
                 width: parent.width
                 MoreButton{
-                    id:featuredapps
+                    id:newapps
                     width:parent.width
                     anchors.top: parent.top
                     height: Theme.itemSizeMedium
@@ -150,7 +105,7 @@ Page{
                     id:newgrid
                     width:parent.width
                     anchors{
-                        top:featuredapps.bottom
+                        top:newapps.bottom
                         left:parent.left
                         right:parent.right
                     }
@@ -163,6 +118,51 @@ Page{
                     }
                 }
 
+            }
+
+            Item{
+                id:featuredappItem
+                anchors.top:newappItem.bottom
+                //height: childrenRect.height
+                //contentHeight:childrenRect.height
+                height: featgrid.height + Theme.itemSizeMedium + Theme.paddingMedium
+                width: parent.width
+
+                MoreButton{
+                    id:featuredapps
+                    width:parent.width
+                    anchors.top: parent.top
+                    height: Theme.itemSizeMedium
+                    text: qsTr("featuredApps")
+                    onClicked: {
+                        if(loading){
+                            return;
+                        }
+                        pageStack.push(Qt.resolvedUrl("AppList.qml"),
+                                       {"sort":"comment_num"
+                                       });
+                    }
+                    WelcomeBoxBackground {
+                        anchors.fill: parent
+                        z: -1
+                    }
+                }
+                Grid{
+                    id:featgrid
+                    width:parent.width
+                    anchors{
+                        top:featuredapps.bottom
+                        left:parent.left
+                        right:parent.right
+                    }
+
+                    columns: 3
+                    Repeater {
+                        model: featuredmodel
+                        AppBackgroundItem {
+                        }
+                    }
+                }
             }
 
             Item{

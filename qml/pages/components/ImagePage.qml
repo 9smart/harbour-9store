@@ -69,7 +69,10 @@ Page {
                     onCanceled: {
                         imagePage.clicked()
                     }
-                    onClicked:{
+//                    onClicked:{
+
+//                    }
+                    onDoubleClicked: {
                         pageStack.pop(undefined/*, PageStackAction.Immediate*/)
                     }
 

@@ -4,30 +4,24 @@ import "../../js/main.js" as Script
 
 Item{
     width: parent.width
-    height: downprogress.height + statusName.height +
-            + col.height + Theme.paddingMedium
+//    height: downprogress.height + statusName.height +
+//            + col.height + Theme.paddingMedium
+    height: col.height + Theme.paddingMedium
     signal currentAppmanaged(string result)
     signal appisopened(string result)
     property bool downbar: false
 
     Column{
         id:col
-        anchors{
-            top:parent.top
-            left:parent.left
-            right:parent.right
-        }
         spacing: Theme.paddingMedium
         Label{
             id:statusName
             width: parent.width
             color: Theme.primaryColor
             font.pixelSize: Theme.fontSizeSmall
-            wrapMode: Text.Wrap
+            wrapMode: Text.WordWrap
             text:currname
             anchors{
-                top:parent.top
-                topMargin: Theme.paddingMedium
                 horizontalCenter: parent.horizontalCenter
             }
         }
@@ -95,24 +89,18 @@ Item{
             }
 
         }
-
-    }
-
     ProgressBar {
         id:downprogress
         visible: currper > 0 && currper < 100
         width: parent.width
         anchors{
-            top: col.bottom
-            topMargin: Theme.paddingMedium
-            leftMargin: Theme.paddingLarge
-            rightMargin: Theme.paddingLarge
             horizontalCenter: parent.horizontalCenter
         }
         value: currper
         minimumValue:0
         maximumValue:100
     }
+  }
 
     Connections{
         target: signalCenter

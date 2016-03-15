@@ -51,28 +51,28 @@ Page{
             }
 
             Item{width:1;height:1}
-            Item{
-                id:clearcache
-                width: parent.width
-                height:cacheSwitch.height
-                anchors.top: user_nickname.bottom
-                TextSwitch {
-                    id: cacheSwitch
-                    checked: systemdUnit.isEnabled
-                    text: qsTr("Enable Receive Notifications")
-                    onClicked: {
-                        if(systemdUnit.isEnabled){
-                            systemdUnit.stop();
-                            systemdUnit.disable();
-                        }else{
-                            systemdUnit.enable();
-                            systemdUnit.start()
-                        }
-                        checked = !systemdUnit.isEnabled
-                    }
-                }
+//            Item{
+//                id:clearcache
+//                width: parent.width
+//                height:cacheSwitch.height
+//                anchors.top: user_nickname.bottom
+//                TextSwitch {
+//                    id: cacheSwitch
+//                    checked: systemdUnit.isEnabled
+//                    text: qsTr("Enable Receive Notifications")
+//                    onClicked: {
+//                        if(systemdUnit.isEnabled){
+//                            systemdUnit.stop();
+//                            systemdUnit.disable();
+//                        }else{
+//                            systemdUnit.enable();
+//                            systemdUnit.start()
+//                        }
+//                        checked = !systemdUnit.isEnabled
+//                    }
+//                }
 
-            }
+//            }
             Item{width:1;height:1}
             Item{
                 id:circles

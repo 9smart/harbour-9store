@@ -282,19 +282,19 @@
 <context>
     <name>NotificationPage</name>
     <message>
-        <source>Show History</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show Unread</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Notifications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No notification now,try to discuss with other Sailors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prev Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -306,10 +306,6 @@
     </message>
     <message>
         <source>replay comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -401,10 +397,6 @@
     </message>
     <message>
         <source>Start logout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable Receive Notifications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

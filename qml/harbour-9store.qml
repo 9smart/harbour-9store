@@ -450,6 +450,7 @@ ApplicationWindow
         signal progress(string rpmname,string per) //下载进度
         signal status(string str,string rpmname,string version) //当前状态
         signal openhandler(string str) //打开处理
+        signal pkgm(string str) //is installed
         Component.onCompleted: {
             addImportPath('/usr/share/harbour-9store/qml/py');
             py.importModule('mypy', function () {
@@ -462,6 +463,7 @@ ApplicationWindow
             setHandler('progress',progress);
             setHandler('status',status);
             setHandler('openhandler',openhandler)
+            setHandler('pkgm',pkgm);
             py.getSysinfo();
         }
         onProgress: {
@@ -470,6 +472,9 @@ ApplicationWindow
         }
         onOpenhandler:{
 
+        }
+        onPkgm:{
+            signalCenter.currentAppmanaged(str.toString());
         }
 
         onStatus:{
@@ -517,7 +522,7 @@ ApplicationWindow
 
         function versionCompare(rpmname,version){
             call('mypy.versionCompare',[rpmname,version],function(result){
-                signalCenter.currentAppmanaged(result);
+                //
             })
         }
 
@@ -594,6 +599,9 @@ ApplicationWindow
 //    DesktopFileSortModel {
 //        id: desktopModel
 //        showHidden: false
+//        onDataFillEnd:{
+
+//        }
 //    }
 
 
