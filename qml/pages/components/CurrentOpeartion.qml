@@ -109,10 +109,11 @@ Item{
             //installButton.visible = false
             upgradeButton.visible = false
             //uninstallButton.visible =  false
+            console.log("result:"+result)
             switch(result){
             case ("Install"):
                 installButton.text = qsTr("Install")
-                //installButton.visible = true;
+                installButton.visible = true;
                 installButton.enabled = true;
                 break;
             case("Upgrade"):
@@ -121,6 +122,7 @@ Item{
                 upgradeButton.enabled = true;
                 //openButton.visible = true;
                 //openButton.enabled = true;
+                installButton.visible = false;
                 break;
             case("Uninstall"):
                 // uninstallButton.text = qsTr("Uninstall")
@@ -128,8 +130,10 @@ Item{
                 // uninstallButton.enabled = true;
                 //openButton.visible = true;
                 //openButton.enabled = true;
+                installButton.visible = false;
                 break;
             default:
+                installButton.visible = true;
                 break;
             }
         }

@@ -183,7 +183,6 @@ Page{
 
         DetailComponent{
             id:detailComp
-            //width: parent.width
             anchors {
                 left: parent.left
                 right:parent.right
