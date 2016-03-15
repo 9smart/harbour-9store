@@ -278,6 +278,10 @@
         <source>Enter Email</source>
         <translation>输入邮箱</translation>
     </message>
+    <message>
+        <source>Show Password</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NotificationPage</name>

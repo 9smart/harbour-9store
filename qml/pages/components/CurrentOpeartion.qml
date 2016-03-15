@@ -3,7 +3,8 @@ import Sailfish.Silica 1.0
 import "../../js/main.js" as Script
 
 Item{
-    width: parent.width
+
+    //width: parent.width
 //    height: downprogress.height + statusName.height +
 //            + col.height + Theme.paddingMedium
     height: col.height + Theme.paddingMedium
