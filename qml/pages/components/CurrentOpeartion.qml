@@ -4,16 +4,19 @@ import "../../js/main.js" as Script
 
 Item{
 
-    //width: parent.width
-//    height: downprogress.height + statusName.height +
-//            + col.height + Theme.paddingMedium
+    width: parent.width
     height: col.height + Theme.paddingMedium
     signal currentAppmanaged(string result)
     signal appisopened(string result)
     property bool downbar: false
 
+    Component.onDestruction: {
+        statusName.text = "";
+    }
+
     Column{
         id:col
+        width: parent.width
         spacing: Theme.paddingMedium
         Label{
             id:statusName
@@ -66,6 +69,7 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
+                console.log("parent.width:"+parent.width)
                 upgradeButton.text = qsTr("Upgrading")
                 upgradeButton.enabled = false
                 getDownloadUrl()
@@ -77,10 +81,12 @@ Item{
             id:uninstallButton
             text:qsTr("Uninstall")
             visible: false//!installButton.visible
+            enabled: false
             anchors{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
+                return;
                 remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
                     uninstallButton.text = qsTr("Uninstalling")
                     uninstallButton.enabled = false
@@ -125,9 +131,9 @@ Item{
                 installButton.visible = false;
                 break;
             case("Uninstall"):
-                // uninstallButton.text = qsTr("Uninstall")
-                // uninstallButton.visible = true;
-                // uninstallButton.enabled = true;
+                uninstallButton.text = qsTr("Uninstall")
+                uninstallButton.visible = true;
+                uninstallButton.enabled = false;
                 //openButton.visible = true;
                 //openButton.enabled = true;
                 installButton.visible = false;

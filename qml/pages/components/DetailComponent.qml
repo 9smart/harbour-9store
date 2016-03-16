@@ -54,8 +54,9 @@ Item{
     CurrentOpeartion{
         id:downprogress
         anchors{
+            left:parent.left
+            right: parent.right
             top:infomess.bottom
-            horizontalCenter: parent.horizontalCenter
         }
     }
 

@@ -183,12 +183,11 @@ Page{
 
         DetailComponent{
             id:detailComp
+            width: showappdetail.width
             anchors {
                 left: parent.left
                 right:parent.right
                 top:ratingbox.bottom
-                leftMargin: Theme.paddingMedium
-                rightMargin: Theme.paddingMedium
             }
         }
 
