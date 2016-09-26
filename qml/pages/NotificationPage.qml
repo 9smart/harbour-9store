@@ -34,24 +34,27 @@ import "../js/main.js" as Script
 import "components"
 import "model"
 Page{
-    id:notifylist
-    property bool showhistory:true
+    id:notifyPage
+    property int pagesize: 12
+    property string prepage
+    property string nextpage
+    property alias notifyModel:notifyModel
     ListModel {
         id:notifyModel
     }
       SilicaListView {
           id:view
           anchors.fill: parent
-          PullDownMenu{
-                 MenuItem{
-                     id:pulldown
-                     text:showhistory?qsTr("Show History"):qsTr("Show Unread")
-                     onClicked: {
-                         Notify.getNotifyData(showhistory?1:0);
-                         showhistory=!showhistory
-                     }
-                 }
-             }
+//          PullDownMenu{
+//                 MenuItem{
+//                     id:pulldown
+//                     text:showhistory?qsTr("Show History"):qsTr("Show Unread")
+//                     onClicked: {
+//                         Notify.getNotifyData(showhistory?1:0);
+//                         showhistory=!showhistory
+//                     }
+//                 }
+//             }
         header:PageHeader{
              id:head
              title:qsTr("Notifications")
@@ -64,12 +67,48 @@ Page{
               enabled: view.count == 0
               text: qsTr("No notification now,try to discuss with other Sailors")
           }
+          footer:Component{
+
+              Item {
+                  id: loadMoreID
+                  anchors {
+                      left: parent.left;
+                      right: parent.right;
+                  }
+                  height: Theme.itemSizeMedium
+                  Row {
+                      id:footItem
+                      spacing: Theme.paddingLarge
+                      anchors.horizontalCenter: parent.horizontalCenter
+                      Button {
+                          text: qsTr("Prev Page")
+                          visible: prepage != ""
+                          onClicked: {
+                              Script.getnotify(prepage, pagesize);
+                              view.scrollToTop()
+                          }
+                      }
+                      Button{
+                          text:qsTr("Next Page")
+                          visible:nextpage != ""
+                          onClicked: {
+                              //console.log("nextpage:"+nextpage)
+                              Script.getnotify(nextpage, pagesize);
+                              view.scrollToTop()
+                          }
+                      }
+                  }
+              }
+
+          }
 
     }
 
     Component.onCompleted: {
-        Notify.notifyModel=notifyModel;
-        Notify.getNotifyData(0);
+        //Notify.notifyModel=notifyModel;
+        //Notify.getNotifyData(0);
+        Script.notifyPage = notifyPage;
+        Script.getnotify(nextpage,pagesize);
     }
 
 }

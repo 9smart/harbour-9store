@@ -116,7 +116,7 @@ BackgroundItem{
     Label{
         id:messageid
         text:content
-        width: parent.width-userPic.width-Theme.paddingMedium
+        width: parent.width
         font.pixelSize: Theme.fontSizeExtraSmall
         wrapMode: Text.WordWrap
         color: Theme.highlightColor
@@ -126,6 +126,7 @@ BackgroundItem{
         anchors {
             top:phoneModel.bottom
             left:userPic.right
+            right:parent.right
             margins: Theme.paddingMedium
         }
     }

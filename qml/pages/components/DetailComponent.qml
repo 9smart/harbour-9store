@@ -55,7 +55,7 @@ Item{
         id:downprogress
         anchors{
             left:parent.left
-            right:parent.right
+            right: parent.right
             top:infomess.bottom
         }
     }

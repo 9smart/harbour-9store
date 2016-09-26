@@ -3,31 +3,29 @@ import Sailfish.Silica 1.0
 import "../../js/main.js" as Script
 
 Item{
+
     width: parent.width
-    height: downprogress.height + statusName.height +
-            + col.height + Theme.paddingMedium
+    height: col.height + Theme.paddingMedium
     signal currentAppmanaged(string result)
     signal appisopened(string result)
     property bool downbar: false
 
+    Component.onDestruction: {
+        statusName.text = "";
+    }
+
     Column{
         id:col
-        anchors{
-            top:parent.top
-            left:parent.left
-            right:parent.right
-        }
+        width: parent.width
         spacing: Theme.paddingMedium
         Label{
             id:statusName
             width: parent.width
             color: Theme.primaryColor
             font.pixelSize: Theme.fontSizeSmall
-            wrapMode: Text.Wrap
+            wrapMode: Text.WordWrap
             text:currname
             anchors{
-                top:parent.top
-                topMargin: Theme.paddingMedium
                 horizontalCenter: parent.horizontalCenter
             }
         }
@@ -71,6 +69,7 @@ Item{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
+                console.log("parent.width:"+parent.width)
                 upgradeButton.text = qsTr("Upgrading")
                 upgradeButton.enabled = false
                 getDownloadUrl()
@@ -82,10 +81,12 @@ Item{
             id:uninstallButton
             text:qsTr("Uninstall")
             visible: false//!installButton.visible
+            enabled: false
             anchors{
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked:{
+                return;
                 remorse.execute(qsTr("Start uninstall %1").arg(appname),function(){
                     uninstallButton.text = qsTr("Uninstalling")
                     uninstallButton.enabled = false
@@ -95,24 +96,18 @@ Item{
             }
 
         }
-
-    }
-
     ProgressBar {
         id:downprogress
         visible: currper > 0 && currper < 100
         width: parent.width
         anchors{
-            top: col.bottom
-            topMargin: Theme.paddingMedium
-            leftMargin: Theme.paddingLarge
-            rightMargin: Theme.paddingLarge
             horizontalCenter: parent.horizontalCenter
         }
         value: currper
         minimumValue:0
         maximumValue:100
     }
+  }
 
     Connections{
         target: signalCenter
@@ -120,10 +115,11 @@ Item{
             //installButton.visible = false
             upgradeButton.visible = false
             //uninstallButton.visible =  false
+            console.log("result:"+result)
             switch(result){
             case ("Install"):
                 installButton.text = qsTr("Install")
-                //installButton.visible = true;
+                installButton.visible = true;
                 installButton.enabled = true;
                 break;
             case("Upgrade"):
@@ -132,15 +128,18 @@ Item{
                 upgradeButton.enabled = true;
                 //openButton.visible = true;
                 //openButton.enabled = true;
+                installButton.visible = false;
                 break;
             case("Uninstall"):
-                // uninstallButton.text = qsTr("Uninstall")
-                // uninstallButton.visible = true;
-                // uninstallButton.enabled = true;
+                uninstallButton.text = qsTr("Uninstall")
+                uninstallButton.visible = true;
+                uninstallButton.enabled = false;
                 //openButton.visible = true;
                 //openButton.enabled = true;
+                installButton.visible = false;
                 break;
             default:
+                installButton.visible = true;
                 break;
             }
         }

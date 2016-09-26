@@ -278,17 +278,13 @@
         <source>Enter Email</source>
         <translation>输入邮箱</translation>
     </message>
+    <message>
+        <source>Show Password</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NotificationPage</name>
-    <message>
-        <source>Show History</source>
-        <translation>历史消息</translation>
-    </message>
-    <message>
-        <source>Show Unread</source>
-        <translation>未读消息</translation>
-    </message>
     <message>
         <source>Notifications</source>
         <translation>通知</translation>
@@ -296,6 +292,14 @@
     <message>
         <source>No notification now,try to discuss with other Sailors</source>
         <translation>暂无通知，去软件下面评论，跟其他机友一起愉快的玩耍吧～</translation>
+    </message>
+    <message>
+        <source>Prev Page</source>
+        <translation>上一页</translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation>下一页</translation>
     </message>
 </context>
 <context>
@@ -307,10 +311,6 @@
     <message>
         <source>replay comment</source>
         <translation>评论回复</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>清除</translation>
     </message>
 </context>
 <context>
@@ -402,10 +402,6 @@
     <message>
         <source>Start logout</source>
         <translation>即将注销</translation>
-    </message>
-    <message>
-        <source>Enable Receive Notifications</source>
-        <translation>启用后台消息接收</translation>
     </message>
     <message>
         <source>Enable Circle Avatar</source>

@@ -8,7 +8,7 @@ BackgroundItem{
                 (c_type.height+ messageid.height )?
                  (userPic.height + nick.height):(c_type.height+ messageid.height ))
                 + Theme.paddingMedium * 4
-                +(contextMenu.active?contextMenu.height:0)
+                //+(contextMenu.active?contextMenu.height:0)
     contentHeight: height
     width: parent.width
     anchors.leftMargin: Theme.paddingSmall
@@ -108,24 +108,24 @@ BackgroundItem{
     }
     //ListView.onRemove: animateRemoval()
 
-    ContextMenu {
-        id:contextMenu
-        MenuItem {
-            text: qsTr("Clear")
-            onClicked:{
-                Script.clearNotifyData(_id)
-                notifyModel.remove(index)
-                contextMenu.hide()
-            }
-        }
-    }
+//    ContextMenu {
+//        id:contextMenu
+//        MenuItem {
+//            text: qsTr("Clear")
+//            onClicked:{
+//                Script.clearNotifyData(_id)
+//                notifyModel.remove(index)
+//                contextMenu.hide()
+//            }
+//        }
+//    }
 
-    onClicked: {
-      if(!showhistory){
-        return;
-      }
-      contextMenu.show(showcomments)
-    }
+//    onClicked: {
+//      if(!showhistory){
+//        return;
+//      }
+//      contextMenu.show(showcomments)
+//    }
 
     // onPressAndHold: {
     // }

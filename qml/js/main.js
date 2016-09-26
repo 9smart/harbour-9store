@@ -409,7 +409,10 @@ function sendCommentState(oritxt){
     if(obj.error === 0){
         signalcenter.commentSendSuccessful();
     }
-    else signalcenter.commentSendFailed(obj.error);
+    else{
+        signalcenter.commentSendFailed(obj.error);
+        console.log(obj.error)
+    }
 }
 
 
@@ -424,7 +427,10 @@ function sendReplayCommentState(oritxt){
     if(obj.error === 0){
         signalcenter.commentSendSuccessful();
     }
-    else signalcenter.commentSendFailed(obj.error);
+    else{
+        signalcenter.commentSendFailed(obj.error);
+        console.log(obj.error)
+    }
 }
 var version;
 function getversion() {
@@ -496,4 +502,23 @@ function registerResult(oritxt){
     else{
         signalcenter.registerFailed(obj.error)
     }
+}
+
+var notifyPage;
+function getnotify(page,pagesize){
+    var url = getNotify(app.user.auth,page,pagesize);
+    //console.log("url:"+url)
+    sendWebRequest(url,loadNotify,"GET","");
+}
+function loadNotify(oritxt){
+    var obj = JSON.parse(oritxt);
+    if(obj.error === 0){
+        notifyPage.notifyModel.clear();
+        for(var i in obj.notices){
+            notifyPage.notifyModel.append(obj.notices[i]);
+        }
+        notifyPage.nextpage = obj.pager.next_url?obj.pager.next_url:"";
+        notifyPage.prepage = obj.pager.pre_url?obj.pager.pre_url:"";
+    }
+    else signalcenter.showMessage(obj.error);
 }

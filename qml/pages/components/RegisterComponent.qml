@@ -145,6 +145,7 @@ Item {
 
         }
 
+
         Button{
             id:registerButton
             anchors{
