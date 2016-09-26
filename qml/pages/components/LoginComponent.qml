@@ -82,6 +82,7 @@ Item {
                 id:submitButton
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Login")
+                enabled: userName.text && password.text
                 onClicked: {
                     errorLabel.visible = false;
                     busyIndicator.running = true;

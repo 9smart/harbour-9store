@@ -26,9 +26,9 @@ PKGCONFIG += mlite5
 
 
 pyo.path = /usr/share/harbour-9store/qml/py
-#pyo.files += qml/py/*.py
+pyo.files += qml/py/*.py
 
-#INSTALLS += pyo
+INSTALLS += pyo
 
 
 ava.path = /usr/share/harbour-9store/qml/img

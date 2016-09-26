@@ -53,7 +53,7 @@ function sendWebRequest(url, callback, method, postdata) {
                             callback(xmlhttp.responseText);
                             signalcenter.loadFinished();
                         } catch(e) {
-                            //console.log(e)
+                            console.log(e)
                             signalcenter.loadFailed(qsTr("loading erro..."));
                         }
                     } else {

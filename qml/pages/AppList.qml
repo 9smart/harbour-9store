@@ -36,8 +36,8 @@ import "model"
 Page{
     id:showlist
     property int operationType: PageStackAction.Animated
-    property string prepage
-    property string nextpage
+    property string prepage:""
+    property string nextpage:""
     property bool display:false
     property int listsum:0
     property int pagesize:12
